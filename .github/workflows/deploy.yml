@@ -31,7 +31,11 @@ jobs:
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
+<<<<<<< HEAD
           path: nama-folder
+=======
+          path: '.'
+>>>>>>> 5c8af00ebdd5770e644c01535aead51068050735
 
       - name: Deploy
         id: deployment
