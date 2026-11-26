@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk - FROST WEARLY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 64px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+      gap: 16px;
+    }
+
+    .kiri-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+    }
+
+    .fw-badge {
+      background-color: #1E293B;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 5px 7px;
+      border-radius: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .cari-nav {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      width: 190px;
+      color: #0F2537;
+      background-color: #FFFFFF;
+    }
+
+    .cari-nav::placeholder {
+      color: #94A3B8;
+    }
+
+    .btn-keranjang-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-keranjang-nav span {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+
+    .profil-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .profil-bulat {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #1E293B;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* KONTEN UTAMA */
+    .wadah {
+      max-width: 1120px;
+      margin: 22px auto 48px;
+      padding: 0 20px;
+    }
+
+    .breadcrumb {
+      font-size: 11px;
+      color: #94A3B8;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .breadcrumb a {
+      color: #94A3B8;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #475569;
+    }
+
+    .grid-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* GALERI KIRI */
+    .foto-utama-box {
+      background-color: #EFEFEF;
+      border-radius: 10px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 28px;
+      position: relative;
+    }
+
+    .kaos-svg {
+      width: 78%;
+      height: 78%;
+      transition: transform 0.2s ease;
+    }
+
+    .baris-thumb {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn-thumb {
+      width: 56px;
+      height: 56px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background-color: #FFFFFF;
+      color: #94A3B8;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-thumb.aktif {
+      border-color: #0F2537;
+      border-width: 1.5px;
+      color: #0F2537;
+    }
+
+    /* KARTU INFO KANAN */
+    .kartu-info {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+
+    .badge-bestseller {
+      display: inline-block;
+      background-color: #F1F5F9;
+      color: #334155;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .rating-row {
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .bintang-teks {
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+
+    .harga-utama {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0F2537;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 16px;
+    }
+
+    .grup-opsi {
+      margin-bottom: 16px;
+    }
+
+    .label-opsi {
+      font-size: 12px;
+      color: #334155;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .label-opsi strong {
+      color: #0F2537;
+    }
+
+    .panduan-link {
+      font-size: 11px;
+      color: #64748B;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .swatches-warna {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-swatch {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      outline: 1px solid #CBD5E1;
+      outline-offset: -2px;
+    }
+
+    .btn-swatch.aktif {
+      border-color: #0F2537;
+      outline: 2px solid #FFFFFF;
+      outline-offset: -4px;
+    }
+
+    .baris-ukuran {
+      display: flex;
+      gap: 7px;
+    }
+
+    .btn-ukuran {
+      min-width: 34px;
+      height: 30px;
+      padding: 0 9px;
+      border: 1px solid #CBD5E1;
+      border-radius: 5px;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-ukuran.aktif {
+      background-color: #1E293B;
+      color: #FFFFFF;
+      border-color: #1E293B;
+    }
+
+    .baris-jumlah {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: #64748B;
+    }
+
+    .kontrol-qty {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #CBD5E1;
+      border-radius: 5px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+
+    .btn-qty {
+      width: 26px;
+      height: 26px;
+      border: none;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn-qty:hover {
+      background-color: #F1F5F9;
+    }
+
+    .angka-qty {
+      min-width: 26px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+    }
+
+    .baris-aksi-beli {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 18px 0 20px;
+    }
+
+    .btn-masuk-keranjang {
+      background-color: #FFFFFF;
+      color: #0F2537;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-masuk-keranjang:hover {
+      background-color: #F8FAFC;
+    }
+
+    .btn-beli-sekarang {
+      background-color: #262F3D;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-beli-sekarang:hover {
+      background-color: #161D27;
+    }
+
+    .deskripsi-box {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 14px;
+    }
+
+    .deskripsi-box h3 {
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 6px;
+    }
+
+    .deskripsi-box p {
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(180deg, #F1F6FA 0%, #DFECF6 100%);
+      color: #334155;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 20px 30px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
+      gap: 28px;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 11px;
+      line-height: 1.85;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 850px) {
+      .grid-detail {
+        grid-template-columns: 1fr;
+      }
+      .cari-nav {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .menu-nav {
+        display: none;
+      }
+      .baris-aksi-beli,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="kiri-nav">
+      <a href="beranda.html" class="logo-brand">
+        <span class="fw-badge">FW</span>
+        <span>FROST WEARLY</span>
+      </a>
+      <ul class="menu-nav">
+        <li><a href="katalog.html">Katalog</a></li>
+        <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+        <li><a href="custom.html">Custom</a></li>
+        <li><a href="tentang-kami.html">Bantuan</a></li>
+      </ul>
+    </div>
+
+    <div class="kanan-nav">
+      <input type="text" class="cari-nav" placeholder="Cari produk favorit..." onkeyup="if(event.key==='Enter') window.location.href='katalog.html'">
+      <a href="keranjang.html" class="btn-keranjang-nav">
+        &#128722; Keranjang <span id="jumlah-keranjang">0</span>
+      </a>
+      <div class="profil-wrap">
+        <div class="profil-bulat">BS</div>
+        <span>Budi</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <div class="breadcrumb">
+      <a href="beranda.html">Beranda</a> &rsaquo;
+      <a href="katalog.html">Katalog Baju</a> &rsaquo;
+      <a href="katalog.html">Atasan</a> &rsaquo;
+    </div>
+
+    <div class="grid-detail">
+      <!-- KIRI: FOTO & THUMBNAIL -->
+      <div>
+        <div class="foto-utama-box">
+          <svg id="kaos-svg" class="kaos-svg" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path id="kaos-body" d="M72 34L98 22H142L168 34L208 66L186 104L166 90V214H74V90L54 104L32 66L72 34Z" fill="#181A1F"/>
+            <path d="M98 22C104 33 136 33 142 22" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+            <path id="kaos-piping-kiri" d="M96 28C86 68 82 125 82 212" stroke="#E2E8F0" stroke-width="1.8" stroke-linecap="round"/>
+            <path id="kaos-piping-kanan" d="M144 28C154 68 158 125 158 212" stroke="#E2E8F0" stroke-width="1.8" stroke-linecap="round"/>
+            <rect x="112" y="34" width="16" height="8" rx="1.5" fill="#F8FAFC" stroke="#CBD5E1"/>
+          </svg>
+        </div>
+
+        <div class="baris-thumb">
+          <button type="button" class="btn-thumb aktif" onclick="gantiSudut(0, this)" title="Tampak Depan">&#128444;</button>
+          <button type="button" class="btn-thumb" onclick="gantiSudut(1, this)" title="Detail Jahitan">&#128444;</button>
+          <button type="button" class="btn-thumb" onclick="gantiSudut(2, this)" title="Tampak Belakang">&#128444;</button>
+          <button type="button" class="btn-thumb" onclick="gantiSudut(3, this)" title="Bahan Kain">&#128444;</button>
+        </div>
+      </div>
+
+      <!-- KANAN: INFO & AKSI -->
+      <section class="kartu-info">
+        <span class="badge-bestseller">BEST SELLER</span>
+        <div class="rating-row">
+          <span class="bintang-teks">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <strong>4.9</strong> (120 Ulasan) &bull; Terjual 450
+        </div>
+
+        <div id="produk-harga" class="harga-utama">Rp 149.000</div>
+
+        <div class="grup-opsi">
+          <div class="label-opsi">
+            <span>Warna: <strong id="label-warna">Hitam</strong></span>
+          </div>
+          <div class="swatches-warna">
+            <button type="button" class="btn-swatch aktif" style="background-color:#181A1F;" onclick="pilihWarna('Hitam', '#181A1F', '#E2E8F0', this)" title="Hitam"></button>
+            <button type="button" class="btn-swatch" style="background-color:#526071;" onclick="pilihWarna('Slate Grey', '#526071', '#F8FAFC', this)" title="Slate Grey"></button>
+            <button type="button" class="btn-swatch" style="background-color:#DCE4EE;" onclick="pilihWarna('Ice Mist', '#DCE4EE', '#0F2537', this)" title="Ice Mist"></button>
+            <button type="button" class="btn-swatch" style="background-color:#263547;" onclick="pilihWarna('Deep Navy', '#263547', '#BAE6FD', this)" title="Deep Navy"></button>
+          </div>
+        </div>
+
+        <div class="grup-opsi">
+          <div class="label-opsi">
+            <span>Ukuran: <strong id="label-ukuran">L</strong></span>
+            <button type="button" class="panduan-link" onclick="alert('Panduan Ukuran (cm):\nS: 68 x 50\nM: 71 x 53\nL: 74 x 56\nXL: 77 x 59')">Panduan Ukuran</button>
+          </div>
+          <div class="baris-ukuran">
+            <button type="button" class="btn-ukuran" onclick="pilihUkuran('S', this)">S</button>
+            <button type="button" class="btn-ukuran" onclick="pilihUkuran('M', this)">M</button>
+            <button type="button" class="btn-ukuran aktif" onclick="pilihUkuran('L', this)">L</button>
+            <button type="button" class="btn-ukuran" onclick="pilihUkuran('XL', this)">XL</button>
+          </div>
+        </div>
+
+        <div class="grup-opsi">
+          <div class="label-opsi">
+            <span>Jumlah</span>
+          </div>
+          <div class="baris-jumlah">
+            <div class="kontrol-qty">
+              <button type="button" class="btn-qty" onclick="ubahJumlah(-1)">-</button>
+              <span id="angka-jumlah" class="angka-qty">1</span>
+              <button type="button" class="btn-qty" onclick="ubahJumlah(1)">+</button>
+            </div>
+            <span>Stok tersedia: <strong>42 pcs</strong></span>
+          </div>
+        </div>
+
+        <div class="baris-aksi-beli">
+          <button type="button" class="btn-masuk-keranjang" onclick="masukkanKeranjang()">
+            &#128722; Masukkan Keranjang
+          </button>
+          <button type="button" class="btn-beli-sekarang" onclick="beliSekarang()">
+            Beli Sekarang
+          </button>
+        </div>
+
+        <div class="deskripsi-box">
+          <h3>Deskripsi Produk</h3>
+          <p id="produk-deskripsi">
+            Kaos Oversized dengan bahan premium Cotton Combed 24s tebal namun adem. Jahitan rantai rapi berstandar distro. Nyaman dipakai harian dengan style streetwear modern.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>&#9742; +62 812-3456-7890</p>
+        <p>&#9993; frostwearly@gmail.com</p>
+        <p>&#128205; Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>&#128247; @frostwearly.official.mlg</p>
+        <p>&#9835; @frost.wearly.mlg</p>
+        <p>&#128172; 0821-7101-7051</p>
+      </div>
+    </div>
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const detailProduk = {
+      nama: "Kaos Polos Premium Oversized 24s",
+      hargaAngka: 149000,
+      stok: 42
+    };
+
+    let stateProduk = {
+      warna: "Hitam",
+      kodeWarna: "#181A1F",
+      warnaPiping: "#E2E8F0",
+      ukuran: "L",
+      qty: 1
+    };
+
+    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+
+    function formatRupiah(angka) {
+      return "Rp " + angka.toLocaleString("id-ID");
+    }
+
+    function updateBadgeKeranjang() {
+      const total = keranjang.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = total;
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+    }
+
+    function gantiSudut(idx, tombol) {
+      document.querySelectorAll(".btn-thumb").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+      const svg = document.getElementById("kaos-svg");
+      const skala = idx === 1 ? 1.08 : idx === 3 ? 0.94 : 1;
+      svg.style.transform = `scale(${skala})`;
+    }
+
+    function pilihWarna(namaWarna, hexWarna, hexPiping, tombol) {
+      stateProduk.warna = namaWarna;
+      stateProduk.kodeWarna = hexWarna;
+      stateProduk.warnaPiping = hexPiping;
+
+      document.getElementById("label-warna").textContent = namaWarna;
+      document.querySelectorAll(".btn-swatch").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      document.getElementById("kaos-body").setAttribute("fill", hexWarna);
+      document.getElementById("kaos-piping-kiri").setAttribute("stroke", hexPiping);
+      document.getElementById("kaos-piping-kanan").setAttribute("stroke", hexPiping);
+    }
+
+    function pilihUkuran(ukuran, tombol) {
+      stateProduk.ukuran = ukuran;
+      document.getElementById("label-ukuran").textContent = ukuran;
+      document.querySelectorAll(".btn-ukuran").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+    }
+
+    function ubahJumlah(selisih) {
+      stateProduk.qty = Math.min(detailProduk.stok, Math.max(1, stateProduk.qty + selisih));
+      document.getElementById("angka-jumlah").textContent = stateProduk.qty;
+    }
+
+    function simpanItemKeKeranjang() {
+      const sudahAda = keranjang.find(
+        item =>
+          item.nama === detailProduk.nama &&
+          item.warna === stateProduk.warna &&
+          item.ukuran === stateProduk.ukuran
+      );
+
+      if (sudahAda) {
+        sudahAda.qty += stateProduk.qty;
+        sudahAda.dipilih = true;
+      } else {
+        keranjang.push({
+          id: Date.now(),
+          nama: detailProduk.nama,
+          warna: stateProduk.warna,
+          kodeWarna: stateProduk.kodeWarna,
+          ukuran: stateProduk.ukuran,
+          hargaAngka: detailProduk.hargaAngka,
+          qty: stateProduk.qty,
+          dipilih: true
+        });
+      }
+
+      updateBadgeKeranjang();
+    }
+
+    // Jika klik "Masukkan Keranjang" -> simpan & lanjut ke halaman keranjang (foto 2)
+    function masukkanKeranjang() {
+      simpanItemKeKeranjang();
+      window.location.href = "keranjang.html";
+    }
+
+    // Jika klik "Beli Sekarang" -> simpan item langsung & lanjut ke halaman checkout (foto 3)
+    function beliSekarang() {
+      const itemBeliLangsung = [{
+        id: Date.now(),
+        nama: detailProduk.nama,
+        warna: stateProduk.warna,
+        kodeWarna: stateProduk.kodeWarna,
+        ukuran: stateProduk.ukuran,
+        hargaAngka: detailProduk.hargaAngka,
+        qty: stateProduk.qty,
+        dipilih: true
+      }];
+      localStorage.setItem("checkoutLangsungFrostWearly", JSON.stringify(itemBeliLangsung));
+      window.location.href = "checkout.html";
+    }
+
+    updateBadgeKeranjang();
+  </script>
+</body>
+</html>

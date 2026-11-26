@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda - Frost Wearly</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR RAMPING */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .logo img {
+      max-height: 120px;
+      width: auto;
+      display: block;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .badge-keranjang {
+      border: 1px solid #CBD5E1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #FFFFFF;
+    }
+
+    .badge-keranjang span {
+      background: #0F2537;
+      color: #FFFFFF;
+      border-radius: 50%;
+      padding: 1px 6px;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* WADAH UTAMA */
+    .wadah {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(90deg, rgba(15, 37, 55, 0.88) 0%, rgba(15, 37, 55, 0.45) 60%, rgba(15, 37, 55, 0.2) 100%),
+                  url('hero-frost.jpg') center/cover no-repeat;
+      color: #FFFFFF;
+      padding: 56px 44px;
+      border-radius: 14px;
+      margin-bottom: 34px;
+    }
+
+    .hero-label {
+      font-size: 13px;
+      color: #E2E8F0;
+      margin-bottom: 8px;
+    }
+
+    .hero-banner h1 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .hero-banner p {
+      max-width: 440px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #F1F5F9;
+      margin-bottom: 22px;
+    }
+
+    .tombol-grup {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-utama {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: 1px solid #0F2537;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-putih {
+      background-color: #FFFFFF;
+      color: #0F2537;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* HEADER KOLEKSI UNGGULAN */
+    .header-unggulan {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+    }
+
+    .header-unggulan h2 {
+      font-size: 22px;
+      color: #0F2537;
+    }
+
+    .link-semua {
+      font-size: 13px;
+      color: #0284C7;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* GRID 4 KOLOM (KOLEKSI UNGGULAN) */
+    .grid-produk {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .kartu-produk {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .kotak-foto {
+      background-color: #EBF3FA;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #334155;
+    }
+
+    .isi-kartu {
+      padding: 14px;
+    }
+
+    .kategori-teks {
+      font-size: 11px;
+      font-weight: bold;
+      color: #0284C7;
+      text-transform: uppercase;
+    }
+
+    .nama-produk {
+      font-size: 15px;
+      font-weight: bold;
+      margin: 6px 0;
+      color: #0F2537;
+    }
+
+    .deskripsi-produk {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .harga-produk {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #0F2537;
+    }
+
+    .tombol-keranjang {
+      width: 100%;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: none;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* MENGAPA FROST WEARLY */
+    .box-alasan {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 26px;
+      margin-bottom: 40px;
+    }
+
+    .box-alasan h2 {
+      font-size: 20px;
+      margin-bottom: 18px;
+      color: #0F2537;
+    }
+
+    .grid-alasan {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .kartu-alasan {
+      background-color: #F1F6FB;
+      border-radius: 10px;
+      padding: 18px;
+    }
+
+    .kartu-alasan h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #0F2537;
+    }
+
+    .kartu-alasan p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #EBF3FA;
+      color: #334155;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 36px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+      gap: 32px;
+    }
+
+    .footer-logo {
+      height: 46px;
+      width: auto;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 10px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 13px;
+      line-height: 1.8;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-grid a:hover {
+      color: #0284C7;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 950px) {
+      .grid-produk {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-alasan,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .grid-produk,
+      .grid-alasan,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="beranda.html" class="logo">
+      <img src="logo_frost_wearly.png" alt="Frost Wearly" onerror="this.style.display='none'">
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html" class="aktif">Beranda</a></li>
+      <li><a href="katalog.html">Katalog</a></li>
+      <li><a href="katalog.html">Koleksi Baru</a></li>
+      <li><a href="katalog.html">Custom</a></li>
+      <li><a href="tentang_kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="kanan-nav">
+      <div class="badge-keranjang">Keranjang <span id="jumlah-keranjang">3</span></div>
+      <div class="profil-bulat">BS</div>
+      <span>Budi</span>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <!-- HERO -->
+    <section class="hero-banner">
+      <div class="hero-label">New Arrivals</div>
+      <h1>Define Your Frost</h1>
+      <p>Jelajahi koleksi terkurasi untuk semua orang. Istimewa, dibuat dengan cermat, dan dirancang dengan sempurna untuk gaya Modern Urban &amp; Streetwear kamu.</p>
+      <div class="tombol-grup">
+        <a href="katalog.html" class="btn-utama">Beli sekarang</a>
+        <a href="tentang-kami.html" class="btn-putih">Tentang Kami</a>
+      </div>
+    </section>
+
+    <!-- KOLEKSI UNGGULAN (4 GRID) -->
+    <section>
+      <div class="header-unggulan">
+        <h2>Koleksi Unggulan</h2>
+        <a href="katalog.html" class="link-semua">Lihat semua katalog</a>
+      </div>
+
+      <div id="wadah-unggulan" class="grid-produk"></div>
+    </section>
+
+    <!-- MENGAPA FROST WEARLY -->
+    <section class="box-alasan">
+      <h2>Mengapa Frost Wearly?</h2>
+      <div class="grid-alasan">
+        <div class="kartu-alasan">
+          <h3>Bahan Berkualitas</h3>
+          <p>Menggunakan katun combed dan fleece pilihan yang adem, lembut di kulit, dan awet dicuci.</p>
+        </div>
+        <div class="kartu-alasan">
+          <h3>Estetika Dingin &amp; Elegan</h3>
+          <p>Palet warna ice blue, putih salju, abu-abu, dan navy yang bersih dan modern.</p>
+        </div>
+        <div class="kartu-alasan">
+          <h3>Karya Lokal Malang</h3>
+          <p>Didesain dan diproduksi dengan bangga di Kota Malang, Jawa Timur.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <img src="logo frost wearly.jpeg" alt="Logo Frost Wearly" class="footer-logo" onerror="this.style.display='none'">
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
+      </div>
+
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>+62 812-3456-7890</p>
+        <p>frostwearly@gmail.com</p>
+        <p>Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>@frostwearly.official.mlg</p>
+        <p>@frost.wearly.mlg</p>
+        <p>0821-7101-7051</p>
+      </div>
+    </div>
+
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    let produkUnggulan = [
+      {
+        nama: "Frost Glacier Hoodie",
+        kategori: "Hoodie",
+        harga: "Rp 249.000",
+        deskripsi: "Hoodie fleece tebal warna ice blue dengan potongan boxy modern."
+      },
+      {
+        nama: "Arctic Oversize Tee",
+        kategori: "Kaos",
+        harga: "Rp 129.000",
+        deskripsi: "Kaos katun combed 24s warna putih salju dengan sablon minimalis."
+      },
+      {
+        nama: "Polar Cargo Pants",
+        kategori: "Celana",
+        harga: "Rp 219.000",
+        deskripsi: "Celana cargo multi-saku bahan ripstop ringan warna dark navy."
+      },
+      {
+        nama: "Subzero Windbreaker",
+        kategori: "Hoodie",
+        harga: "Rp 289.000",
+        deskripsi: "Jaket parasut tahan angin dengan lapisan dalam yang sejuk."
+      }
+    ];
+
+    let isiKeranjang = 3;
+
+    function tambahKeranjang(nama) {
+      isiKeranjang++;
+      document.getElementById("jumlah-keranjang").textContent = isiKeranjang;
+      alert(nama + " ditambahkan ke keranjang!");
+    }
+
+    function renderUnggulan() {
+      let wadah = document.getElementById("wadah-unggulan");
+      wadah.innerHTML = "";
+
+      for (let i = 0; i < produkUnggulan.length; i++) {
+        let item = produkUnggulan[i];
+        wadah.innerHTML += `
+          <div class="kartu-produk">
+            <div>
+              <div class="kotak-foto">Foto ${item.nama}</div>
+              <div class="isi-kartu">
+                <div class="kategori-teks">${item.kategori}</div>
+                <div class="nama-produk">${item.nama}</div>
+                <p class="deskripsi-produk">${item.deskripsi}</p>
+                <div class="harga-produk">${item.harga}</div>
+              </div>
+            </div>
+            <div style="padding: 0 14px 14px;">
+              <button class="tombol-keranjang" onclick="tambahKeranjang('${item.nama}')">+ Tambah ke Keranjang</button>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    renderUnggulan();
+  </script>
+</body>
+</html>

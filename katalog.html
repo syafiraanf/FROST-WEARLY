@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog - Frost Wearly</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR RAMPING */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 16px;
+      gap: 8px;
+    }
+
+    .logo img {
+      max-height: 150px;
+      width: auto;
+      display: block;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .badge-keranjang {
+      border: 1px solid #CBD5E1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .badge-keranjang span {
+      background: #0F2537;
+      color: #FFFFFF;
+      border-radius: 50%;
+      padding: 1px 6px;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* WADAH KONTEN */
+    .wadah {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .banner-katalog {
+      background-color: #EBF3FA;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .banner-katalog h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .banner-katalog p {
+      color: #475569;
+      font-size: 14px;
+    }
+
+    /* FILTER & CARI */
+    .bar-filter {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .tombol-filter {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
+      background: #FFFFFF;
+      color: #0F2537;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .tombol-filter.aktif {
+      background: #0F2537;
+      color: #FFFFFF;
+      border-color: #0F2537;
+    }
+
+    .input-cari {
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
+      font-size: 13px;
+      min-width: 210px;
+    }
+
+    /* GRID 4 KOLOM */
+    .grid-produk {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .kartu-produk {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kartu-produk:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 37, 55, 0.08);
+    }
+
+    .kotak-foto {
+      background-color: #EBF3FA;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: bold;
+      color: #334155;
+    }
+
+    .isi-kartu {
+      padding: 14px;
+    }
+
+    .kategori-teks {
+      font-size: 11px;
+      font-weight: bold;
+      color: #0284C7;
+      text-transform: uppercase;
+    }
+
+    .nama-produk {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 6px 0;
+      color: #0F2537;
+    }
+
+    .deskripsi-produk {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .harga-produk {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #0F2537;
+    }
+
+    .tombol-keranjang {
+      width: 100%;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: none;
+      padding: 9px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tombol-keranjang:hover {
+      background-color: #1E3A5F;
+    }
+
+    /* MODAL DETAIL PRODUK & KERANJANG */
+    .overlay-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(15, 37, 55, 0.55);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .overlay-modal.buka {
+      display: flex;
+    }
+
+    .kotak-modal {
+      background-color: #FFFFFF;
+      border-radius: 14px;
+      max-width: 520px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 18px 40px rgba(15, 37, 55, 0.25);
+    }
+
+    .tutup-modal {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      color: #64748B;
+      cursor: pointer;
+    }
+
+    .detail-foto-modal {
+      background-color: #EBF3FA;
+      height: 180px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+
+    .pilih-ukuran {
+      display: flex;
+      gap: 8px;
+      margin: 10px 0 16px;
+    }
+
+    .btn-ukuran {
+      padding: 6px 14px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFFFFF;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-ukuran.aktif {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border-color: #0F2537;
+    }
+
+    .item-keranjang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 13px;
+      gap: 10px;
+    }
+
+    .kontrol-qty {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 2px 6px;
+      background-color: #F8FAFC;
+    }
+
+    .btn-qty {
+      width: 22px;
+      height: 22px;
+      border: none;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .btn-qty:hover {
+      background-color: #EBF3FA;
+    }
+
+    .angka-qty {
+      min-width: 18px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+    }
+
+    .btn-hapus-item {
+      background: #FEE2E2;
+      color: #B91C1C;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #EBF3FA;
+      margin-top: 50px;
+      color: #334155;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 36px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 10px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 13px;
+      line-height: 1.8;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-grid a:hover {
+      color: #0284C7;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-produk {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .grid-produk,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="beranda.html" class="logo">
+      <img src="logo_frost_wearly.png" alt="Frost Wearly" onerror="this.style.display='none'">
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="katalog.html" class="aktif">Katalog</a></li>
+      <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+      <li><a href="custom.html">Custom</a></li>
+      <li><a href="tentang-kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="kanan-nav">
+      <div class="badge-keranjang" onclick="bukaModalKeranjang()">Keranjang <span id="jumlah-keranjang">0</span></div>
+      <div class="profil-bulat">BS</div>
+      <span>Budi</span>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <section class="banner-katalog">
+      <h1>Katalog Koleksi Frost Wearly</h1>
+      <p>Temukan koleksi Modern Urban &amp; Streetwear dengan nuansa dingin yang elegan dan nyaman dipakai sehari-hari.</p>
+    </section>
+
+    <div class="bar-filter">
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="tombol-filter aktif" onclick="filterKategori('Semua', this)">Semua</button>
+        <button class="tombol-filter" onclick="filterKategori('Hoodie', this)">Hoodie &amp; Outerwear</button>
+        <button class="tombol-filter" onclick="filterKategori('Kaos', this)">Kaos Oversize</button>
+        <button class="tombol-filter" onclick="filterKategori('Crewneck', this)">Crewneck</button>
+        <button class="tombol-filter" onclick="filterKategori('Windbreaker', this)">Windbreaker</button>
+        <button class="tombol-filter" onclick="filterKategori('Celana', this)">Celana &amp; Cargo</button>
+      </div>
+      <input type="text" id="cari-nama" class="input-cari" placeholder="Cari nama produk..." oninput="renderProduk()">
+    </div>
+
+    <div id="wadah-produk" class="grid-produk"></div>
+  </main>
+
+  <!-- MODAL DETAIL PRODUK -->
+  <div id="modal-detail" class="overlay-modal" onclick="tutupLuar(event, 'modal-detail')">
+    <div class="kotak-modal">
+      <button class="tutup-modal" onclick="tutupModal('modal-detail')">&times;</button>
+      <div id="m-foto" class="detail-foto-modal">Foto Produk</div>
+      <div id="m-kategori" class="kategori-teks">KATEGORI</div>
+      <h2 id="m-nama" style="font-size: 20px; margin: 4px 0 8px;">Nama Produk</h2>
+      <p id="m-deskripsi" style="font-size: 13px; color: #475569; margin-bottom: 12px;"></p>
+      <div id="m-harga" style="font-size: 18px; font-weight: bold; margin-bottom: 12px;">Rp 0</div>
+
+      <div style="font-size: 12px; font-weight: bold;">Pilih Ukuran:</div>
+      <div class="pilih-ukuran">
+        <button class="btn-ukuran" onclick="pilihSize('S', this)">S</button>
+        <button class="btn-ukuran aktif" onclick="pilihSize('M', this)">M</button>
+        <button class="btn-ukuran" onclick="pilihSize('L', this)">L</button>
+        <button class="btn-ukuran" onclick="pilihSize('XL', this)">XL</button>
+      </div>
+
+      <button id="m-btn-tambah" class="tombol-keranjang">+ Tambah ke Keranjang</button>
+    </div>
+  </div>
+
+  <!-- MODAL KERANJANG -->
+  <div id="modal-keranjang" class="overlay-modal" onclick="tutupLuar(event, 'modal-keranjang')">
+    <div class="kotak-modal">
+      <button class="tutup-modal" onclick="tutupModal('modal-keranjang')">&times;</button>
+      <h2 style="font-size: 18px; margin-bottom: 12px;">Keranjang Belanja</h2>
+      <div id="daftar-isi-keranjang" style="max-height: 260px; overflow-y: auto;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin: 16px 0; font-size: 15px;">
+        <span>Total Belanja</span>
+        <span id="total-harga-keranjang">Rp 0</span>
+      </div>
+      <button class="tombol-keranjang" onclick="checkoutKeranjang()">Checkout Sekarang</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
+      </div>
+
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+          <li><a href="custom.html">Custom</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>+62 812-3456-7890</p>
+        <p>frostwearly@gmail.com</p>
+        <p>Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>@frostwearly.official.mlg</p>
+        <p>@frost.wearly.mlg</p>
+        <p>0821-7101-7051</p>
+      </div>
+    </div>
+
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    let produkList = [
+      {
+        nama: "Frost Glacier Hoodie",
+        kategori: "Hoodie",
+        hargaAngka: 249000,
+        harga: "Rp 249.000",
+        deskripsi: "Hoodie fleece tebal warna ice blue dengan potongan boxy modern."
+      },
+      {
+        nama: "Arctic Oversize Tee",
+        kategori: "Kaos",
+        hargaAngka: 129000,
+        harga: "Rp 129.000",
+        deskripsi: "Kaos katun combed 24s warna putih salju dengan sablon minimalis."
+      },
+      {
+        nama: "Polar Cargo Pants",
+        kategori: "Celana",
+        hargaAngka: 219000,
+        harga: "Rp 219.000",
+        deskripsi: "Celana cargo multi-saku bahan ripstop ringan warna dark navy."
+      },
+      {
+        nama: "Subzero Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 289000,
+        harga: "Rp 289.000",
+        deskripsi: "Jaket parasut tahan angin dengan lapisan dalam yang sejuk."
+      },
+      {
+        nama: "Mist Graphic T-Shirt",
+        kategori: "Kaos",
+        hargaAngka: 135000,
+        harga: "Rp 135.000",
+        deskripsi: "Kaos oversize abu-abu muda dengan tipografi khas Frost Wearly."
+      },
+      {
+        nama: "Snowdrift Relaxed Pants",
+        kategori: "Celana",
+        hargaAngka: 199000,
+        harga: "Rp 199.000",
+        deskripsi: "Celana panjang potongan lurus yang nyaman untuk gaya harian."
+      },
+      {
+        nama: "Glacier Zip Jacket",
+        kategori: "Hoodie",
+        hargaAngka: 269000,
+        harga: "Rp 269.000",
+        deskripsi: "Jaket resleting bergaya urban dengan bahan nyaman dan ringan."
+      },
+      {
+        nama: "Iceberg Boxy Tee",
+        kategori: "Kaos",
+        hargaAngka: 139000,
+        harga: "Rp 139.000",
+        deskripsi: "Kaos potongan boxy warna biru es lembut untuk tampilan kasual."
+      },
+      {
+        nama: "Nordic Fleece Crewneck",
+        kategori: "Crewneck",
+        hargaAngka: 215000,
+        harga: "Rp 215.000",
+        deskripsi: "Sweater crewneck bahan cotton fleece lembut warna frost grey dengan rib elastis."
+      },
+      {
+        nama: "Blizzard Heavy Crewneck",
+        kategori: "Crewneck",
+        hargaAngka: 229000,
+        harga: "Rp 229.000",
+        deskripsi: "Crewneck potongan relaxed fit warna dark navy dengan bordir minimalis di dada."
+      },
+      {
+        nama: "Alpine Shell Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 309000,
+        harga: "Rp 309.000",
+        deskripsi: "Windbreaker water-repellent dua warna ice blue & navy untuk aktivitas outdoor."
+      },
+      {
+        nama: "Frostbyte Utility Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 295000,
+        harga: "Rp 295.000",
+        deskripsi: "Jaket windbreaker ringan warna snow white dengan resleting anti-angin dan saku samping."
+      }
+    ];
+
+    let kategoriAktif = "Semua";
+    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+    let ukuranTerpilih = "M";
+
+    function formatRupiah(angka) {
+      return "Rp " + angka.toLocaleString("id-ID");
+    }
+
+    function updateBadgeKeranjang() {
+      let totalItem = keranjang.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = totalItem;
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+    }
+
+    function filterKategori(kat, tombol) {
+      kategoriAktif = kat;
+      document.querySelectorAll(".tombol-filter").forEach(btn => btn.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+      renderProduk();
+    }
+
+    function tambahKeKeranjang(index, ukuran = "M") {
+      let produk = produkList[index];
+      let sudahAda = keranjang.find(item => item.nama === produk.nama && item.ukuran === ukuran);
+
+      if (sudahAda) {
+        sudahAda.qty += 1;
+      } else {
+        keranjang.push({
+          nama: produk.nama,
+          hargaAngka: produk.hargaAngka,
+          ukuran: ukuran,
+          qty: 1
+        });
+      }
+
+      updateBadgeKeranjang();
+      alert(produk.nama + " (Ukuran " + ukuran + ") masuk ke keranjang!");
+    }
+
+    function bukaDetailProduk(index) {
+      let produk = produkList[index];
+      ukuranTerpilih = "M";
+
+      document.querySelectorAll(".btn-ukuran").forEach(b => {
+        b.classList.toggle("aktif", b.textContent === "M");
+      });
+
+      document.getElementById("m-foto").textContent = "Foto " + produk.nama;
+      document.getElementById("m-kategori").textContent = produk.kategori;
+      document.getElementById("m-nama").textContent = produk.nama;
+      document.getElementById("m-deskripsi").textContent = produk.deskripsi;
+      document.getElementById("m-harga").textContent = produk.harga;
+
+      document.getElementById("m-btn-tambah").onclick = function () {
+        tambahKeKeranjang(index, ukuranTerpilih);
+        tutupModal("modal-detail");
+      };
+
+      document.getElementById("modal-detail").classList.add("buka");
+    }
+
+    function pilihSize(size, tombol) {
+      ukuranTerpilih = size;
+      document.querySelectorAll(".btn-ukuran").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+    }
+
+    function ubahQty(idx, selisih) {
+      if (!keranjang[idx]) return;
+      keranjang[idx].qty += selisih;
+
+      if (keranjang[idx].qty <= 0) {
+        keranjang.splice(idx, 1);
+      }
+
+      updateBadgeKeranjang();
+      bukaModalKeranjang();
+    }
+
+    function bukaModalKeranjang() {
+      let wadah = document.getElementById("daftar-isi-keranjang");
+      let totalHarga = 0;
+
+      if (keranjang.length === 0) {
+        wadah.innerHTML = `<p style="font-size:13px; color:#64748B; text-align:center; padding:20px 0;">Keranjang masih kosong.</p>`;
+      } else {
+        wadah.innerHTML = keranjang.map((item, idx) => {
+          let subtotal = item.hargaAngka * item.qty;
+          totalHarga += subtotal;
+          return `
+            <div class="item-keranjang-row">
+              <div>
+                <strong>${item.nama}</strong> (${item.ukuran})<br>
+                <span style="color:#64748B; font-size:12px;">${item.qty} x ${formatRupiah(item.hargaAngka)}</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+                <strong>${formatRupiah(subtotal)}</strong>
+                <button type="button" class="btn-hapus-item" onclick="hapusDariKeranjang(${idx})">Hapus</button>
+                <div class="kontrol-qty">
+                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, -1)" title="Kurangi jumlah">-</button>
+                  <span class="angka-qty">${item.qty}</span>
+                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, 1)" title="Tambah jumlah">+</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      document.getElementById("total-harga-keranjang").textContent = formatRupiah(totalHarga);
+      document.getElementById("modal-keranjang").classList.add("buka");
+    }
+
+    function hapusDariKeranjang(idx) {
+      keranjang.splice(idx, 1);
+      updateBadgeKeranjang();
+      bukaModalKeranjang();
+    }
+
+    function checkoutKeranjang() {
+      if (keranjang.length === 0) {
+        alert("Keranjang masih kosong, pilih produk dulu ya!");
+        return;
+      }
+      alert("Pesanan berhasil diproses! Terima kasih sudah berbelanja di Frost Wearly.");
+      keranjang = [];
+      updateBadgeKeranjang();
+      tutupModal("modal-keranjang");
+    }
+
+    function tutupModal(id) {
+      document.getElementById(id).classList.remove("buka");
+    }
+
+    function tutupLuar(event, id) {
+      if (event.target.id === id) {
+        tutupModal(id);
+      }
+    }
+
+    function renderProduk() {
+      let wadah = document.getElementById("wadah-produk");
+      let cari = document.getElementById("cari-nama").value.toLowerCase();
+      wadah.innerHTML = "";
+
+      produkList.forEach((item, index) => {
+        let cocokKategori = (kategoriAktif === "Semua") || (item.kategori === kategoriAktif);
+        let cocokNama = item.nama.toLowerCase().includes(cari);
+
+        if (cocokKategori && cocokNama) {
+          wadah.innerHTML += `
+            <div class="kartu-produk" onclick="bukaDetailProduk(${index})">
+              <div>
+                <div class="kotak-foto">Foto ${item.nama}</div>
+                <div class="isi-kartu">
+                  <div class="kategori-teks">${item.kategori}</div>
+                  <div class="nama-produk">${item.nama}</div>
+                  <p class="deskripsi-produk">${item.deskripsi}</p>
+                  <div class="harga-produk">${item.harga}</div>
+                </div>
+              </div>
+              <div style="padding: 0 14px 14px;">
+                <button class="tombol-keranjang" onclick="event.stopPropagation(); tambahKeKeranjang(${index})">
+                  + Tambah ke Keranjang
+                </button>
+              </div>
+            </div>
+          `;
+        }
+      });
+    }
+
+    updateBadgeKeranjang();
+    renderProduk();
+  </script>
+</body>
+</html>

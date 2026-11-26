@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Desain - Frost Wearly</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR RAMPING */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 16px;
+      gap: 8px;
+    }
+
+    .logo img {
+      max-height: 150px;
+      width: auto;
+      display: block;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .badge-keranjang {
+      border: 1px solid #CBD5E1;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .badge-keranjang span {
+      background: #0F2537;
+      color: #FFFFFF;
+      border-radius: 50%;
+      padding: 1px 6px;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* WADAH KONTEN */
+    .wadah {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .banner-custom {
+      background-color: #EBF3FA;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .banner-custom h1 {
+      font-size: 26px;
+      margin-bottom: 8px;
+    }
+
+    .banner-custom p {
+      color: #475569;
+      font-size: 14px;
+    }
+
+    /* LAYOUT 2 KOLOM CUSTOM */
+    .grid-custom {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .kartu-panel {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    /* AREA PREVIEW */
+    .kotak-preview {
+      background: linear-gradient(145deg, #EBF3FA 0%, #D9EAF8 100%);
+      border-radius: 10px;
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      text-align: center;
+      margin-bottom: 16px;
+      border: 1px dashed #93C5FD;
+    }
+
+    .mockup-baju {
+      width: 190px;
+      height: 215px;
+      border-radius: 18px;
+      background-color: #BAE6FD;
+      color: #0F2537;
+      border: 2px solid rgba(15, 37, 55, 0.15);
+      box-shadow: 0 12px 26px rgba(15, 37, 55, 0.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .label-mockup-jenis {
+      position: absolute;
+      top: 10px;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .teks-sablon-preview {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.6px;
+      word-break: break-word;
+      max-width: 150px;
+      line-height: 1.35;
+    }
+
+    .tag-posisi-preview {
+      margin-top: 10px;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.55);
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .ringkasan-preview {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    /* FORM KUSTOMISASI */
+    .grup-opsi {
+      margin-bottom: 18px;
+    }
+
+    .label-opsi {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 8px;
+    }
+
+    .grid-jenis {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .btn-jenis {
+      border: 1px solid #CBD5E1;
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-jenis strong {
+      display: block;
+      font-size: 13px;
+      color: #0F2537;
+      margin-bottom: 2px;
+    }
+
+    .btn-jenis span {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .btn-jenis.aktif {
+      background-color: #0F2537;
+      border-color: #0F2537;
+    }
+
+    .btn-jenis.aktif strong {
+      color: #FFFFFF;
+    }
+
+    .btn-jenis.aktif span {
+      color: #CBD5E1;
+    }
+
+    .baris-warna {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-warna {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 20px;
+      background: #FFFFFF;
+      font-size: 12px;
+      color: #0F2537;
+      cursor: pointer;
+    }
+
+    .btn-warna.aktif {
+      border-color: #0F2537;
+      background-color: #EBF3FA;
+      font-weight: bold;
+    }
+
+    .bulat-warna {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(15, 37, 55, 0.25);
+    }
+
+    .baris-pilihan {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-pilihan {
+      padding: 7px 14px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFFFFF;
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+      cursor: pointer;
+    }
+
+    .btn-pilihan.aktif {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border-color: #0F2537;
+    }
+
+    .input-teks,
+    .textarea-catatan {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #0F2537;
+      font-family: Arial, sans-serif;
+    }
+
+    .input-teks:focus,
+    .textarea-catatan:focus {
+      outline: none;
+      border-color: #0284C7;
+    }
+
+    .box-estimasi {
+      background-color: #EBF3FA;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 18px 0 14px;
+    }
+
+    .tombol-keranjang {
+      width: 100%;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: none;
+      padding: 11px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .tombol-keranjang:hover {
+      background-color: #1E3A5F;
+    }
+
+    /* KONTROL QTY (- 1 +) */
+    .kontrol-qty {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 2px 6px;
+      background-color: #F8FAFC;
+    }
+
+    .btn-qty {
+      width: 24px;
+      height: 24px;
+      border: none;
+      border-radius: 4px;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .btn-qty:hover {
+      background-color: #EBF3FA;
+    }
+
+    .angka-qty {
+      min-width: 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+    }
+
+    /* MODAL KERANJANG */
+    .overlay-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(15, 37, 55, 0.55);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .overlay-modal.buka {
+      display: flex;
+    }
+
+    .kotak-modal {
+      background-color: #FFFFFF;
+      border-radius: 14px;
+      max-width: 520px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 18px 40px rgba(15, 37, 55, 0.25);
+    }
+
+    .tutup-modal {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      font-weight: bold;
+      color: #64748B;
+      cursor: pointer;
+    }
+
+    .item-keranjang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 13px;
+      gap: 10px;
+    }
+
+    .btn-hapus-item {
+      background: #FEE2E2;
+      color: #B91C1C;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #EBF3FA;
+      margin-top: 50px;
+      color: #334155;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 36px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 10px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 13px;
+      line-height: 1.8;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-grid a:hover {
+      color: #0284C7;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-custom {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .grid-jenis,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="beranda.html" class="logo">
+      <img src="logo_frost_wearly.png" alt="Frost Wearly" onerror="this.style.display='none'">
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="katalog.html">Katalog</a></li>
+      <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+      <li><a href="custom.html" class="aktif">Custom</a></li>
+      <li><a href="tentang_kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="kanan-nav">
+      <div class="badge-keranjang" onclick="bukaModalKeranjang()">Keranjang <span id="jumlah-keranjang">0</span></div>
+      <div class="profil-bulat">BS</div>
+      <span>Budi</span>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <section class="banner-custom">
+      <h1>Custom Studio Frost Wearly</h1>
+      <p>Rancang hoodie, kaos oversize, atau jaket urban versimu sendiri dengan pilihan warna dingin khas Frost Wearly dan sablon/bordir personal.</p>
+    </section>
+
+    <div class="grid-custom">
+      <!-- KOLOM KIRI: LIVE PREVIEW -->
+      <section class="kartu-panel">
+        <h2 style="font-size: 17px; margin-bottom: 14px;">Pratinjau Desain</h2>
+        <div class="kotak-preview">
+          <div id="mockup-baju" class="mockup-baju">
+            <span id="preview-jenis-tag" class="label-mockup-jenis">HOODIE BOXY</span>
+            <div id="preview-teks" class="teks-sablon-preview">FROST WEARLY</div>
+            <span id="preview-posisi-tag" class="tag-posisi-preview">Dada Tengah</span>
+          </div>
+        </div>
+
+        <div class="ringkasan-preview">
+          <div><strong>Produk:</strong> <span id="info-produk">Custom Hoodie Boxy</span></div>
+          <div><strong>Warna Bahan:</strong> <span id="info-warna">Ice Blue</span></div>
+          <div><strong>Posisi &amp; Teknik:</strong> <span id="info-posisi">Dada Tengah</span> &bull; <span id="info-teknik">Sablon DTF</span></div>
+          <div><strong>Ukuran &amp; Jumlah:</strong> <span id="info-ukuran">M</span> (<span id="info-qty">1</span> pcs)</div>
+        </div>
+      </section>
+
+      <!-- KOLOM KANAN: FORM KUSTOMISASI -->
+      <section class="kartu-panel">
+        <h2 style="font-size: 17px; margin-bottom: 16px;">Atur Detail Pesanan Custom</h2>
+
+        <div class="grup-opsi">
+          <label class="label-opsi">1. Pilih Model Pakaian</label>
+          <div class="grid-jenis">
+            <button type="button" class="btn-jenis aktif" onclick="pilihJenis('Custom Hoodie Boxy', 269000, this)">
+              <strong>Custom Hoodie Boxy</strong>
+              <span>Mulai Rp 269.000</span>
+            </button>
+            <button type="button" class="btn-jenis" onclick="pilihJenis('Custom Kaos Oversize', 149000, this)">
+              <strong>Custom Kaos Oversize</strong>
+              <span>Mulai Rp 149.000</span>
+            </button>
+            <button type="button" class="btn-jenis" onclick="pilihJenis('Custom Crewneck Fleece', 229000, this)">
+              <strong>Custom Crewneck Fleece</strong>
+              <span>Mulai Rp 229.000</span>
+            </button>
+            <button type="button" class="btn-jenis" onclick="pilihJenis('Custom Windbreaker', 309000, this)">
+              <strong>Custom Windbreaker</strong>
+              <span>Mulai Rp 309.000</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grup-opsi">
+          <label class="label-opsi">2. Pilih Warna Kain</label>
+          <div class="baris-warna">
+            <button type="button" class="btn-warna aktif" onclick="pilihWarna('Ice Blue', '#BAE6FD', '#0F2537', this)">
+              <span class="bulat-warna" style="background:#BAE6FD;"></span> Ice Blue
+            </button>
+            <button type="button" class="btn-warna" onclick="pilihWarna('Snow White', '#FFFFFF', '#0F2537', this)">
+              <span class="bulat-warna" style="background:#FFFFFF;"></span> Snow White
+            </button>
+            <button type="button" class="btn-warna" onclick="pilihWarna('Dark Navy', '#0F2537', '#FFFFFF', this)">
+              <span class="bulat-warna" style="background:#0F2537;"></span> Dark Navy
+            </button>
+            <button type="button" class="btn-warna" onclick="pilihWarna('Frost Grey', '#CBD5E1', '#0F2537', this)">
+              <span class="bulat-warna" style="background:#CBD5E1;"></span> Frost Grey
+            </button>
+            <button type="button" class="btn-warna" onclick="pilihWarna('Midnight Black', '#1E293B', '#E0F2FE', this)">
+              <span class="bulat-warna" style="background:#1E293B;"></span> Midnight Black
+            </button>
+          </div>
+        </div>
+
+        <div class="grup-opsi">
+          <label for="input-teks-custom" class="label-opsi">3. Teks Sablon / Bordir (Maks. 25 karakter)</label>
+          <input
+            type="text"
+            id="input-teks-custom"
+            class="input-teks"
+            maxlength="25"
+            value="FROST WEARLY"
+            placeholder="Ketik tulisan atau inisial..."
+            oninput="updateTeksPreview()"
+          >
+        </div>
+
+        <div class="grup-opsi">
+          <label class="label-opsi">4. Posisi &amp; Teknik Cetak</label>
+          <div class="baris-pilihan" style="margin-bottom: 10px;">
+            <button type="button" class="btn-pilihan aktif" onclick="pilihPosisi('Dada Tengah', this)">Dada Tengah</button>
+            <button type="button" class="btn-pilihan" onclick="pilihPosisi('Dada Kiri', this)">Dada Kiri</button>
+          </div>
+          <div class="baris-pilihan">
+            <button type="button" class="btn-pilihan aktif" onclick="pilihTeknik('Sablon DTF', 0, this)">Sablon DTF (+Rp 0)</button>
+            <button type="button" class="btn-pilihan" onclick="pilihTeknik('Bordir Timbul', 25000, this)">Bordir Timbul (+Rp 25.000)</button>
+          </div>
+        </div>
+
+        <div class="grup-opsi" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;">
+          <div>
+            <label class="label-opsi">5. Ukuran</label>
+            <div class="baris-pilihan">
+              <button type="button" class="btn-pilihan" onclick="pilihUkuran('S', this)">S</button>
+              <button type="button" class="btn-pilihan aktif" onclick="pilihUkuran('M', this)">M</button>
+              <button type="button" class="btn-pilihan" onclick="pilihUkuran('L', this)">L</button>
+              <button type="button" class="btn-pilihan" onclick="pilihUkuran('XL', this)">XL</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="label-opsi">6. Jumlah Pesanan</label>
+            <div class="kontrol-qty" style="padding: 4px 8px;">
+              <button type="button" class="btn-qty" onclick="ubahQtyForm(-1)">-</button>
+              <span id="qty-form" class="angka-qty">1</span>
+              <button type="button" class="btn-qty" onclick="ubahQtyForm(1)">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grup-opsi">
+          <label for="catatan-desain" class="label-opsi">7. Catatan Tambahan / Link Referensi Gambar (Opsional)</label>
+          <textarea
+            id="catatan-desain"
+            class="textarea-catatan"
+            rows="2"
+            placeholder="Contoh: Font tegak minimalis warna putih salju, atau tempel link Google Drive desain..."
+          ></textarea>
+        </div>
+
+        <div class="box-estimasi">
+          <div>
+            <div style="font-size: 12px; color: #475569;">Estimasi Total Harga</div>
+            <div style="font-size: 11px; color: #64748B;">Pengerjaan 3&ndash;5 hari kerja</div>
+          </div>
+          <div id="estimasi-harga" style="font-size: 20px; font-weight: bold; color: #0F2537;">Rp 269.000</div>
+        </div>
+
+        <button type="button" class="tombol-keranjang" onclick="tambahCustomKeKeranjang()">
+          + Masukkan Pesanan Custom ke Keranjang
+        </button>
+      </section>
+    </div>
+  </main>
+
+  <!-- MODAL KERANJANG -->
+  <div id="modal-keranjang" class="overlay-modal" onclick="tutupLuar(event, 'modal-keranjang')">
+    <div class="kotak-modal">
+      <button class="tutup-modal" onclick="tutupModal('modal-keranjang')">&times;</button>
+      <h2 style="font-size: 18px; margin-bottom: 12px;">Keranjang Belanja</h2>
+      <div id="daftar-isi-keranjang" style="max-height: 260px; overflow-y: auto;"></div>
+      <div style="display: flex; justify-content: space-between; font-weight: bold; margin: 16px 0; font-size: 15px;">
+        <span>Total Belanja</span>
+        <span id="total-harga-keranjang">Rp 0</span>
+      </div>
+      <button class="tombol-keranjang" onclick="checkoutKeranjang()">Checkout Sekarang</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
+      </div>
+
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>+62 812-3456-7890</p>
+        <p>frostwearly@gmail.com</p>
+        <p>Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>@frostwearly.official.mlg</p>
+        <p>@frost.wearly.mlg</p>
+        <p>0821-7101-7051</p>
+      </div>
+    </div>
+
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+
+    let desainCustom = {
+      jenis: "Custom Hoodie Boxy",
+      hargaDasar: 269000,
+      warna: "Ice Blue",
+      kodeWarna: "#BAE6FD",
+      warnaTeks: "#0F2537",
+      posisi: "Dada Tengah",
+      teknik: "Sablon DTF",
+      biayaTeknik: 0,
+      ukuran: "M",
+      qty: 1
+    };
+
+    function formatRupiah(angka) {
+      return "Rp " + angka.toLocaleString("id-ID");
+    }
+
+    function updateBadgeKeranjang() {
+      let totalItem = keranjang.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = totalItem;
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+    }
+
+    function hitungTotalCustom() {
+      let hargaSatuan = desainCustom.hargaDasar + desainCustom.biayaTeknik;
+      let total = hargaSatuan * desainCustom.qty;
+      document.getElementById("estimasi-harga").textContent = formatRupiah(total);
+    }
+
+    function pilihJenis(namaJenis, harga, tombol) {
+      desainCustom.jenis = namaJenis;
+      desainCustom.hargaDasar = harga;
+
+      document.querySelectorAll(".btn-jenis").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      document.getElementById("preview-jenis-tag").textContent = namaJenis.replace("Custom ", "").toUpperCase();
+      document.getElementById("info-produk").textContent = namaJenis;
+      hitungTotalCustom();
+    }
+
+    function pilihWarna(namaWarna, hexBg, hexTeks, tombol) {
+      desainCustom.warna = namaWarna;
+      desainCustom.kodeWarna = hexBg;
+      desainCustom.warnaTeks = hexTeks;
+
+      document.querySelectorAll(".btn-warna").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      const mockup = document.getElementById("mockup-baju");
+      mockup.style.backgroundColor = hexBg;
+      mockup.style.color = hexTeks;
+      document.getElementById("info-warna").textContent = namaWarna;
+    }
+
+    function updateTeksPreview() {
+      const val = document.getElementById("input-teks-custom").value.trim();
+      document.getElementById("preview-teks").textContent = val || "(Tanpa Teks)";
+    }
+
+    function pilihPosisi(posisi, tombol) {
+      desainCustom.posisi = posisi;
+      const grup = tombol.parentElement;
+      grup.querySelectorAll(".btn-pilihan").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      document.getElementById("preview-posisi-tag").textContent = posisi;
+      document.getElementById("info-posisi").textContent = posisi;
+    }
+
+    function pilihTeknik(teknik, biaya, tombol) {
+      desainCustom.teknik = teknik;
+      desainCustom.biayaTeknik = biaya;
+      const grup = tombol.parentElement;
+      grup.querySelectorAll(".btn-pilihan").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      document.getElementById("info-teknik").textContent = teknik;
+      hitungTotalCustom();
+    }
+
+    function pilihUkuran(ukuran, tombol) {
+      desainCustom.ukuran = ukuran;
+      const grup = tombol.parentElement;
+      grup.querySelectorAll(".btn-pilihan").forEach(b => b.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+
+      document.getElementById("info-ukuran").textContent = ukuran;
+    }
+
+    function ubahQtyForm(selisih) {
+      desainCustom.qty = Math.max(1, desainCustom.qty + selisih);
+      document.getElementById("qty-form").textContent = desainCustom.qty;
+      document.getElementById("info-qty").textContent = desainCustom.qty;
+      hitungTotalCustom();
+    }
+
+    function tambahCustomKeKeranjang() {
+      const teksSablon = document.getElementById("input-teks-custom").value.trim() || "Tanpa Teks";
+      const hargaSatuan = desainCustom.hargaDasar + desainCustom.biayaTeknik;
+      const namaItem = `${desainCustom.jenis} (${desainCustom.warna}, ${desainCustom.posisi} - "${teksSablon}")`;
+
+      let sudahAda = keranjang.find(item => item.nama === namaItem && item.ukuran === desainCustom.ukuran);
+      if (sudahAda) {
+        sudahAda.qty += desainCustom.qty;
+      } else {
+        keranjang.push({
+          nama: namaItem,
+          hargaAngka: hargaSatuan,
+          ukuran: desainCustom.ukuran,
+          qty: desainCustom.qty
+        });
+      }
+
+      updateBadgeKeranjang();
+      alert(namaItem + " (Ukuran " + desainCustom.ukuran + ") berhasil masuk ke keranjang!");
+    }
+
+    function ubahQty(idx, selisih) {
+      if (!keranjang[idx]) return;
+      keranjang[idx].qty += selisih;
+
+      if (keranjang[idx].qty <= 0) {
+        keranjang.splice(idx, 1);
+      }
+
+      updateBadgeKeranjang();
+      bukaModalKeranjang();
+    }
+
+    function bukaModalKeranjang() {
+      let wadah = document.getElementById("daftar-isi-keranjang");
+      let totalHarga = 0;
+
+      if (keranjang.length === 0) {
+        wadah.innerHTML = `<p style="font-size:13px; color:#64748B; text-align:center; padding:20px 0;">Keranjang masih kosong.</p>`;
+      } else {
+        wadah.innerHTML = keranjang.map((item, idx) => {
+          let subtotal = item.hargaAngka * item.qty;
+          totalHarga += subtotal;
+          return `
+            <div class="item-keranjang-row">
+              <div>
+                <strong>${item.nama}</strong> (${item.ukuran})<br>
+                <span style="color:#64748B; font-size:12px;">${item.qty} x ${formatRupiah(item.hargaAngka)}</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+                <strong>${formatRupiah(subtotal)}</strong>
+                <button type="button" class="btn-hapus-item" onclick="hapusDariKeranjang(${idx})">Hapus</button>
+                <div class="kontrol-qty">
+                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, -1)" title="Kurangi jumlah">-</button>
+                  <span class="angka-qty">${item.qty}</span>
+                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, 1)" title="Tambah jumlah">+</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      document.getElementById("total-harga-keranjang").textContent = formatRupiah(totalHarga);
+      document.getElementById("modal-keranjang").classList.add("buka");
+    }
+
+    function hapusDariKeranjang(idx) {
+      keranjang.splice(idx, 1);
+      updateBadgeKeranjang();
+      bukaModalKeranjang();
+    }
+
+    function checkoutKeranjang() {
+      if (keranjang.length === 0) {
+        alert("Keranjang masih kosong, pilih produk dulu ya!");
+        return;
+      }
+      alert("Pesanan custom & katalog berhasil diproses! Terima kasih sudah berbelanja di Frost Wearly.");
+      keranjang = [];
+      updateBadgeKeranjang();
+      tutupModal("modal-keranjang");
+    }
+
+    function tutupModal(id) {
+      document.getElementById(id).classList.remove("buka");
+    }
+
+    function tutupLuar(event, id) {
+      if (event.target.id === id) {
+        tutupModal(id);
+      }
+    }
+
+    updateBadgeKeranjang();
+    hitungTotalCustom();
+  </script>
+</body>
+</html>

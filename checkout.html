@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengiriman &amp; Pembayaran - FROST WEARLY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 64px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #E2E8F0;
+      gap: 16px;
+    }
+
+    .kiri-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .fw-badge {
+      background-color: #1E293B;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 5px 7px;
+      border-radius: 5px;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .cari-nav {
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      width: 190px;
+      background-color: #FFFFFF;
+    }
+
+    .btn-keranjang-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .btn-keranjang-nav span {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+
+    .profil-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .profil-bulat {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: #1E293B;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* KONTEN */
+    .wadah {
+      max-width: 1120px;
+      margin: 22px auto 48px;
+      padding: 0 20px;
+    }
+
+    .breadcrumb {
+      font-size: 11px;
+      color: #94A3B8;
+      margin-bottom: 6px;
+    }
+
+    .breadcrumb a {
+      color: #64748B;
+      text-decoration: none;
+    }
+
+    .judul-halaman {
+      font-size: 20px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 18px;
+    }
+
+    .grid-checkout {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .blok-step {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .header-step {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .header-step h2 {
+      font-size: 13px;
+      font-weight: bold;
+      color: #0F2537;
+    }
+
+    .btn-ubah-alamat {
+      border: 1px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #334155;
+      border-radius: 5px;
+      padding: 4px 10px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .alamat-nama {
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 3px;
+    }
+
+    .alamat-detail {
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    .input-alamat-edit {
+      width: 100%;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 11px;
+      margin-top: 8px;
+    }
+
+    .grid-kurir {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .opsi-kurir {
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 11px 13px;
+      cursor: pointer;
+      background-color: #FFFFFF;
+    }
+
+    .opsi-kurir.aktif {
+      border-color: #1E293B;
+      border-width: 1.5px;
+    }
+
+    .kurir-atas {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 3px;
+    }
+
+    .kurir-est {
+      font-size: 10px;
+      color: #94A3B8;
+    }
+
+    .opsi-bayar {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      background-color: #FFFFFF;
+    }
+
+    .opsi-bayar.aktif {
+      border-color: #1E293B;
+      border-width: 1.5px;
+    }
+
+    .opsi-bayar input {
+      margin-top: 2px;
+      accent-color: #0F2537;
+    }
+
+    .bayar-judul {
+      font-size: 12px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 2px;
+    }
+
+    .bayar-sub {
+      font-size: 10px;
+      color: #94A3B8;
+    }
+
+    /* PANEL CARA BAYAR */
+    .panel-instruksi {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 8px;
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      font-size: 11px;
+      color: #334155;
+    }
+
+    .daftar-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .btn-bank {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-bank.aktif {
+      background-color: #1E293B;
+      color: #FFFFFF;
+      border-color: #1E293B;
+    }
+
+    .kotak-rekening {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-salin {
+      border: 1px solid #CBD5E1;
+      background-color: #EBF3FA;
+      color: #0F2537;
+      border-radius: 5px;
+      padding: 4px 9px;
+      font-size: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .qris-box {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .qr-card {
+      background-color: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      width: 150px;
+    }
+
+    .qr-img {
+      width: 128px;
+      height: 128px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+    }
+
+    .langkah-bayar {
+      padding-left: 16px;
+      line-height: 1.65;
+      color: #475569;
+      margin-top: 6px;
+    }
+
+    /* DETAIL PESANAN KANAN */
+    .kartu-detail-pesanan {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .kartu-detail-pesanan h2 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .item-ringkas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .thumb-pesanan {
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
+      background-color: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .baris-biaya {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .baris-biaya strong {
+      color: #0F2537;
+    }
+
+    .diskon-teks {
+      color: #16A34A !important;
+      font-weight: bold;
+    }
+
+    .total-bayar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 12px;
+      border-top: 1px solid #E2E8F0;
+      margin-bottom: 14px;
+    }
+
+    .total-bayar-row span {
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .total-bayar-row strong {
+      font-size: 16px;
+    }
+
+    .btn-buat-pesanan {
+      width: 100%;
+      background-color: #262F3D;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-buat-pesanan:hover {
+      background-color: #161D27;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(180deg, #F1F6FA 0%, #DFECF6 100%);
+      color: #334155;
+      margin-top: 40px;
+    }
+
+    .footer-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 20px 30px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
+      gap: 28px;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 8px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 11px;
+      line-height: 1.85;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 850px) {
+      .grid-checkout,
+      .grid-kurir {
+        grid-template-columns: 1fr;
+      }
+      .cari-nav,
+      .menu-nav {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="kiri-nav">
+      <a href="beranda.html" class="logo-brand">
+        <span class="fw-badge">FW</span>
+        <span>FROST WEARLY</span>
+      </a>
+      <ul class="menu-nav">
+        <li><a href="katalog.html">Katalog</a></li>
+        <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
+        <li><a href="custom.html">Custom</a></li>
+        <li><a href="tentang-kami.html">Bantuan</a></li>
+      </ul>
+    </div>
+
+    <div class="kanan-nav">
+      <input type="text" class="cari-nav" placeholder="Cari produk favorit...">
+      <a href="keranjang.html" class="btn-keranjang-nav">
+        &#128722; Keranjang <span id="jumlah-keranjang">0</span>
+      </a>
+      <div class="profil-wrap">
+        <div class="profil-bulat">BS</div>
+        <span>Budi</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <div class="breadcrumb">
+      <a href="beranda.html">Beranda</a> &rsaquo;
+      <a href="keranjang.html">Keranjang Belanja</a> &rsaquo;
+    </div>
+    <h1 class="judul-halaman">Pengiriman &amp; Pembayaran</h1>
+
+    <div class="grid-checkout">
+      <div>
+        <!-- 1. ALAMAT PENGIRIMAN -->
+        <section class="blok-step">
+          <div class="header-step">
+            <h2>1. Alamat Pengiriman</h2>
+            <button type="button" class="btn-ubah-alamat" onclick="toggleEditAlamat()">Ubah Alamat</button>
+          </div>
+          <div class="alamat-nama">Budi Santoso (Rumah Utama)</div>
+          <div class="alamat-detail">+62 812-3456-7890</div>
+          <div id="teks-alamat" class="alamat-detail">Jl. Mawar No. 12, RT 05/RW 03, Kel. Merdeka, Kec. Menteng, Kota Jakarta Pusat, DKI Jakarta, 10320</div>
+          <input type="text" id="input-alamat-baru" class="input-alamat-edit" style="display:none;" placeholder="Tulis alamat lengkap baru lalu tekan Enter..." onkeydown="if(event.key==='Enter') simpanAlamatBaru()">
+        </section>
+
+        <!-- 2. JASA PENGIRIMAN -->
+        <section class="blok-step">
+          <div class="header-step">
+            <h2>2. Jasa Pengiriman</h2>
+          </div>
+          <div class="grid-kurir">
+            <div class="opsi-kurir aktif" onclick="pilihKurir('JNE Reguler', 15000, this)">
+              <div class="kurir-atas">
+                <span>JNE Reguler</span>
+                <span>Rp 15.000</span>
+              </div>
+              <div class="kurir-est">Estimasi tiba: 2 - 3 hari kerja</div>
+            </div>
+            <div class="opsi-kurir" onclick="pilihKurir('Sicepat Best', 22000, this)">
+              <div class="kurir-atas">
+                <span>Sicepat Best</span>
+                <span>Rp 22.000</span>
+              </div>
+              <div class="kurir-est">Estimasi tiba: Esok hari (1 hari)</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. METODE PEMBAYARAN -->
+        <section class="blok-step">
+          <div class="header-step">
+            <h2>3. Metode Pembayaran</h2>
+          </div>
+
+          <label class="opsi-bayar aktif" onclick="pilihPembayaran('transfer', this)">
+            <input type="radio" name="metode-bayar" checked>
+            <div>
+              <div class="bayar-judul">Transfer Bank Manual (Dicek Otomatis)</div>
+              <div class="bayar-sub">BCA, Mandiri, BNI, BRI</div>
+            </div>
+          </label>
+
+          <label class="opsi-bayar" onclick="pilihPembayaran('qris', this)">
+            <input type="radio" name="metode-bayar">
+            <div>
+              <div class="bayar-judul">E-Wallet / QRIS</div>
+              <div class="bayar-sub">Gopay, OVO, Dana, LinkAja</div>
+            </div>
+          </label>
+
+          <label class="opsi-bayar" onclick="pilihPembayaran('cod', this)">
+            <input type="radio" name="metode-bayar">
+            <div>
+              <div class="bayar-judul">COD (Bayar di Tempat)</div>
+              <div class="bayar-sub">Bayar langsung ke kurir saat pesanan tiba</div>
+            </div>
+          </label>
+
+          <!-- PANEL INSTRUKSI DINAMIS -->
+          <div id="panel-instruksi-bayar" class="panel-instruksi"></div>
+        </section>
+      </div>
+
+      <!-- DETAIL PESANAN KANAN -->
+      <aside class="kartu-detail-pesanan">
+        <h2>Detail Pesanan</h2>
+        <div id="daftar-item-checkout"></div>
+
+        <div class="baris-biaya">
+          <span>Subtotal Produk</span>
+          <strong id="biaya-subtotal">Rp 0</strong>
+        </div>
+        <div class="baris-biaya">
+          <span>Biaya Pengiriman</span>
+          <strong id="biaya-ongkir">Rp 15.000</strong>
+        </div>
+        <div class="baris-biaya">
+          <span>Diskon Kupon</span>
+          <span class="diskon-teks">- Rp 10.000</span>
+        </div>
+
+        <div class="total-bayar-row">
+          <span>Total Pembayaran</span>
+          <strong id="total-pembayaran">Rp 0</strong>
+        </div>
+
+        <button type="button" class="btn-buat-pesanan" onclick="buatPesananSekarang()">
+          Buat Pesanan Sekarang
+        </button>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>&#9742; +62 812-3456-7890</p>
+        <p>&#9993; frostwearly@gmail.com</p>
+        <p>&#128205; Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>&#128247; @frostwearly.official.mlg</p>
+        <p>&#9835; @frost.wearly.mlg</p>
+        <p>&#128172; 0821-7101-7051</p>
+      </div>
+    </div>
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const isBeliLangsung = localStorage.getItem("checkoutLangsungFrostWearly") !== null;
+    const itemLangsung = JSON.parse(localStorage.getItem("checkoutLangsungFrostWearly")) || [];
+    const keranjangSimpan = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+
+    const itemCheckout = isBeliLangsung
+      ? itemLangsung
+      : keranjangSimpan.filter(i => i.dipilih !== false);
+
+    const dataRekening = {
+      BCA: { norek: "7390812450", atasNama: "PT Frost Wearly Indonesia" },
+      Mandiri: { norek: "1440029183741", atasNama: "PT Frost Wearly Indonesia" },
+      BNI: { norek: "0891234567", atasNama: "PT Frost Wearly Indonesia" },
+      BRI: { norek: "034101098765502", atasNama: "PT Frost Wearly Indonesia" }
+    };
+
+    let ongkirAktif = 15000;
+    let kurirAktif = "JNE Reguler";
+    let metodeAktif = "transfer";
+    let bankAktif = "BCA";
+    const diskonKupon = 10000;
+
+    function formatRupiah(angka) {
+      return "Rp " + angka.toLocaleString("id-ID");
+    }
+
+    function hitungTotalBayar() {
+      const subtotal = itemCheckout.reduce((sum, item) => sum + item.hargaAngka * item.qty, 0);
+      if (subtotal === 0) return 0;
+      return Math.max(0, subtotal + ongkirAktif - diskonKupon);
+    }
+
+    function updateBadgeKeranjang() {
+      const total = keranjangSimpan.reduce((sum, i) => sum + i.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = total;
+    }
+
+    function toggleEditAlamat() {
+      const input = document.getElementById("input-alamat-baru");
+      const teks = document.getElementById("teks-alamat");
+      if (input.style.display === "none") {
+        input.style.display = "block";
+        input.value = teks.textContent;
+        input.focus();
+      } else {
+        simpanAlamatBaru();
+      }
+    }
+
+    function simpanAlamatBaru() {
+      const input = document.getElementById("input-alamat-baru");
+      const teks = document.getElementById("teks-alamat");
+      if (input.value.trim() !== "") {
+        teks.textContent = input.value.trim();
+      }
+      input.style.display = "none";
+    }
+
+    function pilihKurir(namaKurir, biaya, elemen) {
+      kurirAktif = namaKurir;
+      ongkirAktif = biaya;
+      document.querySelectorAll(".opsi-kurir").forEach(el => el.classList.remove("aktif"));
+      elemen.classList.add("aktif");
+      renderCheckout();
+    }
+
+    function pilihPembayaran(metode, elemen) {
+      metodeAktif = metode;
+      document.querySelectorAll(".opsi-bayar").forEach(el => el.classList.remove("aktif"));
+      elemen.classList.add("aktif");
+      const radio = elemen.querySelector('input[type="radio"]');
+      if (radio) radio.checked = true;
+      renderInstruksiBayar();
+    }
+
+    function pilihBank(bank) {
+      bankAktif = bank;
+      renderInstruksiBayar();
+    }
+
+    function salinTeks(teks, label) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(teks);
+      }
+      alert(`${label} (${teks}) berhasil disalin!`);
+    }
+
+    function renderInstruksiBayar() {
+      const panel = document.getElementById("panel-instruksi-bayar");
+      const totalBayar = formatRupiah(hitungTotalBayar());
+
+      if (metodeAktif === "transfer") {
+        const rek = dataRekening[bankAktif];
+        panel.innerHTML = `
+          <div style="font-weight:bold; margin-bottom:8px;">Cara Transfer Bank (${bankAktif})</div>
+          <div class="daftar-bank">
+            ${Object.keys(dataRekening).map(b => `
+              <button type="button" class="btn-bank ${b === bankAktif ? "aktif" : ""}" onclick="pilihBank('${b}')">${b}</button>
+            `).join("")}
+          </div>
+          <div class="kotak-rekening">
+            <div>
+              <div style="color:#64748B; font-size:10px;">Nomor Rekening ${bankAktif} (${rek.atasNama})</div>
+              <strong style="font-size:13px;">${rek.norek}</strong>
+            </div>
+            <button type="button" class="btn-salin" onclick="salinTeks('${rek.norek}', 'No. Rekening ${bankAktif}')">Salin</button>
+          </div>
+          <div class="kotak-rekening">
+            <div>
+              <div style="color:#64748B; font-size:10px;">Nominal Transfer</div>
+              <strong style="font-size:13px;">${totalBayar}</strong>
+            </div>
+            <button type="button" class="btn-salin" onclick="salinTeks('${totalBayar}', 'Nominal Transfer')">Salin</button>
+          </div>
+          <ol class="langkah-bayar">
+            <li>Buka aplikasi m-Banking / ATM / Internet Banking ${bankAktif}.</li>
+            <li>Masukkan nomor rekening tujuan di atas dan transfer sesuai nominal <strong>${totalBayar}</strong>.</li>
+            <li>Klik <strong>Buat Pesanan Sekarang</strong>, sistem akan memverifikasi pembayaran otomatis.</li>
+          </ol>
+        `;
+      } else if (metodeAktif === "qris") {
+        panel.innerHTML = `
+          <div style="font-weight:bold; margin-bottom:8px;">Cara Bayar via QRIS / E-Wallet</div>
+          <div class="qris-box">
+            <div class="qr-card">
+            <img src="qr-code.jpg" alt="QRIS FROST WEARLY" class="qr-img">
+            <div style="font-size:9px; font-weight:bold; color:#0F2537; margin-top:6px;">QRIS FROST WEARLY</div>
+            </div>
+            <div style="flex:1; min-width:200px;">
+              <div>Total Tagihan QRIS: <strong>${totalBayar}</strong></div>
+              <ol class="langkah-bayar">
+                <li>Buka aplikasi <strong>Gopay, OVO, Dana, LinkAja</strong>, atau mobile banking yang mendukung QRIS.</li>
+                <li>Pilih menu <strong>Scan / Bayar QRIS</strong> lalu scan gambar QR di samping.</li>
+                <li>Pastikan nominal <strong>${totalBayar}</strong> sesuai, selesaikan pembayaran, lalu klik <strong>Buat Pesanan Sekarang</strong>.</li>
+              </ol>
+            </div>
+          </div>
+        `;
+      } else {
+        panel.innerHTML = `
+          <div style="font-weight:bold; margin-bottom:6px;">Cara Pembayaran COD (Bayar di Tempat)</div>
+          <ol class="langkah-bayar">
+            <li>Siapkan uang tunai pas sebesar <strong>${totalBayar}</strong> saat paket tiba.</li>
+            <li>Pastikan ada penerima di alamat tujuan dan nomor HP aktif agar kurir mudah menghubungi.</li>
+            <li>Bayar langsung kepada kurir saat pesanan diterima.</li>
+          </ol>
+        `;
+      }
+    }
+
+    function buatPesananSekarang() {
+      if (itemCheckout.length === 0) {
+        alert("Tidak ada item yang diproses.");
+        return;
+      }
+      const labelMetode =
+        metodeAktif === "transfer"
+          ? `Transfer Bank Manual (${bankAktif})`
+          : metodeAktif === "qris"
+          ? "E-Wallet / QRIS"
+          : "COD (Bayar di Tempat)";
+
+      alert(`Pesanan berhasil dibuat!\nMetode: ${labelMetode}\nKurir: ${kurirAktif}\nTotal: ${formatRupiah(hitungTotalBayar())}`);
+
+      if (isBeliLangsung) {
+        localStorage.removeItem("checkoutLangsungFrostWearly");
+      } else {
+        const sisaKeranjang = keranjangSimpan.filter(i => i.dipilih === false);
+        localStorage.setItem("keranjangFrostWearly", JSON.stringify(sisaKeranjang));
+      }
+      window.location.href = "katalog.html";
+    }
+
+    function renderCheckout() {
+      updateBadgeKeranjang();
+      const wadah = document.getElementById("daftar-item-checkout");
+
+      if (itemCheckout.length === 0) {
+        wadah.innerHTML = `<p style="font-size:11px; color:#64748B; margin-bottom:12px;">Belum ada produk terpilih. <a href="produk.html" style="color:#0F2537; font-weight:bold;">Pilih produk</a></p>`;
+        document.getElementById("biaya-subtotal").textContent = "Rp 0";
+        document.getElementById("biaya-ongkir").textContent = formatRupiah(ongkirAktif);
+        document.getElementById("total-pembayaran").textContent = "Rp 0";
+        renderInstruksiBayar();
+        return;
+      }
+
+      wadah.innerHTML = itemCheckout.map(item => `
+        <div class="item-ringkas">
+          <div class="thumb-pesanan" style="background-color:${item.kodeWarna || "#E2E8F0"}; color:${item.warna === "Hitam" || item.warna === "Deep Navy" ? "#FFFFFF" : "#0F2537"};">FW</div>
+          <div>
+            <div style="font-size:11px; font-weight:bold; color:#0F2537;">${item.nama}</div>
+            <div style="font-size:10px; color:#94A3B8;">${item.qty}x &bull; ${formatRupiah(item.hargaAngka)} (${item.warna || "Hitam"}, ${item.ukuran || "L"})</div>
+          </div>
+        </div>
+      `).join("");
+
+      const subtotal = itemCheckout.reduce((sum, item) => sum + item.hargaAngka * item.qty, 0);
+      const total = hitungTotalBayar();
+
+      document.getElementById("biaya-subtotal").textContent = formatRupiah(subtotal);
+      document.getElementById("biaya-ongkir").textContent = formatRupiah(ongkirAktif);
+      document.getElementById("total-pembayaran").textContent = formatRupiah(total);
+
+      renderInstruksiBayar();
+    }
+
+    renderCheckout();
+  </script>
+</body>
+</html>

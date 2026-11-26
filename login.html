@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - FROST WEARLY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #7CC4F8 0%, #3A96DC 52%, #1D72B8 100%);
+      color: #0F2537;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Bar Atas Tipis */
+    .topbar {
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #0F2537;
+      font-size: 12px;
+    }
+
+    .topbar-brand {
+      font-weight: bold;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .topbar-badge {
+      background-color: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(15, 37, 55, 0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* Area Tengah */
+    .login-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px 40px;
+    }
+
+    .login-card {
+      background-color: #FFFFFF;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 14px;
+      padding: 32px 30px;
+      box-shadow: 0 18px 40px rgba(10, 37, 64, 0.22);
+    }
+
+    /* Header Brand di Dalam Card */
+    .card-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .fw-box {
+      width: 38px;
+      height: 38px;
+      background-color: #1E293B;
+      color: #FFFFFF;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #0F2537;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .login-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 5px;
+    }
+
+    .login-subtitle {
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #1E293B;
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 38px 10px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 7px;
+      font-size: 13px;
+      color: #0F2537;
+      outline: none;
+      background-color: #FFFFFF;
+    }
+
+    .form-control::placeholder {
+      color: #94A3B8;
+      font-size: 12px;
+    }
+
+    .form-control:focus {
+      border-color: #2B82C9;
+    }
+
+    .form-control.salah {
+      border-color: #DC2626;
+      background-color: #FEF2F2;
+    }
+
+    .pesan-error-pw {
+      display: none;
+      color: #DC2626;
+      font-size: 11px;
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    .pesan-error-pw.tampil {
+      display: block;
+    }
+
+    .toggle-pw {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #64748B;
+      font-size: 13px;
+      padding: 4px;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+
+    .ingat-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .ingat-label input {
+      accent-color: #1E293B;
+      cursor: pointer;
+    }
+
+    .link-lupa {
+      color: #334155;
+      text-decoration: underline;
+      font-size: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .link-lupa:hover {
+      color: #0F2537;
+    }
+
+    .btn-masuk {
+      width: 100%;
+      background-color: #262F3D;
+      color: #FFFFFF;
+      border: none;
+      padding: 11px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+
+    .btn-masuk:hover {
+      background-color: #161D27;
+    }
+
+    .daftar-teks {
+      text-align: center;
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 18px;
+    }
+
+    .daftar-teks a {
+      color: #0F2537;
+      font-weight: bold;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .anotasi-box {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    .anotasi-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid #94A3B8;
+      color: #64748B;
+      font-size: 10px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pesan-status {
+      font-size: 12px;
+      color: #0369A1;
+      background-color: #EBF3FA;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .pesan-status.error {
+      color: #B91C1C;
+      background-color: #FEE2E2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-brand">FROST WEARLY</div>
+    <div class="topbar-badge">Desktop (1440px)</div>
+  </div>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+      <div class="card-header-brand">
+        <div class="fw-box">FW</div>
+        <div>
+          <div class="brand-title">FROST WEARLY</div>
+          <div class="brand-sub">Sistem E-Commerce &amp; Pelanggan</div>
+        </div>
+      </div>
+
+      <h1 class="login-title">Masuk ke Akun Anda</h1>
+      <p class="login-subtitle">Silakan masukkan detail akun e-commerce Anda</p>
+
+      <div id="pesan-status" class="pesan-status"></div>
+
+      <form onsubmit="prosesLogin(event)" novalidate>
+        <div class="form-group">
+          <label for="email-user" class="form-label">Email atau Username</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              id="email-user"
+              class="form-control"
+              placeholder="Contoh: budi@email.com atau budi.santoso"
+              style="padding-right: 12px;"
+              oninput="resetErrorPassword()"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              placeholder="Masukkan password"
+              oninput="resetErrorPassword()"
+              required
+            >
+            <button type="button" class="toggle-pw" onclick="togglePassword()" title="Lihat/Sembunyikan Password">&#128065;</button>
+          </div>
+          <div id="pesan-error-pw" class="pesan-error-pw">Password salah! Coba periksa kembali.</div>
+        </div>
+
+        <div class="form-options">
+          <label class="ingat-label">
+            <input type="checkbox" id="ingat-saya" checked>
+            <span>Ingat saya di perangkat ini</span>
+          </label>
+          <button type="button" class="link-lupa" onclick="lupaPassword()">Lupa Password?</button>
+        </div>
+
+        <button type="submit" class="btn-masuk">Masuk Sekarang</button>
+      </form>
+
+      <div class="daftar-teks">
+        Belum punya akun toko? <a href="register.html" onclick="keHalamanDaftar(event)">Daftar Akun Baru</a>
+      </div>
+
+      <div class="anotasi-box">
+        <span class="anotasi-icon">i</span>
+        <div>
+          [Anotasi Klien] Link 'Daftar Akun Baru' akan langsung mengarahkan pengunjung ke halaman pendaftaran di samping.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const PASSWORD_DEFAULT = "frostwearly123";
+
+    function ambilPasswordTerdaftar() {
+      const tersimpan = localStorage.getItem("akunFrostWearly");
+      if (!tersimpan) return PASSWORD_DEFAULT;
+      try {
+        const parsed = JSON.parse(tersimpan);
+        return parsed.password || PASSWORD_DEFAULT;
+      } catch (err) {
+        return PASSWORD_DEFAULT;
+      }
+    }
+
+    function isiEmailOtomatis() {
+      const tersimpan = localStorage.getItem("akunFrostWearly");
+      if (!tersimpan) return;
+      try {
+        const parsed = JSON.parse(tersimpan);
+        const inputUser = document.getElementById("email-user");
+        if (parsed.email && !inputUser.value) {
+          inputUser.value = parsed.email;
+        }
+      } catch (err) {}
+    }
+
+    function togglePassword() {
+      const inputPw = document.getElementById("password");
+      inputPw.type = (inputPw.type === "password") ? "text" : "password";
+    }
+
+    function tampilkanPesan(teks, isError = false) {
+      const box = document.getElementById("pesan-status");
+      box.textContent = teks;
+      box.classList.toggle("error", isError);
+      box.style.display = "block";
+    }
+
+    function sembunyikanPesan() {
+      const box = document.getElementById("pesan-status");
+      box.style.display = "none";
+      box.classList.remove("error");
+    }
+
+    function setErrorPassword(teksError) {
+      const inputPw = document.getElementById("password");
+      const errorPw = document.getElementById("pesan-error-pw");
+      inputPw.classList.add("salah");
+      errorPw.textContent = teksError;
+      errorPw.classList.add("tampil");
+    }
+
+    function resetErrorPassword() {
+      const inputPw = document.getElementById("password");
+      const errorPw = document.getElementById("pesan-error-pw");
+      inputPw.classList.remove("salah");
+      errorPw.classList.remove("tampil");
+      sembunyikanPesan();
+    }
+
+    function prosesLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById("email-user").value.trim();
+      const pw = document.getElementById("password").value;
+      const passwordBenar = ambilPasswordTerdaftar();
+
+      if (user === "") {
+        tampilkanPesan("Email atau username wajib diisi dulu ya.", true);
+        document.getElementById("email-user").focus();
+        return;
+      }
+
+      if (pw.trim() === "") {
+        setErrorPassword("Password tidak boleh kosong.");
+        tampilkanPesan("Masukkan password terlebih dahulu.", true);
+        document.getElementById("password").focus();
+        return;
+      }
+
+      if (pw !== passwordBenar) {
+        setErrorPassword("Password salah! Coba periksa kembali.");
+        tampilkanPesan("Password tidak cocok dengan akun yang terdaftar.", true);
+        document.getElementById("password").focus();
+        return;
+      }
+
+      resetErrorPassword();
+      tampilkanPesan("Berhasil masuk sebagai " + user + ". Mengalihkan ke beranda...", false);
+      setTimeout(() => {
+        window.location.href = "beranda.html";
+      }, 700);
+    }
+
+    function lupaPassword() {
+      const tersimpan = localStorage.getItem("akunFrostWearly");
+      if (tersimpan) {
+        try {
+          const parsed = JSON.parse(tersimpan);
+          tampilkanPesan("Password akun " + (parsed.email || "kamu") + " adalah: " + parsed.password, false);
+          return;
+        } catch (err) {}
+      }
+      tampilkanPesan("Link reset password akan dikirim ke email/username terdaftar.", false);
+    }
+
+    function keHalamanDaftar(e) {
+      tampilkanPesan("Mengarahkan ke halaman Daftar Akun Baru (register.html)...", false);
+    }
+
+    isiEmailOtomatis();
+  </script>
+</body>
+</html>
