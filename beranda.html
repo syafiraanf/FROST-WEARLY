@@ -186,81 +186,85 @@
       padding: 0 20px;
     }
 
+    /* BANNER DEFINE YOUR FROST */
     .hero {
-      background: linear-gradient(135deg, #EBF3FA 0%, #DCECF8 100%);
+      position: relative;
+      min-height: 360px;
       border-radius: 16px;
-      padding: 44px 36px;
+      padding: 52px 44px;
       margin-bottom: 36px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 24px;
-      flex-wrap: wrap;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(15, 37, 55, 0.72) 0%, rgba(15, 37, 55, 0.35) 55%, rgba(15, 37, 55, 0.12) 100%),
+        url("img/banner-frost.jpg") center / cover no-repeat,
+        linear-gradient(120deg, #1E3A5F 0%, #5B8FB9 55%, #B8D8EE 100%);
+      color: #FFFFFF;
     }
 
     .hero-teks {
-      max-width: 600px;
+      position: relative;
+      z-index: 2;
+      max-width: 500px;
     }
 
-    .tag-hero {
-      display: inline-block;
-      background-color: #FFFFFF;
-      color: #0284C7;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 5px 12px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
+    .label-hero {
+      font-size: 12px;
+      font-weight: 500;
+      color: #E2E8F0;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
     }
 
     .hero h1 {
-      font-size: 32px;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      color: #0F2537;
+      font-size: 38px;
+      font-weight: bold;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: #FFFFFF;
     }
 
     .hero p {
-      font-size: 14px;
-      color: #475569;
+      font-size: 13px;
+      color: #F1F5F9;
       line-height: 1.65;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .tombol-hero {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
-    .btn-gelap {
-      background-color: #0F2537;
+    .btn-hero-gelap {
+      background-color: #111827;
       color: #FFFFFF;
       text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 8px;
-      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 12px;
       font-weight: bold;
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .btn-gelap:hover {
-      background-color: #1E3A5F;
+    .btn-hero-gelap:hover {
+      background-color: #1F2937;
     }
 
-    .btn-putih {
+    .btn-hero-terang {
       background-color: #FFFFFF;
       color: #0F2537;
       text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 8px;
-      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 12px;
       font-weight: bold;
-      border: 1px solid #CBD5E1;
     }
 
-    .btn-putih:hover {
-      background-color: #F8FAFC;
+    .btn-hero-terang:hover {
+      background-color: #EBF3FA;
     }
 
     .judul-bagian {
@@ -432,8 +436,12 @@
       .cari-atas {
         display: none;
       }
+      .hero {
+        padding: 36px 24px;
+        min-height: 300px;
+      }
       .hero h1 {
-        font-size: 25px;
+        font-size: 28px;
       }
     }
   </style>
@@ -483,12 +491,12 @@
   <main class="wadah">
     <section class="hero">
       <div class="hero-teks">
-        <span class="tag-hero">FROST WEARLY &bull; MODERN URBAN STREETWEAR</span>
-        <h1>Tampil Segar &amp; Elegan dengan Estetika Dingin</h1>
-        <p>Koleksi streetwear modern dengan potongan nyaman, bahan pilihan, dan palet warna dingin khas Frost Wearly untuk aktivitas harianmu.</p>
+        <div class="label-hero">New Arrivals</div>
+        <h1>Define Your Frost</h1>
+        <p>Jelajahi koleksi terkurasi untuk semua orang. Istimewa, dibuat dengan cermat, dan dirancang dengan sempurna untuk gaya Modern Urban &amp; Streetwear kamu.</p>
         <div class="tombol-hero">
-          <a href="katalog.html" class="btn-gelap">Jelajahi Katalog</a>
-          <a href="custom.html" class="btn-putih">Custom Pesananmu!</a>
+          <a href="katalog.html" class="btn-hero-gelap">Beli sekarang</a>
+          <a href="tentang-kami.html" class="btn-hero-terang">Tentang Kami</a>
         </div>
       </div>
     </section>
@@ -496,7 +504,7 @@
     <section>
       <div class="judul-bagian">
         <h2>Koleksi Unggulan</h2>
-        <a href="katalog.html">Lihat Semua &rsaquo;</a>
+        <a href="katalog.html">Lihat semua katalog</a>
       </div>
 
       <div class="grid-highlight">
