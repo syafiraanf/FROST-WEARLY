@@ -198,7 +198,7 @@
       overflow: hidden;
       background:
         linear-gradient(90deg, rgba(15, 37, 55, 0.72) 0%, rgba(15, 37, 55, 0.35) 55%, rgba(15, 37, 55, 0.12) 100%),
-        url("hero-frost.jpg") center / cover no-repeat,
+        url("banner-frost.jpg") center / cover no-repeat,
         linear-gradient(120deg, #1E3A5F 0%, #5B8FB9 55%, #B8D8EE 100%);
       color: #FFFFFF;
     }
@@ -307,11 +307,11 @@
 
     .kotak-foto {
       background-color: #EBF3FA;
-      height: 175px;
+      height: 185px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 12px;
     }
 
     .kotak-foto img {
@@ -323,6 +323,10 @@
 
     .isi-kartu {
       padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
 
     .kategori-teks {
@@ -335,15 +339,71 @@
     .nama-produk {
       font-size: 15px;
       font-weight: bold;
-      margin: 5px 0;
+      margin: 5px 0 6px;
       color: #0F2537;
+    }
+
+    .deskripsi-produk {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 12px;
     }
 
     .harga-produk {
       font-size: 14px;
       font-weight: bold;
       color: #0F2537;
-      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .btn-tambah-keranjang {
+      width: 100%;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-tambah-keranjang:hover {
+      background-color: #1E3A5F;
+    }
+
+    /* MENGAPA FROST WEARLY */
+    .section-keunggulan {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 28px 24px;
+      margin-bottom: 36px;
+    }
+
+    .section-keunggulan h2 {
+      font-size: 20px;
+      color: #0F2537;
+      margin-bottom: 18px;
+    }
+
+    .grid-keunggulan {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .kartu-keunggulan h3 {
+      font-size: 14px;
+      color: #0F2537;
+      margin-bottom: 6px;
+    }
+
+    .kartu-keunggulan p {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.6;
     }
 
     /* FOOTER */
@@ -421,6 +481,9 @@
     @media (max-width: 900px) {
       .grid-highlight {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-keunggulan {
+        grid-template-columns: 1fr;
       }
       .footer-grid {
         grid-template-columns: 1fr 1fr;
@@ -511,37 +574,71 @@
         <div class="kartu-produk">
           <div class="kotak-foto"><img src="img/glacier-hoodie.png" alt="Frost Glacier Hoodie"></div>
           <div class="isi-kartu">
-            <div class="kategori-teks">Hoodie</div>
-            <div class="nama-produk">Frost Glacier Hoodie</div>
-            <div class="harga-produk">Rp 249.000</div>
+            <div>
+              <div class="kategori-teks">HOODIE</div>
+              <div class="nama-produk">Frost Glacier Hoodie</div>
+              <p class="deskripsi-produk">Hoodie fleece tebal warna ice blue dengan potongan boxy modern.</p>
+              <div class="harga-produk">Rp 249.000</div>
+            </div>
+            <button type="button" class="btn-tambah-keranjang" onclick="tambahKeKeranjang('Frost Glacier Hoodie', 249000)">+ Tambah ke Keranjang</button>
           </div>
         </div>
 
         <div class="kartu-produk">
           <div class="kotak-foto"><img src="img/arctic-oversize.png" alt="Arctic Oversize Tee"></div>
           <div class="isi-kartu">
-            <div class="kategori-teks">Kaos</div>
-            <div class="nama-produk">Arctic Oversize Tee</div>
-            <div class="harga-produk">Rp 129.000</div>
+            <div>
+              <div class="kategori-teks">KAOS</div>
+              <div class="nama-produk">Arctic Oversize Tee</div>
+              <p class="deskripsi-produk">Kaos katun combed 24s warna putih salju dengan sablon minimalis.</p>
+              <div class="harga-produk">Rp 129.000</div>
+            </div>
+            <button type="button" class="btn-tambah-keranjang" onclick="tambahKeKeranjang('Arctic Oversize Tee', 129000)">+ Tambah ke Keranjang</button>
           </div>
         </div>
 
         <div class="kartu-produk">
-          <div class="kotak-foto"><img src="img/cargo-jeans.png" alt="Polar Cargo Jeans"></div>
+          <div class="kotak-foto"><img src="img/cargo-jeans.png" alt="Polar Cargo Pants"></div>
           <div class="isi-kartu">
-            <div class="kategori-teks">Celana</div>
-            <div class="nama-produk">Polar Cargo Jeans</div>
-            <div class="harga-produk">Rp 219.000</div>
+            <div>
+              <div class="kategori-teks">CELANA</div>
+              <div class="nama-produk">Polar Cargo Pants</div>
+              <p class="deskripsi-produk">Celana cargo multi-saku bahan ripstop ringan warna dark navy.</p>
+              <div class="harga-produk">Rp 219.000</div>
+            </div>
+            <button type="button" class="btn-tambah-keranjang" onclick="tambahKeKeranjang('Polar Cargo Pants', 219000)">+ Tambah ke Keranjang</button>
           </div>
         </div>
 
         <div class="kartu-produk">
           <div class="kotak-foto"><img src="img/windbreaker.png" alt="Subzero Windbreaker"></div>
           <div class="isi-kartu">
-            <div class="kategori-teks">Windbreaker</div>
-            <div class="nama-produk">Subzero Windbreaker</div>
-            <div class="harga-produk">Rp 289.000</div>
+            <div>
+              <div class="kategori-teks">HOODIE</div>
+              <div class="nama-produk">Subzero Windbreaker</div>
+              <p class="deskripsi-produk">Jaket parasut tahan angin dengan lapisan dalam yang sejuk.</p>
+              <div class="harga-produk">Rp 289.000</div>
+            </div>
+            <button type="button" class="btn-tambah-keranjang" onclick="tambahKeKeranjang('Subzero Windbreaker', 289000)">+ Tambah ke Keranjang</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-keunggulan">
+      <h2>Mengapa Frost Wearly?</h2>
+      <div class="grid-keunggulan">
+        <div class="kartu-keunggulan">
+          <h3>Estetika Dingin &amp; Bersih</h3>
+          <p>Palet warna ice blue, putih salju, dan navy yang mudah dipadupadankan untuk tampilan kasual maupun streetwear.</p>
+        </div>
+        <div class="kartu-keunggulan">
+          <h3>Material Nyaman Dipakai</h3>
+          <p>Dipilih agar tetap adem, ringan, dan nyaman digunakan beraktivitas sepanjang hari.</p>
+        </div>
+        <div class="kartu-keunggulan">
+          <h3>Potongan Modern Terkurasi</h3>
+          <p>Siluet boxy dan relaxed fit yang rapi serta proporsional untuk berbagai gaya harian.</p>
         </div>
       </div>
     </section>
@@ -622,17 +719,32 @@
   </footer>
 
   <script>
+    function updateBadgeKeranjang() {
+      const keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+      const totalItem = keranjang.reduce((sum, item) => sum + Number(item.qty || 1), 0);
+      const badge = document.getElementById("jumlah-keranjang");
+      if (badge) badge.textContent = totalItem;
+    }
+
+    function tambahKeKeranjang(nama, harga) {
+      const keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+      const idx = keranjang.findIndex(item => item.nama === nama && item.ukuran === "M");
+      if (idx > -1) {
+        keranjang[idx].qty = Number(keranjang[idx].qty || 1) + 1;
+      } else {
+        keranjang.push({ nama: nama, harga: harga, ukuran: "M", qty: 1 });
+      }
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+      updateBadgeKeranjang();
+    }
+
     (function sinkronBeranda() {
       const profil = JSON.parse(localStorage.getItem("profilFrostWearly"));
       const username = (profil && profil.username) ? profil.username : "syafiraa";
       document.querySelectorAll(".nama-profil-nav").forEach(el => {
         el.textContent = username;
       });
-
-      const keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
-      const totalItem = keranjang.reduce((sum, item) => sum + Number(item.qty || 1), 0);
-      const badge = document.getElementById("jumlah-keranjang");
-      if (badge) badge.textContent = totalItem;
+      updateBadgeKeranjang();
     })();
   </script>
 </body>
