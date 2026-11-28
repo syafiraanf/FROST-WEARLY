@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesanan Berhasil - FROST WEARLY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .fw-badge {
+      background-color: #16232E;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 5px 7px;
+      border-radius: 5px;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+    }
+
+    .grup-profil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    /* WADAH UTAMA */
+    .wadah {
+      max-width: 860px;
+      margin: 32px auto 60px;
+      padding: 0 20px;
+    }
+
+    .kartu-sukses {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .header-sukses {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 20px;
+    }
+
+    .ikon-centang {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: #DCFCE7;
+      color: #15803D;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .badge-status {
+      display: inline-block;
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+
+    .judul-sukses {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .sub-sukses {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .grid-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .kotak-info {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .kotak-info h3 {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #64748B;
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .daftar-item {
+      border-top: 1px solid #E2E8F0;
+      padding-top: 16px;
+      margin-bottom: 18px;
+    }
+
+    .daftar-item h3 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .baris-produk {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #F1F5F9;
+      font-size: 13px;
+    }
+
+    .baris-produk:last-child {
+      border-bottom: none;
+    }
+
+    .ringkasan-biaya {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 22px;
+    }
+
+    .baris-biaya {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+
+    .baris-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      padding-top: 10px;
+      border-top: 1px solid #E2E8F0;
+      margin-top: 8px;
+    }
+
+    .aksi-akhir {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-utama {
+      background-color: #16232E;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-utama:hover {
+      background-color: #0F2537;
+    }
+
+    .btn-sekunder {
+      background-color: #FFFFFF;
+      color: #0F2537;
+      text-decoration: none;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-sekunder:hover {
+      background-color: #F8FAFC;
+      border-color: #0F2537;
+    }
+
+    @media (max-width: 700px) {
+      .grid-info {
+        grid-template-columns: 1fr;
+      }
+      .menu-nav {
+        display: none;
+      }
+      .aksi-akhir {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="beranda.html" class="logo-brand">
+      <span class="fw-badge">FW</span>
+      <span>FROST WEARLY</span>
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="katalog.html" class="aktif">Katalog</a></li>
+      <li><a href="tentang-kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="kanan-nav">
+      <div class="grup-profil">
+        <div class="profil-bulat">SF</div>
+        <span>syafiraa</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <section class="kartu-sukses" id="konten-pesanan"></section>
+  </main>
+
+  <script>
+    function formatRp(angka) {
+      return "Rp " + Number(angka || 0).toLocaleString("id-ID");
+    }
+
+    function renderPesananBerhasil() {
+      const data = JSON.parse(localStorage.getItem("pesananTerakhirFrostWearly"));
+      const wadah = document.getElementById("konten-pesanan");
+
+      if (!data || !Array.isArray(data.items) || data.items.length === 0) {
+        wadah.innerHTML = `
+          <div class="header-sukses">
+            <div class="ikon-centang">&#10003;</div>
+            <div>
+              <span class="badge-status">FROST WEARLY</span>
+              <h1 class="judul-sukses">Belum Ada Pesanan Terbaru</h1>
+              <p class="sub-sukses">Silakan pilih produk favoritmu di katalog terlebih dahulu.</p>
+            </div>
+          </div>
+          <div class="aksi-akhir">
+            <a href="katalog.html" class="btn-utama">Kembali ke Katalog</a>
+            <a href="keranjang.html" class="btn-sekunder">Lihat Keranjang</a>
+          </div>
+        `;
+        return;
+      }
+
+      const subtotal = data.items.reduce((sum, item) => sum + (Number(item.hargaAngka || 0) * Number(item.qty || 1)), 0);
+      const ongkir = Number(data.ongkir || 15000);
+      const diskon = Number(data.diskon || 10000);
+      const totalBayar = Math.max(0, subtotal + ongkir - diskon);
+
+      const daftarHtml = data.items.map(item => {
+        const qty = Number(item.qty || 1);
+        const harga = Number(item.hargaAngka || 0);
+        const varian = item.warna ? `${item.warna}, Ukuran ${item.ukuran || "M"}` : `Ukuran ${item.ukuran || "M"}`;
+        return `
+          <div class="baris-produk">
+            <div>
+              <strong>${item.nama}</strong>
+              <div style="font-size:12px; color:#64748B;">${qty}x &bull; ${formatRp(harga)} (${varian})</div>
+            </div>
+            <strong>${formatRp(qty * harga)}</strong>
+          </div>
+        `;
+      }).join("");
+
+      wadah.innerHTML = `
+        <div class="header-sukses">
+          <div class="ikon-centang">&#10003;</div>
+          <div>
+            <span class="badge-status">PESANAN DIBUAT &bull; ${data.kodePesanan || "FW-2026"}</span>
+            <h1 class="judul-sukses">Terima Kasih, Pesananmu Sedang Diproses!</h1>
+            <p class="sub-sukses">Detail konfirmasi pesanan dan instruksi pembayaran telah dicatat untuk akun <strong>syafiraa</strong>.</p>
+          </div>
+        </div>
+
+        <div class="grid-info">
+          <div class="kotak-info">
+            <h3>Alamat Pengiriman</h3>
+            <div><strong>${data.penerima || "Syafira Nur (Rumah Utama)"}</strong></div>
+            <div>${data.telepon || "+62 812-3456-7890"}</div>
+            <div style="color:#475569;">${data.alamat || "Jl. Bromo No. 67, Kec. Klojen, Kota Malang, Jawa Timur, 65111"}</div>
+          </div>
+
+          <div class="kotak-info">
+            <h3>Pengiriman &amp; Pembayaran</h3>
+            <div>Kurir: <strong>${data.kurir || "JNE Reguler"}</strong></div>
+            <div>Metode: <strong>${data.metodeBayar || "Transfer Bank Manual (BCA)"}</strong></div>
+            <div style="color:#475569;">Status: Menunggu Konfirmasi / Proses Kemas</div>
+          </div>
+        </div>
+
+        <div class="daftar-item">
+          <h3>Detail Produk Dipesan</h3>
+          ${daftarHtml}
+        </div>
+
+        <div class="ringkasan-biaya">
+          <div class="baris-biaya">
+            <span>Subtotal Produk</span>
+            <strong>${formatRp(subtotal)}</strong>
+          </div>
+          <div class="baris-biaya">
+            <span>Biaya Pengiriman</span>
+            <strong>${formatRp(ongkir)}</strong>
+          </div>
+          <div class="baris-biaya">
+            <span>Diskon Kupon</span>
+            <strong style="color:#15803D;">- ${formatRp(diskon)}</strong>
+          </div>
+          <div class="baris-total">
+            <span>Total Pembayaran</span>
+            <span>${formatRp(totalBayar)}</span>
+          </div>
+        </div>
+
+        <div class="aksi-akhir">
+          <a href="katalog.html" class="btn-utama">Lanjut Belanja di Katalog</a>
+          <a href="keranjang.html" class="btn-sekunder">Cek Keranjang Tersimpan</a>
+        </div>
+      `;
+    }
+
+    renderPesananBerhasil();
+  </script>
+</body>
+</html>

@@ -542,7 +542,7 @@
 
     <div class="kanan-nav">
       <input type="text" class="cari-nav" placeholder="Cari produk Frost Wearly..." onkeydown="if(event.key==='Enter'){window.location.href='katalog.html?q='+encodeURIComponent(this.value.trim());}">
-      <a href="katalog.html" class="btn-keranjang-nav">
+      <a href="keranjang.html" class="btn-keranjang-nav">
         &#128722; Keranjang <span id="jumlah-keranjang">0</span>
       </a>
       <div class="profil-wrap">
@@ -696,8 +696,9 @@
   <script>
     const pesananLangsung = JSON.parse(localStorage.getItem("pesananCheckoutFrostWearly"));
     const keranjangSimpan = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+    const berasalDariBeliSekarang = Array.isArray(pesananLangsung) && pesananLangsung.length > 0;
 
-    const itemCheckout = (Array.isArray(pesananLangsung) && pesananLangsung.length > 0)
+    const itemCheckout = berasalDariBeliSekarang
       ? pesananLangsung
       : keranjangSimpan;
 
@@ -847,6 +848,7 @@
         alert("Tidak ada item yang diproses.");
         return;
       }
+
       const labelMetode =
         metodeAktif === "transfer"
           ? `Transfer Bank Manual (${bankAktif})`
@@ -854,11 +856,31 @@
           ? "E-Wallet / QRIS"
           : "COD (Bayar di Tempat)";
 
-      alert(`Pesanan berhasil dibuat!\nMetode: ${labelMetode}\nKurir: ${kurirAktif}\nTotal: ${formatRupiah(hitungTotalBayar())}`);
+      const subtotal = itemCheckout.reduce((sum, item) => sum + item.hargaAngka * item.qty, 0);
+      const totalBayar = hitungTotalBayar();
 
+      const dataPesanan = {
+        kodePesanan: "FW-" + Math.floor(100000 + Math.random() * 900000),
+        penerima: "Syafira Nur (Rumah Utama)",
+        telepon: "+62 812-3456-7890",
+        alamat: document.getElementById("teks-alamat").textContent.trim(),
+        kurir: kurirAktif,
+        metodeBayar: labelMetode,
+        subtotal: subtotal,
+        ongkir: ongkirAktif,
+        diskon: diskonKupon,
+        totalBayar: totalBayar,
+        items: itemCheckout
+      };
+
+      localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(dataPesanan));
       localStorage.removeItem("pesananCheckoutFrostWearly");
-      localStorage.setItem("keranjangFrostWearly", JSON.stringify([]));
-      window.location.href = "katalog.html";
+
+      if (!berasalDariBeliSekarang) {
+        localStorage.setItem("keranjangFrostWearly", JSON.stringify([]));
+      }
+
+      window.location.href = "pesanan-berhasil.html";
     }
 
     function renderCheckout() {
