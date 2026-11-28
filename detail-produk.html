@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk - Frost Wearly</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 8px;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      max-height: 120px;
+      width: auto;
+      display: block;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      flex-shrink: 0;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
+    .cari-atas {
+      flex: 1;
+      max-width: 360px;
+    }
+
+    .input-cari {
+      width: 100%;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
+      font-size: 13px;
+      color: #0F2537;
+      background: #FFFFFF;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .badge-keranjang {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid #CBD5E1;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #0F2537;
+      cursor: pointer;
+    }
+
+    .badge-keranjang:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
+    }
+
+    .badge-keranjang span {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #0F2537;
+      color: #FFFFFF;
+      border-radius: 999px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grup-profil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* WADAH UTAMA */
+    .wadah {
+      max-width: 1200px;
+      margin: 24px auto 50px;
+      padding: 0 20px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb a {
+      color: #64748B;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #0F2537;
+      text-decoration: underline;
+    }
+
+    .grid-detail {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* GALERI FOTO */
+    .galeri-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .foto-utama-wrap {
+      background-color: #ECECE9;
+      border-radius: 16px;
+      height: 440px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .foto-utama-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .daftar-thumb {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumb-item {
+      width: 66px;
+      height: 66px;
+      border-radius: 10px;
+      border: 1.5px solid #CBD5E1;
+      background-color: #F1F5F9;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .thumb-item.aktif {
+      border-color: #0F2537;
+      box-shadow: 0 0 0 1px #0F2537;
+    }
+
+    .thumb-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* KARTU INFO PRODUK */
+    .panel-info {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 26px;
+    }
+
+    .badge-status {
+      display: inline-block;
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .judul-produk-detail {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #0F2537;
+    }
+
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .bintang {
+      color: #F59E0B;
+      letter-spacing: 1px;
+    }
+
+    .rating-bar strong {
+      color: #0F2537;
+    }
+
+    .harga-besar {
+      font-size: 26px;
+      font-weight: bold;
+      color: #0F2537;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 18px;
+    }
+
+    .label-opsi {
+      font-size: 13px;
+      color: #475569;
+      margin-bottom: 10px;
+    }
+
+    .label-opsi strong {
+      color: #0F2537;
+    }
+
+    .baris-header-opsi {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .link-panduan {
+      font-size: 12px;
+      color: #475569;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .daftar-warna {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .lingkaran-warna {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .lingkaran-warna.aktif {
+      outline: 2px solid #0F2537;
+      outline-offset: 2px;
+    }
+
+    .daftar-ukuran {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ukuran-box {
+      min-width: 44px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #0F2537;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-ukuran-box.aktif {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border-color: #0F2537;
+    }
+
+    .baris-jumlah {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .stepper-qty {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #FFFFFF;
+    }
+
+    .stepper-qty button {
+      width: 34px;
+      height: 36px;
+      border: none;
+      background: #FFFFFF;
+      color: #0F2537;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .stepper-qty button:hover {
+      background-color: #F1F5F9;
+    }
+
+    .stepper-qty span {
+      min-width: 34px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .teks-stok {
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .teks-stok strong {
+      color: #0F2537;
+    }
+
+    .aksi-beli {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 12px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid #E2E8F0;
+      margin-bottom: 18px;
+    }
+
+    .btn-masuk-keranjang {
+      background-color: #FFFFFF;
+      color: #0F2537;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-masuk-keranjang:hover {
+      background-color: #F8FAFC;
+      border-color: #0F2537;
+    }
+
+    .btn-beli-sekarang {
+      background-color: #16232E;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-beli-sekarang:hover {
+      background-color: #0F2537;
+    }
+
+    .deskripsi-bawah h3 {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #0F2537;
+    }
+
+    .deskripsi-bawah p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #475569;
+    }
+
+    /* MODAL PANDUAN UKURAN */
+    .overlay-panduan {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 37, 55, 0.5);
+      z-index: 120;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .overlay-panduan.buka {
+      display: flex;
+    }
+
+    .modal-panduan {
+      background: #FFFFFF;
+      border-radius: 12px;
+      max-width: 420px;
+      width: 100%;
+      padding: 22px;
+      position: relative;
+    }
+
+    .modal-panduan h3 {
+      margin-bottom: 12px;
+      font-size: 17px;
+    }
+
+    .modal-panduan table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .modal-panduan th,
+    .modal-panduan td {
+      border: 1px solid #E2E8F0;
+      padding: 8px 10px;
+      text-align: center;
+    }
+
+    .modal-panduan th {
+      background: #F1F5F9;
+    }
+
+    .tutup-x {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #64748B;
+    }
+
+    @media (max-width: 900px) {
+      .grid-detail {
+        grid-template-columns: 1fr;
+      }
+      .foto-utama-wrap {
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .menu-nav,
+      .cari-atas {
+        display: none;
+      }
+      .aksi-beli {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="beranda.html" class="logo">
+      <img src="logo_frost_wearly.png" alt="Frost Wearly" onerror="this.style.display='none'">
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="katalog.html" class="aktif">Katalog</a></li>
+      <li><a href="tentang-kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="cari-atas">
+      <input type="text" class="input-cari" placeholder="Cari produk Frost Wearly..." onkeydown="if(event.key==='Enter'){window.location.href='katalog.html?q='+encodeURIComponent(this.value.trim());}">
+    </div>
+
+    <div class="kanan-nav">
+      <button type="button" class="badge-keranjang" onclick="lanjutKePembayaran()" aria-label="Keranjang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span id="jumlah-keranjang">0</span>
+      </button>
+
+      <div class="grup-profil">
+        <div class="profil-bulat" aria-label="Profil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <span>syafiraa</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="beranda.html">Beranda</a>
+      <span>&rsaquo;</span>
+      <a href="katalog.html">Katalog</a>
+      <span>&rsaquo;</span>
+      <span id="bc-kategori">Produk</span>
+      <span>&rsaquo;</span>
+      <span id="bc-nama" style="color:#0F2537; font-weight:500;">Detail Produk</span>
+    </nav>
+
+    <div class="grid-detail">
+      <div class="galeri-box">
+        <div class="foto-utama-wrap">
+          <img id="foto-utama" src="" alt="">
+        </div>
+        <div id="daftar-thumb" class="daftar-thumb"></div>
+      </div>
+
+      <div class="panel-info">
+        <span id="badge-status" class="badge-status">BEST SELLER</span>
+        <h1 id="judul-produk" class="judul-produk-detail">Nama Produk</h1>
+
+        <div class="rating-bar">
+          <span class="bintang">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <strong id="nilai-rating">4.9</strong>
+          <span id="info-ulasan">(120 Ulasan) &bull; Terjual 450</span>
+        </div>
+
+        <div id="harga-produk" class="harga-besar">Rp 0</div>
+
+        <div class="label-opsi">Warna: <strong id="nama-warna-aktif">Hitam</strong></div>
+        <div id="daftar-warna" class="daftar-warna"></div>
+
+        <div class="baris-header-opsi">
+          <div class="label-opsi" style="margin-bottom:0;">Ukuran: <strong id="ukuran-aktif">M</strong></div>
+          <button type="button" class="link-panduan" onclick="bukaPanduan(true)">Panduan Ukuran</button>
+        </div>
+        <div class="daftar-ukuran" id="daftar-ukuran">
+          <button type="button" class="btn-ukuran-box" onclick="pilihUkuran('S', this)">S</button>
+          <button type="button" class="btn-ukuran-box aktif" onclick="pilihUkuran('M', this)">M</button>
+          <button type="button" class="btn-ukuran-box" onclick="pilihUkuran('L', this)">L</button>
+          <button type="button" class="btn-ukuran-box" onclick="pilihUkuran('XL', this)">XL</button>
+        </div>
+
+        <div class="label-opsi">Jumlah</div>
+        <div class="baris-jumlah">
+          <div class="stepper-qty">
+            <button type="button" onclick="ubahJumlah(-1)">&minus;</button>
+            <span id="angka-jumlah">1</span>
+            <button type="button" onclick="ubahJumlah(1)">+</button>
+          </div>
+          <span class="teks-stok">Stok tersedia: <strong id="stok-produk">42 pcs</strong></span>
+        </div>
+
+        <div class="aksi-beli">
+          <button type="button" class="btn-masuk-keranjang" onclick="masukkanKeranjang()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            Masukkan Keranjang
+          </button>
+          <button type="button" class="btn-beli-sekarang" onclick="beliSekarang()">Beli Sekarang</button>
+        </div>
+
+        <div class="deskripsi-bawah">
+          <h3>Deskripsi Produk</h3>
+          <p id="deskripsi-produk"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="modal-panduan" class="overlay-panduan" onclick="if(event.target.id==='modal-panduan') bukaPanduan(false)">
+    <div class="modal-panduan">
+      <button type="button" class="tutup-x" onclick="bukaPanduan(false)">&times;</button>
+      <h3>Panduan Ukuran (cm)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Ukuran</th>
+            <th>Lebar Dada</th>
+            <th>Panjang</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>S</td><td>52 cm</td><td>68 cm</td></tr>
+          <tr><td>M</td><td>55 cm</td><td>71 cm</td></tr>
+          <tr><td>L</td><td>58 cm</td><td>74 cm</td></tr>
+          <tr><td>XL</td><td>61 cm</td><td>77 cm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const daftarDefault = [
+      {
+        nama: "Frost Glacier Hoodie",
+        kategori: "Hoodie",
+        hargaAngka: 249000,
+        harga: "Rp 249.000",
+        gambar: "img/glacier-hoodie.png",
+        koleksiBaru: true,
+        deskripsi: "Hoodie fleece tebal warna ice blue dengan potongan boxy modern. Nyaman dipakai harian dengan sentuhan estetika streetwear yang bersih."
+      },
+      {
+        nama: "Arctic Oversize Tee",
+        kategori: "Kaos",
+        hargaAngka: 129000,
+        harga: "Rp 129.000",
+        gambar: "img/arctic-oversize.png",
+        koleksiBaru: true,
+        deskripsi: "Kaos Oversized dengan bahan premium Cotton Combed 24s tebal namun adem. Jahitan rantai rapi berstandar distro. Nyaman dipakai harian dengan style streetwear modern."
+      },
+      {
+        nama: "Polar Cargo Jeans",
+        kategori: "Celana",
+        hargaAngka: 219000,
+        harga: "Rp 219.000",
+        gambar: "img/cargo-jeans.png",
+        koleksiBaru: true,
+        deskripsi: "Celana cargo multi-saku bahan ripstop ringan warna dark navy dengan potongan longgar yang fleksibel untuk aktivitas harian."
+      },
+      {
+        nama: "Subzero Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 289000,
+        harga: "Rp 289.000",
+        gambar: "img/windbreaker.png",
+        koleksiBaru: true,
+        deskripsi: "Jaket parasut tahan angin dengan lapisan dalam yang sejuk, cocok untuk cuaca dingin maupun aktivitas luar ruang."
+      },
+      {
+        nama: "Mist Graphic T-Shirt",
+        kategori: "Kaos",
+        hargaAngka: 135000,
+        harga: "Rp 135.000",
+        gambar: "img/graphic-shirt.png",
+        deskripsi: "Kaos oversize abu-abu muda dengan tipografi khas Frost Wearly dan bahan katun yang lembut."
+      },
+      {
+        nama: "Snowdrift Relaxed Pants",
+        kategori: "Celana",
+        hargaAngka: 199000,
+        harga: "Rp 199.000",
+        gambar: "img/sweetpants.png",
+        deskripsi: "Celana panjang potongan lurus yang nyaman untuk gaya harian dengan pinggang elastis."
+      },
+      {
+        nama: "Glacier Zip Jacket",
+        kategori: "Hoodie",
+        hargaAngka: 269000,
+        harga: "Rp 269.000",
+        gambar: "img/jacket.png",
+        deskripsi: "Jaket resleting bergaya urban dengan bahan nyaman dan ringan untuk tampilan kasual."
+      },
+      {
+        nama: "Iceberg Boxy Tee",
+        kategori: "Kaos",
+        hargaAngka: 139000,
+        harga: "Rp 139.000",
+        gambar: "img/red-shirt.png",
+        deskripsi: "Kaos potongan boxy warna biru es lembut untuk tampilan kasual sehari-hari."
+      },
+      {
+        nama: "Nordic Fleece Crewneck",
+        kategori: "Crewneck",
+        hargaAngka: 215000,
+        harga: "Rp 215.000",
+        gambar: "img/fleece-crewneck.png",
+        deskripsi: "Sweater crewneck bahan cotton fleece lembut warna frost grey dengan rib elastis."
+      },
+      {
+        nama: "Blizzard Heavy Crewneck",
+        kategori: "Crewneck",
+        hargaAngka: 229000,
+        harga: "Rp 229.000",
+        gambar: "img/heavy-crewneck.png",
+        deskripsi: "Crewneck potongan relaxed fit warna dark navy dengan bordir minimalis di dada."
+      },
+      {
+        nama: "Alpine Shell Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 309000,
+        harga: "Rp 309.000",
+        gambar: "img/alpine-windbreaker.png",
+        deskripsi: "Windbreaker water-repellent dua warna ice blue & navy untuk aktivitas outdoor."
+      },
+      {
+        nama: "Frostbyte Utility Windbreaker",
+        kategori: "Windbreaker",
+        hargaAngka: 295000,
+        harga: "Rp 295.000",
+        gambar: "img/utility-windbreaker.png",
+        deskripsi: "Jaket windbreaker ringan warna snow white dengan resleting anti-angin dan saku samping."
+      }
+    ];
+
+    const opsiWarna = [
+      { nama: "Hitam", kode: "#1E242B" },
+      { nama: "Abu Frost", kode: "#52606D" },
+      { nama: "Ice Blue", kode: "#D9E2EC" },
+      { nama: "Dark Navy", kode: "#243B53" }
+    ];
+
+    const produkTersimpan = JSON.parse(localStorage.getItem("produkFrostWearly"));
+    const daftarProduk = (Array.isArray(produkTersimpan) && produkTersimpan.length > 0) ? produkTersimpan : daftarDefault;
+
+    const params = new URLSearchParams(window.location.search);
+    const idParam = parseInt(params.get("id"), 10);
+    const produk = (!isNaN(idParam) && daftarProduk[idParam]) ? daftarProduk[idParam] : daftarProduk[0];
+
+    let warnaAktif = opsiWarna[0].nama;
+    let ukuranAktif = "M";
+    let jumlahAktif = 1;
+    const stokTersedia = 42;
+    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+
+    function perbaruiBadge() {
+      const total = keranjang.reduce((acc, item) => acc + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = total;
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+    }
+
+    function renderDetail() {
+      document.title = `${produk.nama} - Frost Wearly`;
+      document.getElementById("bc-kategori").textContent = produk.kategori;
+      document.getElementById("bc-nama").textContent = produk.nama;
+      document.getElementById("badge-status").textContent = produk.koleksiBaru ? "BEST SELLER" : "NEW DROP";
+      document.getElementById("judul-produk").textContent = produk.nama;
+      document.getElementById("harga-produk").textContent = produk.harga || ("Rp " + produk.hargaAngka.toLocaleString("id-ID"));
+      document.getElementById("deskripsi-produk").textContent = produk.deskripsi;
+      document.getElementById("stok-produk").textContent = `${stokTersedia} pcs`;
+
+      const fotoUtama = document.getElementById("foto-utama");
+      fotoUtama.src = produk.gambar;
+      fotoUtama.alt = produk.nama;
+
+      const thumbWadah = document.getElementById("daftar-thumb");
+      const listThumb = [produk.gambar, produk.gambar, produk.gambar, produk.gambar];
+      thumbWadah.innerHTML = listThumb.map((src, idx) => `
+        <button type="button" class="thumb-item ${idx === 0 ? "aktif" : ""}" onclick="gantiFoto('${src}', this)">
+          <img src="${src}" alt="${produk.nama} tampilan ${idx + 1}">
+        </button>
+      `).join("");
+
+      const warnaWadah = document.getElementById("daftar-warna");
+      warnaWadah.innerHTML = opsiWarna.map((w, idx) => `
+        <button type="button"
+          class="lingkaran-warna ${idx === 0 ? "aktif" : ""}"
+          style="background-color:${w.kode};"
+          title="${w.nama}"
+          aria-label="Warna ${w.nama}"
+          onclick="pilihWarna('${w.nama}', this)">
+        </button>
+      `).join("");
+    }
+
+    function gantiFoto(src, tombol) {
+      document.getElementById("foto-utama").src = src;
+      document.querySelectorAll(".thumb-item").forEach(el => el.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+    }
+
+    function pilihWarna(namaWarna, tombol) {
+      warnaAktif = namaWarna;
+      document.getElementById("nama-warna-aktif").textContent = namaWarna;
+      document.querySelectorAll(".lingkaran-warna").forEach(el => el.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+    }
+
+    function pilihUkuran(ukuran, tombol) {
+      ukuranAktif = ukuran;
+      document.getElementById("ukuran-aktif").textContent = ukuran;
+      document.querySelectorAll(".btn-ukuran-box").forEach(el => el.classList.remove("aktif"));
+      tombol.classList.add("aktif");
+    }
+
+    function ubahJumlah(selisih) {
+      const baru = jumlahAktif + selisih;
+      if (baru >= 1 && baru <= stokTersedia) {
+        jumlahAktif = baru;
+        document.getElementById("angka-jumlah").textContent = jumlahAktif;
+      }
+    }
+
+    function masukkanKeranjang() {
+      const labelItem = `${produk.nama} - ${warnaAktif}`;
+      const existing = keranjang.find(item => item.nama === labelItem && item.ukuran === ukuranAktif);
+
+      if (existing) {
+        existing.qty += jumlahAktif;
+      } else {
+        keranjang.push({
+          nama: labelItem,
+          hargaAngka: produk.hargaAngka,
+          ukuran: ukuranAktif,
+          warna: warnaAktif,
+          qty: jumlahAktif
+        });
+      }
+
+      perbaruiBadge();
+      alert(`${produk.nama} (${warnaAktif}, Ukuran ${ukuranAktif}) sebanyak ${jumlahAktif} pcs masuk ke keranjang!`);
+    }
+
+    function beliSekarang() {
+      const itemLangsung = [{
+        nama: produk.nama,
+        hargaAngka: produk.hargaAngka,
+        ukuran: ukuranAktif,
+        warna: warnaAktif,
+        qty: jumlahAktif
+      }];
+      localStorage.setItem("pesananCheckoutFrostWearly", JSON.stringify(itemLangsung));
+      window.location.href = "pembayaran.html";
+    }
+
+    function lanjutKePembayaran() {
+      localStorage.setItem("pesananCheckoutFrostWearly", JSON.stringify(keranjang));
+      window.location.href = "pembayaran.html";
+    }
+
+    function bukaPanduan(buka) {
+      document.getElementById("modal-panduan").classList.toggle("buka", buka);
+    }
+
+    perbaruiBadge();
+    renderDetail();
+  </script>
+</body>
+</html>

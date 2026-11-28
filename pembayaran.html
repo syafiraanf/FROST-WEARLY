@@ -68,6 +68,12 @@
       border-radius: 6px;
     }
 
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
     .kanan-nav {
       display: flex;
       align-items: center;
@@ -528,21 +534,20 @@
         <span>FROST WEARLY</span>
       </a>
       <ul class="menu-nav">
-        <li><a href="katalog.html">Katalog</a></li>
-        <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-        <li><a href="custom.html">Custom</a></li>
-        <li><a href="tentang-kami.html">Bantuan</a></li>
+        <li><a href="beranda.html">Beranda</a></li>
+        <li><a href="katalog.html" class="aktif">Katalog</a></li>
+        <li><a href="tentang-kami.html">Tentang Kami</a></li>
       </ul>
     </div>
 
     <div class="kanan-nav">
-      <input type="text" class="cari-nav" placeholder="Cari produk favorit...">
-      <a href="keranjang.html" class="btn-keranjang-nav">
+      <input type="text" class="cari-nav" placeholder="Cari produk Frost Wearly..." onkeydown="if(event.key==='Enter'){window.location.href='katalog.html?q='+encodeURIComponent(this.value.trim());}">
+      <a href="katalog.html" class="btn-keranjang-nav">
         &#128722; Keranjang <span id="jumlah-keranjang">0</span>
       </a>
       <div class="profil-wrap">
-        <div class="profil-bulat">BS</div>
-        <span>Budi</span>
+        <div class="profil-bulat">SF</div>
+        <span>syafiraa</span>
       </div>
     </div>
   </header>
@@ -550,7 +555,7 @@
   <main class="wadah">
     <div class="breadcrumb">
       <a href="beranda.html">Beranda</a> &rsaquo;
-      <a href="keranjang.html">Keranjang Belanja</a> &rsaquo;
+      <a href="katalog.html">Katalog</a> &rsaquo;
     </div>
     <h1 class="judul-halaman">Pengiriman &amp; Pembayaran</h1>
 
@@ -562,9 +567,9 @@
             <h2>1. Alamat Pengiriman</h2>
             <button type="button" class="btn-ubah-alamat" onclick="toggleEditAlamat()">Ubah Alamat</button>
           </div>
-          <div class="alamat-nama">Budi Santoso (Rumah Utama)</div>
+          <div class="alamat-nama">Syafira Nur (Rumah Utama)</div>
           <div class="alamat-detail">+62 812-3456-7890</div>
-          <div id="teks-alamat" class="alamat-detail">Jl. Mawar No. 12, RT 05/RW 03, Kel. Merdeka, Kec. Menteng, Kota Jakarta Pusat, DKI Jakarta, 10320</div>
+          <div id="teks-alamat" class="alamat-detail">Jl. Bromo No. 67, Kec. Klojen, Kota Malang, Jawa Timur, 65111</div>
           <input type="text" id="input-alamat-baru" class="input-alamat-edit" style="display:none;" placeholder="Tulis alamat lengkap baru lalu tekan Enter..." onkeydown="if(event.key==='Enter') simpanAlamatBaru()">
         </section>
 
@@ -689,13 +694,12 @@
   </footer>
 
   <script>
-    const isBeliLangsung = localStorage.getItem("checkoutLangsungFrostWearly") !== null;
-    const itemLangsung = JSON.parse(localStorage.getItem("checkoutLangsungFrostWearly")) || [];
+    const pesananLangsung = JSON.parse(localStorage.getItem("pesananCheckoutFrostWearly"));
     const keranjangSimpan = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
 
-    const itemCheckout = isBeliLangsung
-      ? itemLangsung
-      : keranjangSimpan.filter(i => i.dipilih !== false);
+    const itemCheckout = (Array.isArray(pesananLangsung) && pesananLangsung.length > 0)
+      ? pesananLangsung
+      : keranjangSimpan;
 
     const dataRekening = {
       BCA: { norek: "7390812450", atasNama: "PT Frost Wearly Indonesia" },
@@ -813,8 +817,8 @@
           <div style="font-weight:bold; margin-bottom:8px;">Cara Bayar via QRIS / E-Wallet</div>
           <div class="qris-box">
             <div class="qr-card">
-            <img src="qr-code.jpg" alt="QRIS FROST WEARLY" class="qr-img">
-            <div style="font-size:9px; font-weight:bold; color:#0F2537; margin-top:6px;">QRIS FROST WEARLY</div>
+              <img src="qr-code.jpg" alt="QRIS FROST WEARLY" class="qr-img">
+              <div style="font-size:9px; font-weight:bold; color:#0F2537; margin-top:6px;">QRIS FROST WEARLY</div>
             </div>
             <div style="flex:1; min-width:200px;">
               <div>Total Tagihan QRIS: <strong>${totalBayar}</strong></div>
@@ -852,12 +856,8 @@
 
       alert(`Pesanan berhasil dibuat!\nMetode: ${labelMetode}\nKurir: ${kurirAktif}\nTotal: ${formatRupiah(hitungTotalBayar())}`);
 
-      if (isBeliLangsung) {
-        localStorage.removeItem("checkoutLangsungFrostWearly");
-      } else {
-        const sisaKeranjang = keranjangSimpan.filter(i => i.dipilih === false);
-        localStorage.setItem("keranjangFrostWearly", JSON.stringify(sisaKeranjang));
-      }
+      localStorage.removeItem("pesananCheckoutFrostWearly");
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify([]));
       window.location.href = "katalog.html";
     }
 
@@ -866,7 +866,7 @@
       const wadah = document.getElementById("daftar-item-checkout");
 
       if (itemCheckout.length === 0) {
-        wadah.innerHTML = `<p style="font-size:11px; color:#64748B; margin-bottom:12px;">Belum ada produk terpilih. <a href="produk.html" style="color:#0F2537; font-weight:bold;">Pilih produk</a></p>`;
+        wadah.innerHTML = `<p style="font-size:11px; color:#64748B; margin-bottom:12px;">Belum ada produk terpilih. <a href="katalog.html" style="color:#0F2537; font-weight:bold;">Pilih produk</a></p>`;
         document.getElementById("biaya-subtotal").textContent = "Rp 0";
         document.getElementById("biaya-ongkir").textContent = formatRupiah(ongkirAktif);
         document.getElementById("total-pembayaran").textContent = "Rp 0";
@@ -876,10 +876,10 @@
 
       wadah.innerHTML = itemCheckout.map(item => `
         <div class="item-ringkas">
-          <div class="thumb-pesanan" style="background-color:${item.kodeWarna || "#E2E8F0"}; color:${item.warna === "Hitam" || item.warna === "Deep Navy" ? "#FFFFFF" : "#0F2537"};">FW</div>
+          <div class="thumb-pesanan" style="background-color:${item.kodeWarna || "#E2E8F0"}; color:${item.warna === "Hitam" || item.warna === "Dark Navy" || item.warna === "Deep Navy" ? "#FFFFFF" : "#0F2537"};">FW</div>
           <div>
             <div style="font-size:11px; font-weight:bold; color:#0F2537;">${item.nama}</div>
-            <div style="font-size:10px; color:#94A3B8;">${item.qty}x &bull; ${formatRupiah(item.hargaAngka)} (${item.warna || "Hitam"}, ${item.ukuran || "L"})</div>
+            <div style="font-size:10px; color:#94A3B8;">${item.qty}x &bull; ${formatRupiah(item.hargaAngka)} (${item.warna || "Hitam"}, ${item.ukuran || "M"})</div>
           </div>
         </div>
       `).join("");

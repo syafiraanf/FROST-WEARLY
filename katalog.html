@@ -347,7 +347,7 @@
       box-shadow: 0 16px 32px rgba(15, 37, 55, 0.36);
     }
 
-    /* MODAL DETAIL PRODUK & KERANJANG */
+    /* MODAL KERANJANG */
     .overlay-modal {
       display: none;
       position: fixed;
@@ -383,49 +383,6 @@
       font-weight: bold;
       color: #64748B;
       cursor: pointer;
-    }
-
-    .detail-foto-modal {
-      background-color: #EBF3FA;
-      height: 200px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      font-weight: bold;
-      color: #334155;
-      margin-bottom: 16px;
-      overflow: hidden;
-    }
-
-    .detail-foto-modal img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .pilih-ukuran {
-      display: flex;
-      gap: 8px;
-      margin: 10px 0 16px;
-    }
-
-    .btn-ukuran {
-      padding: 6px 14px;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      background: #FFFFFF;
-      font-size: 12px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-ukuran.aktif {
-      background-color: #0F2537;
-      color: #FFFFFF;
-      border-color: #0F2537;
     }
 
     .item-keranjang-row {
@@ -672,28 +629,6 @@
   <!-- TOMBOL MELAYANG CUSTOM PESANANMU -->
   <a href="custom.html" class="tombol-custom-melayang">Custom Pesananmu!</a>
 
-  <!-- MODAL DETAIL PRODUK -->
-  <div id="modal-detail" class="overlay-modal" onclick="tutupLuar(event, 'modal-detail')">
-    <div class="kotak-modal">
-      <button class="tutup-modal" onclick="tutupModal('modal-detail')">&times;</button>
-      <div id="m-foto" class="detail-foto-modal">Foto Produk</div>
-      <div id="m-kategori" class="kategori-teks">KATEGORI</div>
-      <h2 id="m-nama" style="font-size: 20px; margin: 4px 0 8px;">Nama Produk</h2>
-      <p id="m-deskripsi" style="font-size: 13px; color: #475569; margin-bottom: 12px;"></p>
-      <div id="m-harga" style="font-size: 18px; font-weight: bold; margin-bottom: 12px;">Rp 0</div>
-
-      <div style="font-size: 12px; font-weight: bold;">Pilih Ukuran:</div>
-      <div class="pilih-ukuran">
-        <button class="btn-ukuran" onclick="pilihSize('S', this)">S</button>
-        <button class="btn-ukuran aktif" onclick="pilihSize('M', this)">M</button>
-        <button class="btn-ukuran" onclick="pilihSize('L', this)">L</button>
-        <button class="btn-ukuran" onclick="pilihSize('XL', this)">XL</button>
-      </div>
-
-      <button id="m-btn-tambah" class="tombol-keranjang">+ Tambah ke Keranjang</button>
-    </div>
-  </div>
-
   <!-- MODAL KERANJANG -->
   <div id="modal-keranjang" class="overlay-modal" onclick="tutupLuar(event, 'modal-keranjang')">
     <div class="kotak-modal">
@@ -885,9 +820,10 @@
       }
     ];
 
+    localStorage.setItem("produkFrostWearly", JSON.stringify(produkList));
+
     let kategoriAktif = "Semua";
     let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
-    let ukuranTerpilih = "M";
 
     function formatRupiah(angka) {
       return "Rp " + angka.toLocaleString("id-ID");
@@ -926,31 +862,8 @@
     }
 
     function bukaDetailProduk(index) {
-      let produk = produkList[index];
-      ukuranTerpilih = "M";
-
-      document.querySelectorAll(".btn-ukuran").forEach(b => {
-        b.classList.toggle("aktif", b.textContent === "M");
-      });
-
-      document.getElementById("m-foto").innerHTML = `<img src="${produk.gambar}" alt="${produk.nama}">`;
-      document.getElementById("m-kategori").textContent = produk.kategori;
-      document.getElementById("m-nama").textContent = produk.nama;
-      document.getElementById("m-deskripsi").textContent = produk.deskripsi;
-      document.getElementById("m-harga").textContent = produk.harga;
-
-      document.getElementById("m-btn-tambah").onclick = function () {
-        tambahKeKeranjang(index, ukuranTerpilih);
-        tutupModal("modal-detail");
-      };
-
-      document.getElementById("modal-detail").classList.add("buka");
-    }
-
-    function pilihSize(size, tombol) {
-      ukuranTerpilih = size;
-      document.querySelectorAll(".btn-ukuran").forEach(b => b.classList.remove("aktif"));
-      tombol.classList.add("aktif");
+      localStorage.setItem("produkFrostWearly", JSON.stringify(produkList));
+      window.location.href = `detail-produk.html?id=${index}`;
     }
 
     function ubahQty(idx, selisih) {
@@ -1010,10 +923,8 @@
         alert("Keranjang masih kosong, pilih produk dulu ya!");
         return;
       }
-      alert("Pesanan berhasil diproses! Terima kasih sudah berbelanja di Frost Wearly.");
-      keranjang = [];
-      updateBadgeKeranjang();
-      tutupModal("modal-keranjang");
+      localStorage.setItem("pesananCheckoutFrostWearly", JSON.stringify(keranjang));
+      window.location.href = "pembayaran.html";
     }
 
     function tutupModal(id) {
