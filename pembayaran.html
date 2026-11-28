@@ -870,9 +870,15 @@
         ongkir: ongkirAktif,
         diskon: diskonKupon,
         totalBayar: totalBayar,
-        items: itemCheckout
+        items: itemCheckout,
+        waktuPesan: new Date().toLocaleString("id-ID"),
+        tahapAktif: 1
       };
 
+      const riwayatLama = JSON.parse(localStorage.getItem("riwayatPesananFrostWearly")) || [];
+      riwayatLama.unshift(dataPesanan);
+
+      localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(riwayatLama));
       localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(dataPesanan));
       localStorage.removeItem("pesananCheckoutFrostWearly");
 
