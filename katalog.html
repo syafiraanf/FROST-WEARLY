@@ -21,7 +21,7 @@
       color: #0F2537;
     }
 
-    /* NAVBAR RAMPING (3 MENU: BERANDA, KATALOG, TENTANG KAMI) */
+    /* NAVBAR */
     .navbar {
       background-color: #FFFFFF;
       height: 60px;
@@ -98,8 +98,10 @@
       padding: 7px 14px;
       font-size: 12px;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
       white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-cek-pesanan:hover {
@@ -184,7 +186,7 @@
       font-size: 14px;
     }
 
-    /* BAGIAN KOLEKSI BARU DI ATAS */
+    /* BAGIAN KOLEKSI BARU */
     .bagian-koleksi-baru {
       margin-bottom: 36px;
       padding-bottom: 28px;
@@ -340,7 +342,7 @@
       background-color: #1E3A5F;
     }
 
-    /* TOMBOL MELAYANG CUSTOM PESANANMU (KANAN ATAS + BAYANGAN) */
+    /* TOMBOL MELAYANG CUSTOM PESANANMU */
     .tombol-custom-melayang {
       position: fixed;
       right: 24px;
@@ -364,7 +366,7 @@
       box-shadow: 0 16px 32px rgba(15, 37, 55, 0.36);
     }
 
-    /* MODAL KERANJANG & CEK PESANAN */
+    /* MODAL KERANJANG */
     .overlay-modal {
       display: none;
       position: fixed;
@@ -388,12 +390,6 @@
       padding: 24px;
       position: relative;
       box-shadow: 0 18px 40px rgba(15, 37, 55, 0.25);
-    }
-
-    .kotak-modal-pesanan {
-      max-width: 680px;
-      max-height: 86vh;
-      overflow-y: auto;
     }
 
     .tutup-modal {
@@ -462,75 +458,6 @@
       font-size: 11px;
       font-weight: bold;
       cursor: pointer;
-    }
-
-    .kartu-riwayat-pesanan {
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
-      background-color: #FFFFFF;
-    }
-
-    .header-riwayat-pesanan {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .badge-tahap-pesanan {
-      background-color: #EBF3FA;
-      color: #0F2537;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 3px 9px;
-      border-radius: 999px;
-      margin-left: 6px;
-    }
-
-    .grid-alur-pesanan {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-
-    .kotak-tahap-pesanan {
-      border: 1px solid #E2E8F0;
-      background-color: #F8FAFC;
-      border-radius: 8px;
-      padding: 8px 10px;
-    }
-
-    .kotak-tahap-pesanan.selesai {
-      border-color: #0F2537;
-      background-color: #EBF3FA;
-    }
-
-    .btn-update-tahap {
-      background-color: #0F2537;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font-size: 11px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-update-tahap:hover {
-      background-color: #1E3A5F;
-    }
-
-    .link-detail-pesanan {
-      display: inline-block;
-      margin-top: 6px;
-      font-size: 11px;
-      color: #0284C7;
-      font-weight: bold;
-      text-decoration: none;
     }
 
     /* FOOTER */
@@ -625,9 +552,6 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .grid-alur-pesanan {
-        grid-template-columns: repeat(2, 1fr);
-      }
       .menu-nav,
       .cari-atas {
         display: none;
@@ -663,7 +587,7 @@
     </div>
 
     <div class="kanan-nav">
-      <button type="button" class="btn-cek-pesanan" onclick="bukaModalCekPesanan()">Cek Pesanan</button>
+      <a href="pesanan-berhasil.html" class="btn-cek-pesanan">Cek Pesanan</a>
 
       <button type="button" class="badge-keranjang" onclick="bukaModalKeranjang()" aria-label="Keranjang">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -692,7 +616,7 @@
       <p>Temukan koleksi Modern Urban &amp; Streetwear dengan nuansa dingin yang elegan dan nyaman dipakai sehari-hari.</p>
     </section>
 
-    <!-- KOLEKSI BARU DI ATAS SENDIRI -->
+    <!-- KOLEKSI BARU -->
     <section id="koleksi-baru" class="bagian-koleksi-baru">
       <div class="judul-seksi">
         <h2>Koleksi Baru</h2>
@@ -701,7 +625,7 @@
       <div id="wadah-koleksi-baru" class="grid-produk"></div>
     </section>
 
-    <!-- KATALOG LENGKAP DI BAWAHNYA -->
+    <!-- KATALOG LENGKAP -->
     <section id="katalog-lengkap">
       <div class="judul-seksi">
         <h2>Katalog</h2>
@@ -737,16 +661,6 @@
         <span id="total-harga-keranjang">Rp 0</span>
       </div>
       <button class="tombol-keranjang" onclick="checkoutKeranjang()">Checkout Sekarang</button>
-    </div>
-  </div>
-
-  <!-- MODAL CEK PESANAN & ALUR PENGIRIMAN -->
-  <div id="modal-cek-pesanan" class="overlay-modal" onclick="tutupLuar(event, 'modal-cek-pesanan')">
-    <div class="kotak-modal kotak-modal-pesanan">
-      <button class="tutup-modal" onclick="tutupModal('modal-cek-pesanan')">&times;</button>
-      <h2 style="font-size: 18px; margin-bottom: 4px;">Cek Pesanan &amp; Alur Pengiriman</h2>
-      <p style="font-size: 12px; color: #64748B; margin-bottom: 16px;">Pantau status pesanan dan tahapan pengiriman untuk akun <strong>syafiraa</strong>.</p>
-      <div id="daftar-riwayat-pesanan"></div>
     </div>
   </div>
 
@@ -932,15 +846,8 @@
     let kategoriAktif = "Semua";
     let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
 
-    const tahapPengiriman = [
-      { judul: "Pesanan Dibuat", ket: "Transaksi tercatat" },
-      { judul: "Dikemas", ket: "Penyiapan & QC" },
-      { judul: "Dalam Pengiriman", ket: "Diantar kurir" },
-      { judul: "Selesai", ket: "Paket diterima" }
-    ];
-
     function formatRupiah(angka) {
-      return "Rp " + Number(angka || 0).toLocaleString("id-ID");
+      return "Rp " + angka.toLocaleString("id-ID");
     }
 
     function updateBadgeKeranjang() {
@@ -1039,90 +946,6 @@
       }
       localStorage.setItem("pesananCheckoutFrostWearly", JSON.stringify(keranjang));
       window.location.href = "pembayaran.html";
-    }
-
-    function ambilRiwayatPesanan() {
-      const terakhir = JSON.parse(localStorage.getItem("pesananTerakhirFrostWearly"));
-      const riwayat = JSON.parse(localStorage.getItem("riwayatPesananFrostWearly")) || [];
-
-      if (terakhir && terakhir.kodePesanan && !riwayat.some(p => p.kodePesanan === terakhir.kodePesanan)) {
-        riwayat.unshift({ ...terakhir, tahapAktif: 1 });
-        localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(riwayat));
-      }
-
-      return riwayat;
-    }
-
-    function bukaModalCekPesanan() {
-      renderRiwayatPesanan();
-      document.getElementById("modal-cek-pesanan").classList.add("buka");
-    }
-
-    function renderRiwayatPesanan() {
-      const wadah = document.getElementById("daftar-riwayat-pesanan");
-      const riwayat = ambilRiwayatPesanan();
-
-      if (riwayat.length === 0) {
-        wadah.innerHTML = `<p style="font-size:13px; color:#64748B; text-align:center; padding:20px 0;">Belum ada pesanan yang dibuat.</p>`;
-        return;
-      }
-
-      wadah.innerHTML = riwayat.map((pesanan, idx) => {
-        const tahap = Math.min(Math.max(Number(pesanan.tahapAktif || 1), 1), 4);
-        const daftarNamaItem = (pesanan.items || []).map(i => `${i.nama} (${i.qty}x)`).join(", ");
-        const estimasi = (pesanan.kurir || "").toLowerCase().includes("sicepat")
-          ? "Estimasi tiba: 1 hari"
-          : "Estimasi tiba: 2 - 3 hari kerja";
-
-        const stepperHtml = tahapPengiriman.map((t, i) => {
-          const aktif = (i + 1) <= tahap;
-          return `
-            <div class="kotak-tahap-pesanan ${aktif ? "selesai" : ""}">
-              <div style="font-size:10px; font-weight:bold; color:${aktif ? "#0F2537" : "#94A3B8"};">Tahap ${i + 1}</div>
-              <div style="font-size:11px; font-weight:bold; color:#0F2537;">${t.judul}</div>
-              <div style="font-size:10px; color:#64748B;">${t.ket}</div>
-            </div>
-          `;
-        }).join("");
-
-        return `
-          <div class="kartu-riwayat-pesanan">
-            <div class="header-riwayat-pesanan">
-              <div>
-                <strong style="font-size:14px;">${pesanan.kodePesanan}</strong>
-                <span class="badge-tahap-pesanan">${tahapPengiriman[tahap - 1].judul}</span>
-                <div style="font-size:12px; color:#334155; margin-top:4px;">${daftarNamaItem || "Produk Frost Wearly"}</div>
-                <div style="font-size:11px; color:#64748B; margin-top:2px;">
-                  Kurir: <strong>${pesanan.kurir || "JNE Reguler"}</strong> (${estimasi}) &bull; ${pesanan.metodeBayar || "Transfer Bank"}
-                </div>
-              </div>
-              <div style="text-align:right;">
-                <strong style="font-size:14px;">${formatRupiah(pesanan.totalBayar)}</strong><br>
-                <button type="button" class="btn-update-tahap" style="margin-top:6px;" onclick="updateTahapPesanan(${idx})">Update Tahap</button><br>
-                <a href="pesanan-berhasil.html" onclick="bukaDetailStruk(${idx})" class="link-detail-pesanan">Lihat Detail Struk &rsaquo;</a>
-              </div>
-            </div>
-            <div class="grid-alur-pesanan">${stepperHtml}</div>
-          </div>
-        `;
-      }).join("");
-    }
-
-    function updateTahapPesanan(idx) {
-      const riwayat = ambilRiwayatPesanan();
-      if (!riwayat[idx]) return;
-      const saatIni = Number(riwayat[idx].tahapAktif || 1);
-      riwayat[idx].tahapAktif = saatIni < 4 ? saatIni + 1 : 1;
-      localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(riwayat));
-      localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(riwayat[idx]));
-      renderRiwayatPesanan();
-    }
-
-    function bukaDetailStruk(idx) {
-      const riwayat = ambilRiwayatPesanan();
-      if (riwayat[idx]) {
-        localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(riwayat[idx]));
-      }
     }
 
     function tutupModal(id) {
