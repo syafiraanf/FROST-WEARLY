@@ -11,13 +11,17 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #F8FAFC;
       color: #0F2537;
     }
 
-    /* NAVBAR RAMPING */
+    /* NAVBAR RAMPING (3 MENU: BERANDA, KATALOG, TENTANG KAMI) */
     .navbar {
       background-color: #FFFFFF;
       height: 60px;
@@ -113,7 +117,7 @@
       background-color: #EBF3FA;
       padding: 28px 32px;
       border-radius: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
 
     .banner-katalog h1 {
@@ -124,6 +128,33 @@
     .banner-katalog p {
       color: #475569;
       font-size: 14px;
+    }
+
+    /* BAGIAN KOLEKSI BARU DI ATAS */
+    .bagian-koleksi-baru {
+      margin-bottom: 36px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .judul-seksi {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .judul-seksi h2 {
+      font-size: 20px;
+      color: #0F2537;
+    }
+
+    .judul-seksi span {
+      font-size: 12px;
+      color: #0284C7;
+      font-weight: bold;
     }
 
     /* FILTER & CARI */
@@ -251,6 +282,31 @@
 
     .tombol-keranjang:hover {
       background-color: #1E3A5F;
+    }
+
+    /* TOMBOL MELAYANG CUSTOM PESANANMU (FIXED + BAYANGAN) */
+    .tombol-custom-melayang {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 95;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: bold;
+      border: 1px solid #BAE6FD;
+      box-shadow: 0 12px 26px rgba(15, 37, 55, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .tombol-custom-melayang:hover {
+      background-color: #1E3A5F;
+      transform: translateY(-50%) scale(1.04);
+      box-shadow: 0 16px 32px rgba(15, 37, 55, 0.36);
     }
 
     /* MODAL DETAIL PRODUK & KERANJANG */
@@ -462,6 +518,17 @@
       .menu-nav {
         display: none;
       }
+      .tombol-custom-melayang {
+        right: 14px;
+        top: auto;
+        bottom: 18px;
+        transform: none;
+        padding: 10px 15px;
+        font-size: 12px;
+      }
+      .tombol-custom-melayang:hover {
+        transform: scale(1.03);
+      }
     }
   </style>
 </head>
@@ -476,8 +543,6 @@
     <ul class="menu-nav">
       <li><a href="beranda.html">Beranda</a></li>
       <li><a href="katalog.html" class="aktif">Katalog</a></li>
-      <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-      <li><a href="custom.html">Custom</a></li>
       <li><a href="tentang-kami.html">Tentang Kami</a></li>
     </ul>
 
@@ -494,20 +559,40 @@
       <p>Temukan koleksi Modern Urban &amp; Streetwear dengan nuansa dingin yang elegan dan nyaman dipakai sehari-hari.</p>
     </section>
 
-    <div class="bar-filter">
-      <div style="display:flex; gap:8px; flex-wrap:wrap;">
-        <button class="tombol-filter aktif" onclick="filterKategori('Semua', this)">Semua</button>
-        <button class="tombol-filter" onclick="filterKategori('Hoodie', this)">Hoodie &amp; Outerwear</button>
-        <button class="tombol-filter" onclick="filterKategori('Kaos', this)">Kaos Oversize</button>
-        <button class="tombol-filter" onclick="filterKategori('Crewneck', this)">Crewneck</button>
-        <button class="tombol-filter" onclick="filterKategori('Windbreaker', this)">Windbreaker</button>
-        <button class="tombol-filter" onclick="filterKategori('Celana', this)">Celana &amp; Cargo</button>
+    <!-- KOLEKSI BARU DI ATAS SENDIRI -->
+    <section id="koleksi-baru" class="bagian-koleksi-baru">
+      <div class="judul-seksi">
+        <h2>Koleksi Baru</h2>
+        <span>NEW DROP</span>
       </div>
-      <input type="text" id="cari-nama" class="input-cari" placeholder="Cari nama produk..." oninput="renderProduk()">
-    </div>
+      <div id="wadah-koleksi-baru" class="grid-produk"></div>
+    </section>
 
-    <div id="wadah-produk" class="grid-produk"></div>
+    <!-- KATALOG LENGKAP DI BAWAHNYA -->
+    <section id="katalog-lengkap">
+      <div class="judul-seksi">
+        <h2>Katalog</h2>
+        <span>SEMUA KOLEKSI</span>
+      </div>
+
+      <div class="bar-filter">
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="tombol-filter aktif" onclick="filterKategori('Semua', this)">Semua</button>
+          <button class="tombol-filter" onclick="filterKategori('Hoodie', this)">Hoodie &amp; Outerwear</button>
+          <button class="tombol-filter" onclick="filterKategori('Kaos', this)">Kaos Oversize</button>
+          <button class="tombol-filter" onclick="filterKategori('Crewneck', this)">Crewneck</button>
+          <button class="tombol-filter" onclick="filterKategori('Windbreaker', this)">Windbreaker</button>
+          <button class="tombol-filter" onclick="filterKategori('Celana', this)">Celana &amp; Cargo</button>
+        </div>
+        <input type="text" id="cari-nama" class="input-cari" placeholder="Cari nama produk..." oninput="renderProduk()">
+      </div>
+
+      <div id="wadah-produk" class="grid-produk"></div>
+    </section>
   </main>
+
+  <!-- TOMBOL MELAYANG CUSTOM PESANANMU -->
+  <a href="custom.html" class="tombol-custom-melayang">Custom Pesananmu!</a>
 
   <!-- MODAL DETAIL PRODUK -->
   <div id="modal-detail" class="overlay-modal" onclick="tutupLuar(event, 'modal-detail')">
@@ -558,8 +643,6 @@
         <ul>
           <li><a href="beranda.html">Beranda</a></li>
           <li><a href="katalog.html">Katalog</a></li>
-          <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-          <li><a href="custom.html">Custom</a></li>
           <li><a href="tentang-kami.html">Tentang Kami</a></li>
         </ul>
       </div>
@@ -591,7 +674,8 @@
         kategori: "Hoodie",
         hargaAngka: 249000,
         harga: "Rp 249.000",
-        gambar: "img/glacier-hoodie.png",
+        gambar: "img/frost-glacier-hoodie.jpg",
+        koleksiBaru: true,
         deskripsi: "Hoodie fleece tebal warna ice blue dengan potongan boxy modern."
       },
       {
@@ -599,7 +683,8 @@
         kategori: "Kaos",
         hargaAngka: 129000,
         harga: "Rp 129.000",
-        gambar: "img/arctic-oversize.png",
+        gambar: "img/arctic-oversize-tee.jpg",
+        koleksiBaru: true,
         deskripsi: "Kaos katun combed 24s warna putih salju dengan sablon minimalis."
       },
       {
@@ -607,7 +692,8 @@
         kategori: "Celana",
         hargaAngka: 219000,
         harga: "Rp 219.000",
-        gambar: "img/cargo-jeans.png",
+        gambar: "img/polar-cargo-pants.jpg",
+        koleksiBaru: true,
         deskripsi: "Celana cargo multi-saku bahan ripstop ringan warna dark navy."
       },
       {
@@ -615,7 +701,8 @@
         kategori: "Windbreaker",
         hargaAngka: 289000,
         harga: "Rp 289.000",
-        gambar: "img/windbreaker.png",
+        gambar: "img/subzero-windbreaker.jpg",
+        koleksiBaru: true,
         deskripsi: "Jaket parasut tahan angin dengan lapisan dalam yang sejuk."
       },
       {
@@ -623,7 +710,7 @@
         kategori: "Kaos",
         hargaAngka: 135000,
         harga: "Rp 135.000",
-        gambar: "img/graphic-shirt.png",
+        gambar: "img/mist-graphic-t-shirt.jpg",
         deskripsi: "Kaos oversize abu-abu muda dengan tipografi khas Frost Wearly."
       },
       {
@@ -631,7 +718,7 @@
         kategori: "Celana",
         hargaAngka: 199000,
         harga: "Rp 199.000",
-        gambar: "img/sweetpants.png",
+        gambar: "img/snowdrift-relaxed-pants.jpg",
         deskripsi: "Celana panjang potongan lurus yang nyaman untuk gaya harian."
       },
       {
@@ -639,7 +726,7 @@
         kategori: "Hoodie",
         hargaAngka: 269000,
         harga: "Rp 269.000",
-        gambar: "img/jacket.png",
+        gambar: "img/glacier-zip-jacket.jpg",
         deskripsi: "Jaket resleting bergaya urban dengan bahan nyaman dan ringan."
       },
       {
@@ -647,7 +734,7 @@
         kategori: "Kaos",
         hargaAngka: 139000,
         harga: "Rp 139.000",
-        gambar: "img/red-shirt.png",
+        gambar: "img/iceberg-boxy-tee.jpg",
         deskripsi: "Kaos potongan boxy warna biru es lembut untuk tampilan kasual."
       },
       {
@@ -655,7 +742,7 @@
         kategori: "Crewneck",
         hargaAngka: 215000,
         harga: "Rp 215.000",
-        gambar: "img/fleece-crewneck.png",
+        gambar: "img/nordic-fleece-crewneck.jpg",
         deskripsi: "Sweater crewneck bahan cotton fleece lembut warna frost grey dengan rib elastis."
       },
       {
@@ -663,7 +750,7 @@
         kategori: "Crewneck",
         hargaAngka: 229000,
         harga: "Rp 229.000",
-        gambar: "img/heavy-crewneck.png",
+        gambar: "img/blizzard-heavy-crewneck.jpg",
         deskripsi: "Crewneck potongan relaxed fit warna dark navy dengan bordir minimalis di dada."
       },
       {
@@ -671,7 +758,7 @@
         kategori: "Windbreaker",
         hargaAngka: 309000,
         harga: "Rp 309.000",
-        gambar: "img/alpine-windbreaker.png",
+        gambar: "img/alpine-shell-windbreaker.jpg",
         deskripsi: "Windbreaker water-repellent dua warna ice blue & navy untuk aktivitas outdoor."
       },
       {
@@ -679,7 +766,7 @@
         kategori: "Windbreaker",
         hargaAngka: 295000,
         harga: "Rp 295.000",
-        gambar: "img/utility-windbreaker.png",
+        gambar: "img/frostbyte-utility-windbreaker.jpg",
         deskripsi: "Jaket windbreaker ringan warna snow white dengan resleting anti-angin dan saku samping."
       }
     ];
@@ -825,6 +912,41 @@
       }
     }
 
+    function buatKartuProdukHTML(item, index) {
+      return `
+        <div class="kartu-produk" onclick="bukaDetailProduk(${index})">
+          <div>
+            <div class="kotak-foto">
+              <img src="${item.gambar}" alt="${item.nama}">
+            </div>
+            <div class="isi-kartu">
+              <div class="kategori-teks">${item.kategori}</div>
+              <div class="nama-produk">${item.nama}</div>
+              <p class="deskripsi-produk">${item.deskripsi}</p>
+              <div class="harga-produk">${item.harga}</div>
+            </div>
+          </div>
+          <div style="padding: 0 14px 14px;">
+            <button class="tombol-keranjang" onclick="event.stopPropagation(); tambahKeKeranjang(${index})">
+              + Tambah ke Keranjang
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderKoleksiBaru() {
+      let wadahBaru = document.getElementById("wadah-koleksi-baru");
+      if (!wadahBaru) return;
+      wadahBaru.innerHTML = "";
+
+      produkList.forEach((item, index) => {
+        if (item.koleksiBaru) {
+          wadahBaru.innerHTML += buatKartuProdukHTML(item, index);
+        }
+      });
+    }
+
     function renderProduk() {
       let wadah = document.getElementById("wadah-produk");
       let cari = document.getElementById("cari-nama").value.toLowerCase();
@@ -835,31 +957,13 @@
         let cocokNama = item.nama.toLowerCase().includes(cari);
 
         if (cocokKategori && cocokNama) {
-          wadah.innerHTML += `
-            <div class="kartu-produk" onclick="bukaDetailProduk(${index})">
-              <div>
-                <div class="kotak-foto">
-                  <img src="${item.gambar}" alt="${item.nama}">
-                </div>
-                <div class="isi-kartu">
-                  <div class="kategori-teks">${item.kategori}</div>
-                  <div class="nama-produk">${item.nama}</div>
-                  <p class="deskripsi-produk">${item.deskripsi}</p>
-                  <div class="harga-produk">${item.harga}</div>
-                </div>
-              </div>
-              <div style="padding: 0 14px 14px;">
-                <button class="tombol-keranjang" onclick="event.stopPropagation(); tambahKeKeranjang(${index})">
-                  + Tambah ke Keranjang
-                </button>
-              </div>
-            </div>
-          `;
+          wadah.innerHTML += buatKartuProdukHTML(item, index);
         }
       });
     }
 
     updateBadgeKeranjang();
+    renderKoleksiBaru();
     renderProduk();
   </script>
 </body>
