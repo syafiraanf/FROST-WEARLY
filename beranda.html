@@ -25,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       border-bottom: 1px solid #E2E8F0;
     }
 
@@ -34,6 +35,7 @@
       text-decoration: none;
       gap: 8px;
       height: 100%;
+      flex-shrink: 0;
     }
 
     .logo img {
@@ -44,8 +46,9 @@
 
     .menu-nav {
       display: flex;
-      gap: 18px;
+      gap: 16px;
       list-style: none;
+      flex-shrink: 0;
     }
 
     .menu-nav a {
@@ -55,6 +58,7 @@
       font-weight: 500;
       padding: 6px 12px;
       border-radius: 6px;
+      white-space: nowrap;
     }
 
     .menu-nav a.aktif {
@@ -63,27 +67,63 @@
       font-weight: bold;
     }
 
+    .cari-atas {
+      flex: 1;
+      max-width: 360px;
+    }
+
+    .input-cari {
+      width: 100%;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
+      font-size: 13px;
+      color: #0F2537;
+      background: #FFFFFF;
+    }
+
     .kanan-nav {
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 13px;
+      flex-shrink: 0;
     }
 
     .badge-keranjang {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
       border: 1px solid #CBD5E1;
-      padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 50%;
       background: #FFFFFF;
+      color: #0F2537;
+      cursor: pointer;
+    }
+
+    .badge-keranjang:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
     }
 
     .badge-keranjang span {
+      position: absolute;
+      top: -4px;
+      right: -4px;
       background: #0F2537;
       color: #FFFFFF;
-      border-radius: 50%;
-      padding: 1px 6px;
+      border-radius: 999px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
       font-size: 11px;
-      margin-left: 4px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .profil-bulat {
@@ -367,6 +407,12 @@
       font-size: 12px;
     }
 
+    @media (max-width: 960px) {
+      .cari-atas {
+        max-width: 220px;
+      }
+    }
+
     @media (max-width: 950px) {
       .grid-produk {
         grid-template-columns: repeat(2, 1fr);
@@ -383,7 +429,8 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .menu-nav {
+      .menu-nav,
+      .cari-atas {
         display: none;
       }
     }
@@ -400,13 +447,22 @@
     <ul class="menu-nav">
       <li><a href="beranda.html" class="aktif">Beranda</a></li>
       <li><a href="katalog.html">Katalog</a></li>
-      <li><a href="katalog.html">Koleksi Baru</a></li>
-      <li><a href="katalog.html">Custom</a></li>
-      <li><a href="tentang_kami.html">Tentang Kami</a></li>
+      <li><a href="tentang-kami.html">Tentang Kami</a></li>
     </ul>
 
+    <div class="cari-atas">
+      <input type="text" id="cari-beranda" class="input-cari" placeholder="Cari produk Frost Wearly..." onkeydown="cariKeKatalog(event)">
+    </div>
+
     <div class="kanan-nav">
-      <div class="badge-keranjang">Keranjang <span id="jumlah-keranjang">3</span></div>
+      <button type="button" class="badge-keranjang" onclick="window.location.href='katalog.html'" aria-label="Keranjang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span id="jumlah-keranjang">3</span>
+      </button>
       <div class="profil-bulat">BS</div>
       <span>Budi</span>
     </div>
@@ -525,6 +581,13 @@
     ];
 
     let isiKeranjang = 3;
+
+    function cariKeKatalog(event) {
+      if (event.key === "Enter") {
+        let kataKunci = event.target.value.trim();
+        window.location.href = kataKunci ? `katalog.html?q=${encodeURIComponent(kataKunci)}` : "katalog.html";
+      }
+    }
 
     function tambahKeranjang(nama) {
       isiKeranjang++;
