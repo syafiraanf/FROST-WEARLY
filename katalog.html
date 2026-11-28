@@ -29,6 +29,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       border-bottom: 1px solid #E2E8F0;
     }
 
@@ -40,6 +41,7 @@
       font-weight: bold;
       font-size: 16px;
       gap: 8px;
+      flex-shrink: 0;
     }
 
     .logo img {
@@ -50,8 +52,9 @@
 
     .menu-nav {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       list-style: none;
+      flex-shrink: 0;
     }
 
     .menu-nav a {
@@ -61,6 +64,7 @@
       font-weight: 500;
       padding: 6px 10px;
       border-radius: 6px;
+      white-space: nowrap;
     }
 
     .menu-nav a.aktif {
@@ -69,11 +73,21 @@
       font-weight: bold;
     }
 
+    .cari-atas {
+      flex: 1;
+      max-width: 380px;
+    }
+
+    .cari-atas .input-cari {
+      width: 100%;
+    }
+
     .kanan-nav {
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 13px;
+      flex-shrink: 0;
     }
 
     .badge-keranjang {
@@ -82,6 +96,7 @@
       border-radius: 20px;
       background: #FFFFFF;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .badge-keranjang span {
@@ -157,7 +172,7 @@
       font-weight: bold;
     }
 
-    /* FILTER & CARI */
+    /* FILTER */
     .bar-filter {
       display: flex;
       justify-content: space-between;
@@ -501,6 +516,12 @@
       font-size: 12px;
     }
 
+    @media (max-width: 960px) {
+      .cari-atas {
+        max-width: 220px;
+      }
+    }
+
     @media (max-width: 900px) {
       .grid-produk {
         grid-template-columns: repeat(2, 1fr);
@@ -515,7 +536,8 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .menu-nav {
+      .menu-nav,
+      .cari-atas {
         display: none;
       }
       .tombol-custom-melayang {
@@ -545,6 +567,10 @@
       <li><a href="katalog.html" class="aktif">Katalog</a></li>
       <li><a href="tentang-kami.html">Tentang Kami</a></li>
     </ul>
+
+    <div class="cari-atas">
+      <input type="text" id="cari-nama" class="input-cari" placeholder="Cari produk Frost Wearly..." oninput="renderProduk()">
+    </div>
 
     <div class="kanan-nav">
       <div class="badge-keranjang" onclick="bukaModalKeranjang()">Keranjang <span id="jumlah-keranjang">0</span></div>
@@ -584,7 +610,6 @@
           <button class="tombol-filter" onclick="filterKategori('Windbreaker', this)">Windbreaker</button>
           <button class="tombol-filter" onclick="filterKategori('Celana', this)">Celana &amp; Cargo</button>
         </div>
-        <input type="text" id="cari-nama" class="input-cari" placeholder="Cari nama produk..." oninput="renderProduk()">
       </div>
 
       <div id="wadah-produk" class="grid-produk"></div>
