@@ -144,9 +144,19 @@
     }
 
     .grup-profil {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: 500;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+      transition: background-color 0.15s ease;
+    }
+
+    .grup-profil:hover {
+      background-color: #EBF3FA;
     }
 
     .profil-bulat {
@@ -675,15 +685,15 @@
         <span id="jumlah-keranjang">0</span>
       </button>
 
-      <div class="grup-profil">
+      <a href="profil.html" class="grup-profil">
         <div class="profil-bulat" aria-label="Profil">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </div>
-        <span>syafiraa</span>
-      </div>
+        <span id="nama-nav-profil">syafiraa</span>
+      </a>
     </div>
   </header>
 
@@ -746,7 +756,7 @@
     <div class="kotak-modal kotak-modal-pesanan">
       <button class="tutup-modal" onclick="tutupModal('modal-cek-pesanan')">&times;</button>
       <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 4px;">Cek Pesanan &amp; Alur Pengiriman</h2>
-      <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">Pantau status pesanan dan tahapan pengiriman untuk akun <strong>syafiraa</strong>.</p>
+      <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">Pantau status pesanan dan tahapan pengiriman untuk akun <strong id="username-modal-pesanan">syafiraa</strong>.</p>
       <div id="daftar-riwayat-pesanan"></div>
     </div>
   </div>
@@ -940,6 +950,15 @@
       { judul: "Selesai", ket: "Paket diterima" }
     ];
 
+    function muatUsernameProfil() {
+      const profil = JSON.parse(localStorage.getItem("profilFrostWearly"));
+      const username = (profil && profil.username) ? profil.username : "syafiraa";
+      const navUser = document.getElementById("nama-nav-profil");
+      const modalUser = document.getElementById("username-modal-pesanan");
+      if (navUser) navUser.textContent = username;
+      if (modalUser) modalUser.textContent = username;
+    }
+
     function formatRupiah(angka) {
       return "Rp " + Number(angka || 0).toLocaleString("id-ID");
     }
@@ -1067,6 +1086,7 @@
     }
 
     function bukaModalCekPesanan() {
+      muatUsernameProfil();
       renderRiwayatPesanan();
       document.getElementById("modal-cek-pesanan").classList.add("buka");
     }
@@ -1204,6 +1224,7 @@
       document.getElementById("cari-nama").value = queryAwal;
     }
 
+    muatUsernameProfil();
     updateBadgeKeranjang();
     renderKoleksiBaru();
     renderProduk();
