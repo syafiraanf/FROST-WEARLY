@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Saya - FROST WEARLY</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F2537;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background-color: #FFFFFF;
+      height: 60px;
+      padding: 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      font-size: 16px;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      max-height: 150px;
+      width: auto;
+      display: block;
+    }
+
+    .menu-nav {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      flex-shrink: 0;
+    }
+
+    .menu-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .menu-nav a:hover {
+      background-color: #EBF3FA;
+      color: #0F2537;
+    }
+
+    .kanan-nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .btn-cek-pesanan {
+      background-color: #FFFFFF;
+      color: #0F2537;
+      border: 1px solid #CBD5E1;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-cek-pesanan:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
+    }
+
+    .badge-keranjang {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid #CBD5E1;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #0F2537;
+      text-decoration: none;
+    }
+
+    .badge-keranjang:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
+    }
+
+    .badge-keranjang span {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #0F2537;
+      color: #FFFFFF;
+      border-radius: 999px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grup-profil {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: #0F2537;
+      font-weight: bold;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+      background-color: #EBF3FA;
+    }
+
+    .profil-bulat {
+      background: #0F2537;
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* KONTEN PROFIL */
+    .wadah {
+      max-width: 1100px;
+      margin: 28px auto 56px;
+      padding: 0 20px;
+    }
+
+    .banner-profil {
+      background-color: #EBF3FA;
+      border-radius: 14px;
+      padding: 26px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .identitas-utama {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .avatar-besar {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background-color: #0F2537;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .banner-profil h1 {
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .banner-profil p {
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .statistik-ringkas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .kartu-stat {
+      background-color: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      min-width: 135px;
+    }
+
+    .kartu-stat span {
+      display: block;
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 4px;
+    }
+
+    .kartu-stat strong {
+      font-size: 16px;
+      color: #0F2537;
+    }
+
+    .grid-profil {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .kartu {
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .kartu h2 {
+      font-size: 16px;
+      margin-bottom: 14px;
+      color: #0F2537;
+    }
+
+    .grup-form {
+      margin-bottom: 14px;
+    }
+
+    .grup-form label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .input-form,
+    .textarea-form {
+      width: 100%;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      color: #0F2537;
+      background-color: #FFFFFF;
+    }
+
+    .textarea-form {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .btn-simpan {
+      background-color: #0F2537;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-simpan:hover {
+      background-color: #1E3A5F;
+    }
+
+    .pesan-tersimpan {
+      font-size: 12px;
+      color: #15803D;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .baris-riwayat {
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background-color: #F8FAFC;
+      font-size: 13px;
+    }
+
+    .baris-riwayat-atas {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .badge-status {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .tautan-aksi {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #0284C7;
+      text-decoration: none;
+    }
+
+    .tautan-aksi:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      background-color: #EBF3FA;
+      margin-top: 50px;
+      color: #334155;
+    }
+
+    .footer-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 20px 30px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+      gap: 28px;
+    }
+
+    .footer-brand {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0F2537;
+      margin-bottom: 8px;
+    }
+
+    .footer-grid h4 {
+      color: #0F2537;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .footer-grid p,
+    .footer-grid li {
+      font-size: 12px;
+      line-height: 1.8;
+      list-style: none;
+      color: #475569;
+    }
+
+    .footer-grid a {
+      text-decoration: none;
+      color: #475569;
+    }
+
+    .footer-bawah {
+      background-color: #000000;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 13px 20px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      .grid-profil {
+        grid-template-columns: 1fr;
+      }
+      .menu-nav {
+        display: none;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="beranda.html" class="logo">
+      <img src="logo_frost_wearly.png" alt="Frost Wearly" onerror="this.style.display='none'">
+    </a>
+
+    <ul class="menu-nav">
+      <li><a href="beranda.html">Beranda</a></li>
+      <li><a href="katalog.html">Katalog</a></li>
+      <li><a href="tentang-kami.html">Tentang Kami</a></li>
+    </ul>
+
+    <div class="kanan-nav">
+      <a href="pesanan-berhasil.html" class="btn-cek-pesanan">Cek Pesanan</a>
+
+      <a href="katalog.html" class="badge-keranjang" aria-label="Keranjang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span id="jumlah-keranjang">0</span>
+      </a>
+
+      <a href="profil.html" class="grup-profil">
+        <div class="profil-bulat" aria-label="Profil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <span id="nama-nav-profil">syafiraa</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="wadah">
+    <section class="banner-profil">
+      <div class="identitas-utama">
+        <div class="avatar-besar" id="inisial-avatar">SF</div>
+        <div>
+          <h1 id="judul-nama-lengkap">Syafira Nur</h1>
+          <p>@<span id="teks-username">syafiraa</span> &bull; <span id="teks-kota">Malang, Jawa Timur</span></p>
+        </div>
+      </div>
+
+      <div class="statistik-ringkas">
+        <div class="kartu-stat">
+          <span>Item di Keranjang</span>
+          <strong id="stat-keranjang">0 item</strong>
+        </div>
+        <div class="kartu-stat">
+          <span>Total Pesanan</span>
+          <strong id="stat-pesanan">0 pesanan</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-profil">
+      <section class="kartu">
+        <h2>Informasi Akun &amp; Alamat Pengiriman</h2>
+        <form onsubmit="simpanProfil(event)">
+          <div class="grup-form">
+            <label for="input-nama">Nama Lengkap</label>
+            <input type="text" id="input-nama" class="input-form" required>
+          </div>
+
+          <div class="grup-form">
+            <label for="input-username">Username</label>
+            <input type="text" id="input-username" class="input-form" required>
+          </div>
+
+          <div class="grup-form">
+            <label for="input-telepon">Nomor Telepon / WhatsApp</label>
+            <input type="text" id="input-telepon" class="input-form" required>
+          </div>
+
+          <div class="grup-form">
+            <label for="input-alamat">Alamat Utama Pengiriman</label>
+            <textarea id="input-alamat" class="textarea-form" required></textarea>
+          </div>
+
+          <button type="submit" class="btn-simpan">Simpan Profil</button>
+          <span id="status-simpan" class="pesan-tersimpan"></span>
+        </form>
+      </section>
+
+      <div>
+        <section class="kartu">
+          <h2>Keranjang Aktif</h2>
+          <div id="ringkasan-keranjang-profil"></div>
+          <a href="katalog.html" class="tautan-aksi">Kelola Keranjang di Katalog &rsaquo;</a>
+        </section>
+
+        <section class="kartu">
+          <h2>Riwayat Pesanan Terbaru</h2>
+          <div id="ringkasan-pesanan-profil"></div>
+          <a href="pesanan-berhasil.html" class="tautan-aksi">Lihat Semua &amp; Cek Alur Pengiriman &rsaquo;</a>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">FROST WEARLY</div>
+        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan.</p>
+      </div>
+      <div>
+        <h4>Jelajah</h4>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog.html">Katalog</a></li>
+          <li><a href="tentang-kami.html">Tentang Kami</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hubungi Kami</h4>
+        <p>+62 812-3456-7890</p>
+        <p>frostwearly@gmail.com</p>
+        <p>Jl. Bromo No. 67, Malang, Jawa Timur</p>
+      </div>
+      <div>
+        <h4>Ikuti Kami</h4>
+        <p>@frostwearly.official.mlg</p>
+        <p>@frost.wearly.mlg</p>
+        <p>0821-7101-7051</p>
+      </div>
+    </div>
+    <div class="footer-bawah">
+      Copyright &copy; 2026 FrostWearly All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const defaultProfil = {
+      namaLengkap: "Syafira Nur",
+      username: "syafiraa",
+      telepon: "+62 812-3456-7890",
+      alamat: "Jl. Bromo No. 67, Kec. Klojen, Kota Malang, Jawa Timur, 65111"
+    };
+
+    const namaTahapProfil = [
+      "Pesanan Dibuat",
+      "Dikemas",
+      "Dalam Pengiriman",
+      "Selesai"
+    ];
+
+    function formatRp(angka) {
+      return "Rp " + Number(angka || 0).toLocaleString("id-ID");
+    }
+
+    function ambilProfil() {
+      const simpan = JSON.parse(localStorage.getItem("profilFrostWearly"));
+      return { ...defaultProfil, ...(simpan || {}) };
+    }
+
+    function buatInisial(nama) {
+      const kata = String(nama || "SF").trim().split(/\s+/);
+      return ((kata[0]?.[0] || "") + (kata[1]?.[0] || kata[0]?.[1] || "")).toUpperCase() || "SF";
+    }
+
+    function renderProfil() {
+      const profil = ambilProfil();
+      const keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+      const riwayat = JSON.parse(localStorage.getItem("riwayatPesananFrostWearly")) || [];
+
+      document.getElementById("input-nama").value = profil.namaLengkap;
+      document.getElementById("input-username").value = profil.username;
+      document.getElementById("input-telepon").value = profil.telepon;
+      document.getElementById("input-alamat").value = profil.alamat;
+
+      document.getElementById("judul-nama-lengkap").textContent = profil.namaLengkap;
+      document.getElementById("teks-username").textContent = profil.username;
+      document.getElementById("nama-nav-profil").textContent = profil.username;
+      document.getElementById("inisial-avatar").textContent = buatInisial(profil.namaLengkap);
+
+      const bagianAlamat = profil.alamat.split(",").map(s => s.trim()).filter(Boolean);
+      document.getElementById("teks-kota").textContent = bagianAlamat.slice(-2).join(", ") || "Malang, Jawa Timur";
+
+      const totalQtyKeranjang = keranjang.reduce((sum, item) => sum + Number(item.qty || 1), 0);
+      document.getElementById("jumlah-keranjang").textContent = totalQtyKeranjang;
+      document.getElementById("stat-keranjang").textContent = `${totalQtyKeranjang} item`;
+      document.getElementById("stat-pesanan").textContent = `${riwayat.length} pesanan`;
+
+      const wadahKeranjang = document.getElementById("ringkasan-keranjang-profil");
+      if (!keranjang.length) {
+        wadahKeranjang.innerHTML = `<p style="font-size:13px; color:#64748B;">Keranjang belanja masih kosong.</p>`;
+      } else {
+        wadahKeranjang.innerHTML = keranjang.map(item => `
+          <div class="baris-riwayat">
+            <div class="baris-riwayat-atas">
+              <strong>${item.nama}</strong>
+              <strong>${formatRp(Number(item.hargaAngka || 0) * Number(item.qty || 1))}</strong>
+            </div>
+            <div style="font-size:12px; color:#64748B;">${item.qty}x &bull; Ukuran ${item.ukuran || "M"}</div>
+          </div>
+        `).join("");
+      }
+
+      const wadahPesanan = document.getElementById("ringkasan-pesanan-profil");
+      if (!riwayat.length) {
+        wadahPesanan.innerHTML = `<p style="font-size:13px; color:#64748B;">Belum ada riwayat pesanan.</p>`;
+      } else {
+        wadahPesanan.innerHTML = riwayat.slice(0, 3).map(pesanan => {
+          const idxTahap = Math.min(Math.max(Number(pesanan.tahapAktif || 1), 1), 4) - 1;
+          return `
+            <div class="baris-riwayat">
+              <div class="baris-riwayat-atas">
+                <div>
+                  <strong>${pesanan.kodePesanan || "FW-ORDER"}</strong>
+                  <span class="badge-status">${namaTahapProfil[idxTahap]}</span>
+                </div>
+                <strong>${formatRp(pesanan.totalBayar)}</strong>
+              </div>
+              <div style="font-size:12px; color:#64748B;">${pesanan.kurir || "JNE Reguler"} &bull; ${pesanan.metodeBayar || "Transfer Bank"}</div>
+            </div>
+          `;
+        }).join("");
+      }
+    }
+
+    function simpanProfil(event) {
+      event.preventDefault();
+      const dataBaru = {
+        namaLengkap: document.getElementById("input-nama").value.trim() || defaultProfil.namaLengkap,
+        username: document.getElementById("input-username").value.trim() || defaultProfil.username,
+        telepon: document.getElementById("input-telepon").value.trim() || defaultProfil.telepon,
+        alamat: document.getElementById("input-alamat").value.trim() || defaultProfil.alamat
+      };
+      localStorage.setItem("profilFrostWearly", JSON.stringify(dataBaru));
+      renderProfil();
+      const statusEl = document.getElementById("status-simpan");
+      statusEl.textContent = "Tersimpan!";
+      setTimeout(() => {
+        statusEl.textContent = "";
+      }, 2000);
+    }
+
+    renderProfil();
+  </script>
+</body>
+</html>
