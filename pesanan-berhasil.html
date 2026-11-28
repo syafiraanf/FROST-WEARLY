@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pesanan Berhasil - FROST WEARLY</title>
+  <title>Pesanan Berhasil &amp; Cek Pesanan - FROST WEARLY</title>
   <style>
     * {
       margin: 0;
@@ -274,9 +274,62 @@
       border-color: #0F2537;
     }
 
+    .grid-alur {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .kotak-tahap {
+      border: 1.5px solid #E2E8F0;
+      background-color: #F8FAFC;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .kotak-tahap.aktif {
+      border-color: #0F2537;
+      background-color: #EBF3FA;
+    }
+
+    .btn-simulasi {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      border: 1px solid #CBD5E1;
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-simulasi:hover {
+      background-color: #DCEAF6;
+    }
+
+    .item-riwayat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background-color: #FFFFFF;
+    }
+
+    .item-riwayat.terpilih {
+      background-color: #F8FAFC;
+      border-color: #0F2537;
+    }
+
     @media (max-width: 700px) {
-      .grid-info {
-        grid-template-columns: 1fr;
+      .grid-info,
+      .grid-alur {
+        grid-template-columns: 1fr 1fr;
       }
       .menu-nav {
         display: none;
@@ -297,7 +350,8 @@
 
     <ul class="menu-nav">
       <li><a href="beranda.html">Beranda</a></li>
-      <li><a href="katalog.html" class="aktif">Katalog</a></li>
+      <li><a href="katalog.html">Katalog</a></li>
+      <li><a href="pesanan-berhasil.html" class="aktif">Cek Pesanan</a></li>
       <li><a href="tentang-kami.html">Tentang Kami</a></li>
     </ul>
 
@@ -311,11 +365,61 @@
 
   <main class="wadah">
     <section class="kartu-sukses" id="konten-pesanan"></section>
+
+    <section class="kartu-sukses" id="panel-alur-pengiriman">
+      <h2 style="font-size:16px; font-weight:bold; margin-bottom:6px;">Alur Pengiriman Pesanan</h2>
+      <p id="info-estimasi-kurir" style="font-size:12px; color:#64748B; margin-bottom:18px;"></p>
+
+      <div id="timeline-pengiriman" class="grid-alur"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding-top:14px; border-top:1px solid #E2E8F0; font-size:12px;">
+        <span id="status-tahap-teks" style="color:#475569;"></span>
+        <button type="button" class="btn-simulasi" onclick="simulasikanUpdateStatus()">
+          Simulasi Update Status Pengiriman
+        </button>
+      </div>
+    </section>
+
+    <section class="kartu-sukses" id="panel-riwayat-pesanan">
+      <h2 style="font-size:16px; font-weight:bold; margin-bottom:12px;">Cek Riwayat Pesanan Saya</h2>
+      <div id="daftar-riwayat-pesanan"></div>
+    </section>
   </main>
 
   <script>
+    const daftarTahap = [
+      { judul: "Pesanan Dibuat", ket: "Transaksi tercatat" },
+      { judul: "Dikemas", ket: "Penyiapan & QC barang" },
+      { judul: "Dalam Pengiriman", ket: "Diantar oleh kurir" },
+      { judul: "Selesai", ket: "Paket diterima" }
+    ];
+
     function formatRp(angka) {
       return "Rp " + Number(angka || 0).toLocaleString("id-ID");
+    }
+
+    function getRiwayat() {
+      const utama = JSON.parse(localStorage.getItem("pesananTerakhirFrostWearly"));
+      let list = JSON.parse(localStorage.getItem("riwayatPesananFrostWearly"));
+      if (!Array.isArray(list)) list = [];
+
+      if (utama && utama.kodePesanan) {
+        const idxAda = list.findIndex(item => item.kodePesanan === utama.kodePesanan);
+        if (idxAda === -1) {
+          list.unshift({ ...utama, tahapAktif: Number(utama.tahapAktif || 1) });
+        } else {
+          list[idxAda] = {
+            ...list[idxAda],
+            ...utama,
+            tahapAktif: Number(utama.tahapAktif || list[idxAda].tahapAktif || 1)
+          };
+          const dipindah = list.splice(idxAda, 1)[0];
+          list.unshift(dipindah);
+        }
+        localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(list));
+      }
+
+      return list;
     }
 
     function renderPesananBerhasil() {
@@ -334,9 +438,9 @@
           </div>
           <div class="aksi-akhir">
             <a href="katalog.html" class="btn-utama">Kembali ke Katalog</a>
-            <a href="keranjang.html" class="btn-sekunder">Lihat Keranjang</a>
           </div>
         `;
+        renderAlurDanRiwayat();
         return;
       }
 
@@ -412,9 +516,102 @@
 
         <div class="aksi-akhir">
           <a href="katalog.html" class="btn-utama">Lanjut Belanja di Katalog</a>
-          <a href="keranjang.html" class="btn-sekunder">Cek Keranjang Tersimpan</a>
+          <a href="#panel-alur-pengiriman" class="btn-sekunder">Cek Alur Pengiriman</a>
         </div>
       `;
+
+      renderAlurDanRiwayat();
+    }
+
+    function renderAlurDanRiwayat() {
+      const list = getRiwayat();
+      const panelAlur = document.getElementById("panel-alur-pengiriman");
+      const panelRiwayat = document.getElementById("panel-riwayat-pesanan");
+
+      if (!list.length) {
+        document.getElementById("info-estimasi-kurir").textContent =
+          "Belum ada pesanan tercatat • Contoh tahapan pengiriman:";
+        document.getElementById("timeline-pengiriman").innerHTML = daftarTahap.map((t, i) => `
+          <div class="kotak-tahap ${i === 0 ? "aktif" : ""}">
+            <div style="font-size:11px; font-weight:bold; color:${i === 0 ? "#0F2537" : "#94A3B8"}; margin-bottom:4px;">Langkah ${i + 1}</div>
+            <div style="font-size:13px; font-weight:bold; color:#0F2537; margin-bottom:2px;">${t.judul}</div>
+            <div style="font-size:11px; color:#64748B;">${t.ket}</div>
+          </div>
+        `).join("");
+        document.getElementById("status-tahap-teks").innerHTML =
+          "Tahap saat ini: <strong>Menunggu Pesanan Dibuat</strong>";
+        document.getElementById("daftar-riwayat-pesanan").innerHTML =
+          `<p style="font-size:12px; color:#64748B;">Belum ada riwayat pesanan. Buat pesanan dari katalog lalu selesaikan pembayaran.</p>`;
+        panelAlur.style.display = "block";
+        panelRiwayat.style.display = "block";
+        return;
+      }
+
+      const aktif = list[0];
+      const tahap = Math.min(Math.max(Number(aktif.tahapAktif || 1), 1), 4);
+      panelAlur.style.display = "block";
+      panelRiwayat.style.display = "block";
+
+      const estTeks = (aktif.kurir || "").toLowerCase().includes("sicepat")
+        ? "Estimasi tiba: Esok hari (1 hari kerja)"
+        : "Estimasi tiba: 2 - 3 hari kerja";
+
+      document.getElementById("info-estimasi-kurir").textContent =
+        `Kode ${aktif.kodePesanan} • Kurir ${aktif.kurir || "JNE Reguler"} • ${estTeks}`;
+
+      document.getElementById("timeline-pengiriman").innerHTML = daftarTahap.map((t, i) => {
+        const idx = i + 1;
+        const selesai = idx <= tahap;
+        return `
+          <div class="kotak-tahap ${selesai ? "aktif" : ""}">
+            <div style="font-size:11px; font-weight:bold; color:${selesai ? "#0F2537" : "#94A3B8"}; margin-bottom:4px;">Langkah ${idx}</div>
+            <div style="font-size:13px; font-weight:bold; color:#0F2537; margin-bottom:2px;">${t.judul}</div>
+            <div style="font-size:11px; color:#64748B;">${t.ket}</div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("status-tahap-teks").innerHTML =
+        `Tahap saat ini: <strong>${daftarTahap[tahap - 1].judul}</strong>`;
+
+      document.getElementById("daftar-riwayat-pesanan").innerHTML = list.map((pesanan, i) => {
+        const namaItem = (pesanan.items || []).map(it => `${it.nama} (${it.qty}x)`).join(", ");
+        const tahapIdx = Math.min(Math.max(Number(pesanan.tahapAktif || 1), 1), 4) - 1;
+        const tahapPesanan = daftarTahap[tahapIdx].judul;
+        return `
+          <div onclick="pilihPesananAktif(${i})" class="item-riwayat ${i === 0 ? "terpilih" : ""}">
+            <div>
+              <strong>${pesanan.kodePesanan}</strong> • <span style="font-size:12px; color:#0F2537;">${tahapPesanan}</span>
+              <div style="font-size:12px; color:#64748B; margin-top:2px;">${namaItem || "Produk Frost Wearly"}</div>
+            </div>
+            <div style="text-align:right; font-size:13px;">
+              <strong>${formatRp(pesanan.totalBayar)}</strong>
+              <div style="font-size:11px; color:#64748B;">Klik untuk cek</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function simulasikanUpdateStatus() {
+      const list = getRiwayat();
+      if (!list.length) return;
+      const saatIni = Number(list[0].tahapAktif || 1);
+      list[0].tahapAktif = saatIni < 4 ? saatIni + 1 : 1;
+      localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(list));
+      localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(list[0]));
+      renderAlurDanRiwayat();
+    }
+
+    function pilihPesananAktif(index) {
+      const list = getRiwayat();
+      if (!list[index]) return;
+      const dipilih = list[index];
+      list.splice(index, 1);
+      list.unshift(dipilih);
+      localStorage.setItem("riwayatPesananFrostWearly", JSON.stringify(list));
+      localStorage.setItem("pesananTerakhirFrostWearly", JSON.stringify(dipilih));
+      renderPesananBerhasil();
     }
 
     renderPesananBerhasil();
