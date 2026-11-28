@@ -85,40 +85,62 @@
     .kanan-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       font-size: 13px;
       flex-shrink: 0;
     }
 
     .badge-keranjang {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
       border: 1px solid #CBD5E1;
-      padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 50%;
       background: #FFFFFF;
+      color: #0F2537;
       cursor: pointer;
-      white-space: nowrap;
+    }
+
+    .badge-keranjang:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
     }
 
     .badge-keranjang span {
+      position: absolute;
+      top: -4px;
+      right: -4px;
       background: #0F2537;
       color: #FFFFFF;
-      border-radius: 50%;
-      padding: 1px 6px;
+      border-radius: 999px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
       font-size: 11px;
-      margin-left: 4px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grup-profil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .profil-bulat {
       background: #0F2537;
       color: #FFFFFF;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: bold;
     }
 
     /* WADAH KONTEN */
@@ -204,6 +226,8 @@
       border: 1px solid #CBD5E1;
       font-size: 13px;
       min-width: 210px;
+      color: #0F2537;
+      background: #FFFFFF;
     }
 
     /* GRID 4 KOLOM */
@@ -573,9 +597,24 @@
     </div>
 
     <div class="kanan-nav">
-      <div class="badge-keranjang" onclick="bukaModalKeranjang()">Keranjang <span id="jumlah-keranjang">0</span></div>
-      <div class="profil-bulat">BS</div>
-      <span>Budi</span>
+      <button type="button" class="badge-keranjang" onclick="bukaModalKeranjang()" aria-label="Keranjang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span id="jumlah-keranjang">0</span>
+      </button>
+
+      <div class="grup-profil">
+        <div class="profil-bulat" aria-label="Profil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <span>syafiraa</span>
+      </div>
     </div>
   </header>
 
@@ -985,6 +1024,12 @@
           wadah.innerHTML += buatKartuProdukHTML(item, index);
         }
       });
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const queryAwal = params.get("q");
+    if (queryAwal) {
+      document.getElementById("cari-nama").value = queryAwal;
     }
 
     updateBadgeKeranjang();
