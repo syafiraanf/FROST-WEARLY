@@ -17,7 +17,7 @@
       color: #0F2537;
     }
 
-    /* NAVBAR RAMPING */
+    /* NAVBAR RAMPING (3 MENU: BERANDA, KATALOG, TENTANG KAMI) */
     .navbar {
       background-color: #FFFFFF;
       height: 60px;
@@ -25,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
       border-bottom: 1px solid #E2E8F0;
     }
 
@@ -32,22 +33,22 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: #0F2537;
-      font-weight: bold;
-      font-size: 16px;
       gap: 8px;
+      height: 100%;
+      flex-shrink: 0;
     }
 
     .logo img {
-      max-height: 150px;
+      max-height: 120px;
       width: auto;
       display: block;
     }
 
     .menu-nav {
       display: flex;
-      gap: 20px;
+      gap: 16px;
       list-style: none;
+      flex-shrink: 0;
     }
 
     .menu-nav a {
@@ -55,8 +56,9 @@
       color: #334155;
       font-size: 14px;
       font-weight: 500;
-      padding: 6px 10px;
+      padding: 6px 12px;
       border-radius: 6px;
+      white-space: nowrap;
     }
 
     .menu-nav a.aktif {
@@ -65,44 +67,83 @@
       font-weight: bold;
     }
 
+    .cari-atas {
+      flex: 1;
+      max-width: 360px;
+    }
+
+    .input-cari {
+      width: 100%;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid #CBD5E1;
+      font-size: 13px;
+      color: #0F2537;
+      background: #FFFFFF;
+    }
+
     .kanan-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       font-size: 13px;
+      flex-shrink: 0;
     }
 
     .badge-keranjang {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
       border: 1px solid #CBD5E1;
-      padding: 6px 12px;
-      border-radius: 20px;
+      border-radius: 50%;
       background: #FFFFFF;
+      color: #0F2537;
       cursor: pointer;
     }
 
+    .badge-keranjang:hover {
+      background-color: #EBF3FA;
+      border-color: #94A3B8;
+    }
+
     .badge-keranjang span {
+      position: absolute;
+      top: -4px;
+      right: -4px;
       background: #0F2537;
       color: #FFFFFF;
-      border-radius: 50%;
-      padding: 1px 6px;
+      border-radius: 999px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
       font-size: 11px;
-      margin-left: 4px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .grup-profil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .profil-bulat {
       background: #0F2537;
       color: #FFFFFF;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: bold;
     }
 
-    /* WADAH KONTEN */
+    /* WADAH UTAMA */
     .wadah {
       max-width: 1200px;
       margin: 24px auto;
@@ -110,74 +151,67 @@
     }
 
     .banner-tentang {
-      background: linear-gradient(135deg, #EBF3FA 0%, #D9EAF8 100%);
-      padding: 32px;
-      border-radius: 12px;
-      margin-bottom: 22px;
+      background-color: #EBF3FA;
+      padding: 36px 32px;
+      border-radius: 14px;
+      margin-bottom: 28px;
     }
 
-    .tag-brand {
+    .label-kecil {
       display: inline-block;
-      background-color: #0F2537;
-      color: #FFFFFF;
       font-size: 11px;
       font-weight: bold;
-      padding: 4px 10px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .banner-tentang h1 {
-      font-size: 26px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #0284C7;
       margin-bottom: 8px;
     }
 
-    .banner-tentang p {
-      color: #475569;
-      font-size: 14px;
-      max-width: 780px;
-      line-height: 1.6;
+    .banner-tentang h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #0F2537;
     }
 
-    /* GRID CERITA & KEUNGGULAN */
+    .banner-tentang p {
+      max-width: 680px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #475569;
+    }
+
     .grid-cerita {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 20px;
-      margin-bottom: 22px;
+      margin-bottom: 28px;
     }
 
-    .kartu-info {
-      background: #FFFFFF;
+    .kartu-konten {
+      background-color: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: 12px;
       padding: 24px;
     }
 
-    .subjudul-kecil {
-      font-size: 11px;
-      font-weight: bold;
-      color: #0284C7;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      margin-bottom: 6px;
-    }
-
-    .kartu-info h2 {
+    .kartu-konten h2 {
       font-size: 20px;
       margin-bottom: 12px;
       color: #0F2537;
     }
 
-    .kartu-info p {
-      font-size: 13px;
-      color: #475569;
+    .kartu-konten p {
+      font-size: 14px;
       line-height: 1.75;
+      color: #475569;
       margin-bottom: 12px;
     }
 
-    .daftar-keunggulan {
+    .kartu-konten p:last-child {
+      margin-bottom: 0;
+    }
+
+    .visi-poin {
       list-style: none;
       display: flex;
       flex-direction: column;
@@ -185,220 +219,102 @@
       margin-top: 8px;
     }
 
-    .item-keunggulan {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
+    .visi-poin li {
+      background-color: #F1F6FB;
       padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #334155;
     }
 
-    .item-keunggulan strong {
+    .visi-poin strong {
       display: block;
-      font-size: 13px;
       color: #0F2537;
+      font-size: 14px;
       margin-bottom: 3px;
     }
 
-    .item-keunggulan span {
-      font-size: 12px;
-      color: #64748B;
-      line-height: 1.5;
-    }
-
-    /* GRID 3 KOLOM VISI MISI & KATEGORI */
-    .grid-tiga {
+    .grid-nilai {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-bottom: 22px;
+      gap: 16px;
+      margin-bottom: 32px;
     }
 
-    .kartu-mini {
-      background: #FFFFFF;
+    .kartu-nilai {
+      background-color: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: 12px;
       padding: 20px;
     }
 
-    .kartu-mini h3 {
-      font-size: 16px;
-      margin-bottom: 10px;
+    .kartu-nilai h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
       color: #0F2537;
     }
 
-    .kartu-mini p,
-    .kartu-mini li {
+    .kartu-nilai p {
       font-size: 13px;
+      line-height: 1.65;
       color: #475569;
-      line-height: 1.7;
     }
 
-    .kartu-mini ul {
-      padding-left: 18px;
-    }
-
-    /* BOX LOKASI & CTA */
-    .box-lokasi {
-      background: #FFFFFF;
+    .ajakan-bawah {
+      background-color: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: 12px;
-      padding: 24px;
+      padding: 24px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
+      margin-bottom: 44px;
     }
 
-    .box-lokasi h3 {
-      font-size: 18px;
-      margin-bottom: 6px;
+    .ajakan-bawah h2 {
+      font-size: 20px;
+      margin-bottom: 4px;
     }
 
-    .box-lokasi p {
+    .ajakan-bawah p {
       font-size: 13px;
       color: #475569;
-      line-height: 1.6;
     }
 
-    .grup-tombol-aksi {
+    .tombol-grup {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .tombol-utama {
+    .btn-utama {
       background-color: #0F2537;
       color: #FFFFFF;
-      border: none;
+      border: 1px solid #0F2537;
       padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .tombol-utama:hover {
-      background-color: #1E3A5F;
-    }
-
-    .tombol-sekunder {
-      background-color: #EBF3FA;
-      color: #0F2537;
-      border: 1px solid #CBD5E1;
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .tombol-sekunder:hover {
-      background-color: #D9EAF8;
-    }
-
-    /* MODAL KERANJANG */
-    .overlay-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background-color: rgba(15, 37, 55, 0.55);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-
-    .overlay-modal.buka {
-      display: flex;
-    }
-
-    .kotak-modal {
-      background-color: #FFFFFF;
-      border-radius: 14px;
-      max-width: 520px;
-      width: 100%;
-      padding: 24px;
-      position: relative;
-      box-shadow: 0 18px 40px rgba(15, 37, 55, 0.25);
-    }
-
-    .tutup-modal {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      font-weight: bold;
-      color: #64748B;
-      cursor: pointer;
-    }
-
-    .item-keranjang-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #E2E8F0;
-      font-size: 13px;
-      gap: 10px;
-    }
-
-    .kontrol-qty {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1px solid #CBD5E1;
       border-radius: 6px;
-      padding: 2px 6px;
-      background-color: #F8FAFC;
-    }
-
-    .btn-qty {
-      width: 22px;
-      height: 22px;
-      border: none;
-      border-radius: 4px;
-      background-color: #FFFFFF;
-      color: #0F2537;
-      font-weight: bold;
       font-size: 13px;
-      cursor: pointer;
-      line-height: 1;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .btn-qty:hover {
+    .btn-sekunder {
       background-color: #EBF3FA;
-    }
-
-    .angka-qty {
-      min-width: 18px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: bold;
       color: #0F2537;
-    }
-
-    .btn-hapus-item {
-      background: #FEE2E2;
-      color: #B91C1C;
-      border: none;
-      padding: 4px 8px;
-      border-radius: 5px;
-      font-size: 11px;
+      border: 1px solid #CBD5E1;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: bold;
-      cursor: pointer;
+      text-decoration: none;
     }
 
     /* FOOTER */
     .footer {
       background-color: #EBF3FA;
-      margin-top: 50px;
       color: #334155;
     }
 
@@ -409,6 +325,13 @@
       display: grid;
       grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr;
       gap: 32px;
+    }
+
+    .footer-logo {
+      height: 46px;
+      width: auto;
+      margin-bottom: 12px;
+      display: block;
     }
 
     .footer-brand {
@@ -442,6 +365,23 @@
       color: #0284C7;
     }
 
+    .info-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+
+    .info-footer svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      color: #0F2537;
+    }
+
     .footer-bawah {
       background-color: #000000;
       color: #FFFFFF;
@@ -450,21 +390,30 @@
       font-size: 12px;
     }
 
-    @media (max-width: 900px) {
-      .grid-cerita,
-      .grid-tiga {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
+    @media (max-width: 960px) {
+      .cari-atas {
+        max-width: 220px;
       }
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 900px) {
+      .grid-cerita,
+      .grid-nilai,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .grid-cerita {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .grid-nilai,
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .menu-nav {
+      .menu-nav,
+      .cari-atas {
         display: none;
       }
     }
@@ -481,117 +430,96 @@
     <ul class="menu-nav">
       <li><a href="beranda.html">Beranda</a></li>
       <li><a href="katalog.html">Katalog</a></li>
-      <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-      <li><a href="custom.html">Custom</a></li>
-      <li><a href="tentang_kami.html" class="aktif">Tentang Kami</a></li>
+      <li><a href="tentang-kami.html" class="aktif">Tentang Kami</a></li>
     </ul>
 
+    <div class="cari-atas">
+      <input type="text" id="cari-tentang" class="input-cari" placeholder="Cari produk Frost Wearly..." onkeydown="cariKeKatalog(event)">
+    </div>
+
     <div class="kanan-nav">
-      <div class="badge-keranjang" onclick="bukaModalKeranjang()">Keranjang <span id="jumlah-keranjang">0</span></div>
-      <div class="profil-bulat">BS</div>
-      <span>Budi</span>
+      <button type="button" class="badge-keranjang" onclick="window.location.href='katalog.html'" aria-label="Keranjang">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span id="jumlah-keranjang">0</span>
+      </button>
+
+      <div class="grup-profil">
+        <div class="profil-bulat" aria-label="Profil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <span>syafiraa</span>
+      </div>
     </div>
   </header>
 
   <main class="wadah">
     <section class="banner-tentang">
-      <span class="tag-brand">TENTANG FROST WEARLY</span>
-      <h1>Modern Urban &amp; Streetwear dengan Kesegaran Dingin</h1>
-      <p>FROST WEARLY lahir dari semangat menghadirkan pakaian kasual modern yang bersih, nyaman, dan berkarakter untuk aktivitas harian maupun gaya jalanan.</p>
+      <div class="label-kecil">Tentang Frost Wearly</div>
+      <h1>Fashion, Raw Outline, &amp; Stylish Tones</h1>
+      <p>Frost Wearly hadir sebagai label pakaian bergaya modern urban dan streetwear dengan sentuhan kesegaran warna es dan salju—dirancang agar tetap nyaman, percaya diri, dan relevan dipakai setiap hari.</p>
     </section>
 
-    <div class="grid-cerita">
-      <section class="kartu-info">
-        <div class="subjudul-kecil">Cerita Kami</div>
-        <h2>Kenapa FROST WEARLY?</h2>
-        <p>
-          Kami percaya bahwa streetwear tidak harus terasa berat atau berlebihan. FROST WEARLY merancang koleksi dengan perpaduan warna dingin seperti ice blue, snow white, frost grey, dan dark navy agar mudah dipadupadankan siapa saja.
-        </p>
-        <p>
-          Mulai dari hoodie boxy, kaos oversize, crewneck, windbreaker, hingga celana cargo, setiap produk dibuat untuk mengutamakan kenyamanan kain, kerapian jahitan, serta fleksibilitas gaya—baik untuk koleksi siap pakai maupun pesanan custom personal.
-        </p>
-      </section>
-
-      <aside class="kartu-info">
-        <div class="subjudul-kecil">Keunggulan Kami</div>
-        <h2>Standar Kualitas Frost Wearly</h2>
-        <ul class="daftar-keunggulan">
-          <li class="item-keunggulan">
-            <strong>Kain Adem &amp; Nyaman Seharian</strong>
-            <span>Menggunakan fleece, combed, dan ripstop pilihan yang tetap nyaman dipakai beraktivitas.</span>
-          </li>
-          <li class="item-keunggulan">
-            <strong>Potongan Modern &amp; Unisex</strong>
-            <span>Siluet boxy dan relaxed yang pas untuk berbagai gaya kasual sehari-hari.</span>
-          </li>
-          <li class="item-keunggulan">
-            <strong>Custom Desain Personal</strong>
-            <span>Bisa pilih warna kain, posisi cetak, sablon DTF, maupun bordir timbul sesuai selera.</span>
-          </li>
-        </ul>
-      </aside>
-    </div>
-
-    <div class="grid-tiga">
-      <section class="kartu-mini">
-        <h3>Visi</h3>
-        <p>Menjadi label streetwear urban lokal pilihan utama yang dikenal lewat estetika warna dingin yang bersih, modern, dan mudah diakses semua kalangan.</p>
-      </section>
-
-      <section class="kartu-mini">
-        <h3>Misi</h3>
-        <ul>
-          <li>Menghadirkan produk fashion berkualitas dengan harga yang tetap ramah.</li>
-          <li>Menyediakan layanan katalog dan custom yang praktis serta responsif.</li>
-          <li>Menjaga konsistensi kualitas bahan dan ketepatan detail produksi.</li>
-        </ul>
-      </section>
-
-      <section class="kartu-mini">
-        <h3>Kategori Koleksi</h3>
-        <ul>
-          <li>Hoodie &amp; Outerwear</li>
-          <li>Kaos Oversize</li>
-          <li>Crewneck &amp; Windbreaker</li>
-          <li>Celana &amp; Cargo</li>
-        </ul>
-      </section>
-    </div>
-
-    <section class="box-lokasi">
-      <div>
-        <h3>Kunjungi &amp; Hubungi Frost Wearly</h3>
-        <p>
-          <strong>Alamat:</strong> Jl. Bromo No. 67, Malang, Jawa Timur<br>
-          <strong>Email:</strong> frostwearly@gmail.com &bull; <strong>Telepon:</strong> +62 812-3456-7890
-        </p>
+    <section class="grid-cerita">
+      <div class="kartu-konten">
+        <h2>Cerita Kami</h2>
+        <p>Berawal dari ketertarikan pada garis potongan yang tegas namun tetap santai, Frost Wearly memadukan karakter <em>raw outline</em> dengan pilihan warna lembut seperti <em>ice blue</em>, putih salju, dan navy.</p>
+        <p>Kami percaya pakaian bukan sekadar pelengkap penampilan, melainkan ruang ekspresi yang membuat pemakainya merasa tenang, rapi, dan siap menjalani aktivitas dari pagi hingga malam.</p>
       </div>
 
-      <div class="grup-tombol-aksi">
-        <a href="katalog.html" class="tombol-utama">Lihat Katalog</a>
-        <a href="custom.html" class="tombol-sekunder">Buat Pesanan Custom</a>
+      <div class="kartu-konten">
+        <h2>Visi &amp; Arah Gerak</h2>
+        <ul class="visi-poin">
+          <li>
+            <strong>Estetika Dingin yang Konsisten</strong>
+            Menghadirkan koleksi kasual dan streetwear dengan identitas visual yang bersih dan berkarakter.
+          </li>
+          <li>
+            <strong>Kenyamanan Tanpa Kompromi</strong>
+            Mengutamakan potongan yang pas serta material yang terasa ringan dan bersahabat di kulit.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="grid-nilai">
+      <div class="kartu-nilai">
+        <h3>Bahan Terpilih</h3>
+        <p>Menggunakan katun combed, fleece, dan material pilihan yang nyaman dipakai beraktivitas seharian.</p>
+      </div>
+      <div class="kartu-nilai">
+        <h3>Gaya Modern Urban</h3>
+        <p>Siluet boxy, relaxed, dan outerwear yang mudah dipadupadankan untuk berbagai suasana.</p>
+      </div>
+      <div class="kartu-nilai">
+        <h3>Akar Lokal Malang</h3>
+        <p>Dikembangkan dengan semangat kreativitas anak muda di Kota Malang, Jawa Timur.</p>
+      </div>
+    </section>
+
+    <section class="ajakan-bawah">
+      <div>
+        <h2>Siap Temukan Gaya Frost Kamu?</h2>
+        <p>Jelajahi katalog lengkap atau sesuaikan pesanan sesuai kebutuhanmu.</p>
+      </div>
+      <div class="tombol-grup">
+        <a href="katalog.html" class="btn-utama">Lihat Katalog</a>
+        <a href="custom.html" class="btn-sekunder">Custom Pesananmu!</a>
       </div>
     </section>
   </main>
-
-  <!-- MODAL KERANJANG -->
-  <div id="modal-keranjang" class="overlay-modal" onclick="tutupLuar(event, 'modal-keranjang')">
-    <div class="kotak-modal">
-      <button class="tutup-modal" onclick="tutupModal('modal-keranjang')">&times;</button>
-      <h2 style="font-size: 18px; margin-bottom: 12px;">Keranjang Belanja</h2>
-      <div id="daftar-isi-keranjang" style="max-height: 260px; overflow-y: auto;"></div>
-      <div style="display: flex; justify-content: space-between; font-weight: bold; margin: 16px 0; font-size: 15px;">
-        <span>Total Belanja</span>
-        <span id="total-harga-keranjang">Rp 0</span>
-      </div>
-      <button class="tombol-utama" style="width: 100%;" onclick="checkoutKeranjang()">Checkout Sekarang</button>
-    </div>
-  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-grid">
       <div>
+        <img src="logo frost wearly.jpeg" alt="Logo Frost Wearly" class="footer-logo" onerror="this.style.display='none'">
         <div class="footer-brand">FROST WEARLY</div>
         <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
       </div>
@@ -601,24 +529,58 @@
         <ul>
           <li><a href="beranda.html">Beranda</a></li>
           <li><a href="katalog.html">Katalog</a></li>
-          <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-          <li><a href="custom.html">Custom</a></li>
           <li><a href="tentang-kami.html">Tentang Kami</a></li>
         </ul>
       </div>
 
       <div>
         <h4>Hubungi Kami</h4>
-        <p>+62 812-3456-7890</p>
-        <p>frostwearly@gmail.com</p>
-        <p>Jl. Bromo No. 67, Malang, Jawa Timur</p>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>+62 812-3456-7890</span>
+        </div>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+          <span>frostwearly@gmail.com</span>
+        </div>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>Jl. Bromo No. 67, Malang, Jawa Timur</span>
+        </div>
       </div>
 
       <div>
         <h4>Ikuti Kami</h4>
-        <p>@frostwearly.official.mlg</p>
-        <p>@frost.wearly.mlg</p>
-        <p>0821-7101-7051</p>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>@frostwearly.official.mlg</span>
+        </div>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>@frost.wearly.mlg</span>
+        </div>
+        <div class="info-footer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>0821-7101-7051</span>
+        </div>
       </div>
     </div>
 
@@ -628,92 +590,16 @@
   </footer>
 
   <script>
-    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+    const keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+    const totalItem = keranjang.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("jumlah-keranjang").textContent = totalItem;
 
-    function formatRupiah(angka) {
-      return "Rp " + angka.toLocaleString("id-ID");
-    }
-
-    function updateBadgeKeranjang() {
-      let totalItem = keranjang.reduce((sum, item) => sum + item.qty, 0);
-      document.getElementById("jumlah-keranjang").textContent = totalItem;
-      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
-    }
-
-    function ubahQty(idx, selisih) {
-      if (!keranjang[idx]) return;
-      keranjang[idx].qty += selisih;
-
-      if (keranjang[idx].qty <= 0) {
-        keranjang.splice(idx, 1);
-      }
-
-      updateBadgeKeranjang();
-      bukaModalKeranjang();
-    }
-
-    function bukaModalKeranjang() {
-      let wadah = document.getElementById("daftar-isi-keranjang");
-      let totalHarga = 0;
-
-      if (keranjang.length === 0) {
-        wadah.innerHTML = `<p style="font-size:13px; color:#64748B; text-align:center; padding:20px 0;">Keranjang masih kosong.</p>`;
-      } else {
-        wadah.innerHTML = keranjang.map((item, idx) => {
-          let subtotal = item.hargaAngka * item.qty;
-          totalHarga += subtotal;
-          return `
-            <div class="item-keranjang-row">
-              <div>
-                <strong>${item.nama}</strong> (${item.ukuran})<br>
-                <span style="color:#64748B; font-size:12px;">${item.qty} x ${formatRupiah(item.hargaAngka)}</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
-                <strong>${formatRupiah(subtotal)}</strong>
-                <button type="button" class="btn-hapus-item" onclick="hapusDariKeranjang(${idx})">Hapus</button>
-                <div class="kontrol-qty">
-                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, -1)" title="Kurangi jumlah">-</button>
-                  <span class="angka-qty">${item.qty}</span>
-                  <button type="button" class="btn-qty" onclick="ubahQty(${idx}, 1)" title="Tambah jumlah">+</button>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join("");
-      }
-
-      document.getElementById("total-harga-keranjang").textContent = formatRupiah(totalHarga);
-      document.getElementById("modal-keranjang").classList.add("buka");
-    }
-
-    function hapusDariKeranjang(idx) {
-      keranjang.splice(idx, 1);
-      updateBadgeKeranjang();
-      bukaModalKeranjang();
-    }
-
-    function checkoutKeranjang() {
-      if (keranjang.length === 0) {
-        alert("Keranjang masih kosong, pilih produk dulu ya!");
-        return;
-      }
-      alert("Pesanan berhasil diproses! Terima kasih sudah berbelanja di Frost Wearly.");
-      keranjang = [];
-      updateBadgeKeranjang();
-      tutupModal("modal-keranjang");
-    }
-
-    function tutupModal(id) {
-      document.getElementById(id).classList.remove("buka");
-    }
-
-    function tutupLuar(event, id) {
-      if (event.target.id === id) {
-        tutupModal(id);
+    function cariKeKatalog(event) {
+      if (event.key === "Enter") {
+        const kataKunci = event.target.value.trim();
+        window.location.href = kataKunci ? `katalog.html?q=${encodeURIComponent(kataKunci)}` : "katalog.html";
       }
     }
-
-    updateBadgeKeranjang();
   </script>
 </body>
 </html>
