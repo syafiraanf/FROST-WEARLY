@@ -126,17 +126,21 @@
       justify-content: center;
     }
 
+    .grup-profil {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .profil-bulat {
       background: #0F2537;
       color: #FFFFFF;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: bold;
     }
 
     /* WADAH UTAMA */
@@ -461,10 +465,18 @@
           <circle cx="20" cy="21" r="1"></circle>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
         </svg>
-        <span id="jumlah-keranjang">3</span>
+        <span id="jumlah-keranjang">0</span>
       </button>
-      <div class="profil-bulat">BS</div>
-      <span>syafiraa</span>
+
+      <div class="grup-profil">
+        <div class="profil-bulat" aria-label="Profil">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <span>syafiraa</span>
+      </div>
     </div>
   </header>
 
@@ -553,6 +565,7 @@
       {
         nama: "Frost Glacier Hoodie",
         kategori: "Hoodie",
+        hargaAngka: 249000,
         harga: "Rp 249.000",
         deskripsi: "Hoodie fleece tebal warna ice blue dengan potongan boxy modern.",
         gambar: "img/glacier-hoodie.png"
@@ -560,6 +573,7 @@
       {
         nama: "Arctic Oversize Tee",
         kategori: "Kaos",
+        hargaAngka: 129000,
         harga: "Rp 129.000",
         deskripsi: "Kaos katun combed 24s warna putih salju dengan sablon minimalis.",
         gambar: "img/arctic-oversize.png"
@@ -567,6 +581,7 @@
       {
         nama: "Polar Cargo Pants",
         kategori: "Celana",
+        hargaAngka: 219000,
         harga: "Rp 219.000",
         deskripsi: "Celana cargo multi-saku bahan ripstop ringan warna dark navy.",
         gambar: "img/cargo-jeans.png"
@@ -574,13 +589,20 @@
       {
         nama: "Subzero Windbreaker",
         kategori: "Hoodie",
+        hargaAngka: 289000,
         harga: "Rp 289.000",
         deskripsi: "Jaket parasut tahan angin dengan lapisan dalam yang sejuk.",
         gambar: "img/windbreaker.png"
       }
     ];
 
-    let isiKeranjang = 3;
+    let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
+
+    function updateBadgeKeranjang() {
+      let totalItem = keranjang.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = totalItem;
+      localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
+    }
 
     function cariKeKatalog(event) {
       if (event.key === "Enter") {
@@ -589,10 +611,23 @@
       }
     }
 
-    function tambahKeranjang(nama) {
-      isiKeranjang++;
-      document.getElementById("jumlah-keranjang").textContent = isiKeranjang;
-      alert(nama + " ditambahkan ke keranjang!");
+    function tambahKeranjang(index) {
+      let produk = produkUnggulan[index];
+      let sudahAda = keranjang.find(item => item.nama === produk.nama && item.ukuran === "M");
+
+      if (sudahAda) {
+        sudahAda.qty += 1;
+      } else {
+        keranjang.push({
+          nama: produk.nama,
+          hargaAngka: produk.hargaAngka,
+          ukuran: "M",
+          qty: 1
+        });
+      }
+
+      updateBadgeKeranjang();
+      alert(produk.nama + " (Ukuran M) ditambahkan ke keranjang!");
     }
 
     function renderUnggulan() {
@@ -615,13 +650,14 @@
               </div>
             </div>
             <div style="padding: 0 14px 14px;">
-              <button class="tombol-keranjang" onclick="tambahKeranjang('${item.nama}')">+ Tambah ke Keranjang</button>
+              <button class="tombol-keranjang" onclick="tambahKeranjang(${i})">+ Tambah ke Keranjang</button>
             </div>
           </div>
         `;
       }
     }
 
+    updateBadgeKeranjang();
     renderUnggulan();
   </script>
 </body>
