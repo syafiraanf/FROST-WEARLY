@@ -68,6 +68,12 @@
       border-radius: 6px;
     }
 
+    .menu-nav a.aktif {
+      background-color: #EBF3FA;
+      color: #0F2537;
+      font-weight: bold;
+    }
+
     .kanan-nav {
       display: flex;
       align-items: center;
@@ -75,21 +81,12 @@
       font-size: 12px;
     }
 
-    .cari-nav {
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 12px;
-      width: 190px;
-      background-color: #FFFFFF;
-    }
-
     .btn-keranjang-nav {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       border: 1px solid #CBD5E1;
-      background-color: #FFFFFF;
+      background-color: #EBF3FA;
       color: #0F2537;
       padding: 6px 12px;
       border-radius: 6px;
@@ -128,14 +125,14 @@
     /* KONTEN */
     .wadah {
       max-width: 1120px;
-      margin: 22px auto 48px;
+      margin: 24px auto 60px;
       padding: 0 20px;
     }
 
     .breadcrumb {
-      font-size: 11px;
-      color: #94A3B8;
-      margin-bottom: 6px;
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 8px;
     }
 
     .breadcrumb a {
@@ -144,272 +141,136 @@
     }
 
     .judul-halaman {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
-      color: #0F2537;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .grid-keranjang {
       display: grid;
-      grid-template-columns: 1.85fr 1fr;
-      gap: 22px;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 24px;
       align-items: start;
     }
 
-    .tabel-box {
+    .kartu-daftar {
       background-color: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .header-tabel {
-      background-color: #F1F5F9;
-      padding: 11px 16px;
-      display: grid;
-      grid-template-columns: 28px 1.8fr 1fr 1fr 1fr 28px;
-      gap: 10px;
-      align-items: center;
-      font-size: 11px;
-      font-weight: bold;
-      color: #334155;
-      border-bottom: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 20px;
     }
 
     .baris-item {
-      padding: 14px 16px;
-      display: grid;
-      grid-template-columns: 28px 1.8fr 1fr 1fr 1fr 28px;
-      gap: 10px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #F1F5F9;
-      font-size: 12px;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #E2E8F0;
     }
 
     .baris-item:last-child {
       border-bottom: none;
     }
 
-    .info-produk-cell {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .thumb-mini {
-      width: 40px;
-      height: 40px;
-      border-radius: 6px;
-      background-color: #E2E8F0;
+    .thumb-item {
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      background-color: #EBF3FA;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
+      font-size: 12px;
       font-weight: bold;
-      color: #0F2537;
       flex-shrink: 0;
-    }
-
-    .spesifikasi-teks {
-      font-size: 10px;
-      color: #94A3B8;
-      margin-top: 2px;
     }
 
     .kontrol-qty {
       display: inline-flex;
       align-items: center;
+      gap: 8px;
       border: 1px solid #CBD5E1;
-      border-radius: 5px;
-      background-color: #FFFFFF;
+      border-radius: 6px;
+      padding: 3px 8px;
+      background-color: #F8FAFC;
     }
 
     .btn-qty {
-      width: 22px;
+      width: 24px;
       height: 24px;
       border: none;
-      background: transparent;
-      cursor: pointer;
-      font-size: 12px;
+      border-radius: 4px;
+      background-color: #FFFFFF;
       color: #0F2537;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .angka-qty {
-      min-width: 22px;
-      text-align: center;
+    .btn-hapus {
+      background-color: #FEE2E2;
+      color: #B91C1C;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 10px;
       font-size: 11px;
       font-weight: bold;
-    }
-
-    .btn-tong-sampah {
-      background: none;
-      border: none;
-      color: #EF4444;
       cursor: pointer;
-      font-size: 13px;
     }
 
-    /* RINGKASAN BELANJA */
     .kartu-ringkasan {
       background-color: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 20px;
     }
 
     .kartu-ringkasan h2 {
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 16px;
       margin-bottom: 14px;
     }
 
-    .baris-ringkasan {
+    .baris-total {
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      color: #64748B;
-      margin-bottom: 9px;
-    }
-
-    .baris-ringkasan strong {
-      color: #0F2537;
-    }
-
-    .diskon-teks {
-      color: #16A34A !important;
+      font-size: 16px;
       font-weight: bold;
-    }
-
-    .label-kupon {
-      display: block;
-      font-size: 11px;
-      font-weight: bold;
-      color: #334155;
-      margin: 12px 0 6px;
-    }
-
-    .input-kupon-wrap {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .input-kupon {
-      flex: 1;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      padding: 7px 10px;
-      font-size: 11px;
-    }
-
-    .btn-pakai {
-      border: 1px solid #CBD5E1;
-      background-color: #F8FAFC;
-      color: #0F2537;
-      border-radius: 6px;
-      padding: 0 12px;
-      font-size: 11px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .total-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
       padding-top: 12px;
       border-top: 1px solid #E2E8F0;
-      margin-bottom: 14px;
+      margin: 14px 0 18px;
     }
 
-    .total-row span:first-child {
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .total-row strong {
-      font-size: 16px;
-      color: #0F2537;
-    }
-
-    .btn-lanjut-checkout {
+    .btn-checkout {
       width: 100%;
-      background-color: #262F3D;
+      background-color: #16232E;
       color: #FFFFFF;
       border: none;
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: 12px;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    .btn-lanjut-checkout:hover {
-      background-color: #161D27;
+    .btn-checkout:hover {
+      background-color: #0F2537;
     }
 
-    /* FOOTER */
-    .footer {
-      background: linear-gradient(180deg, #F1F6FA 0%, #DFECF6 100%);
-      color: #334155;
-      margin-top: 40px;
-    }
-
-    .footer-grid {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 36px 20px 30px;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
-      gap: 28px;
-    }
-
-    .footer-brand {
-      font-size: 16px;
-      font-weight: bold;
-      color: #0F2537;
-      margin-bottom: 8px;
-    }
-
-    .footer-grid h4 {
-      color: #0F2537;
+    .link-lanjut {
+      display: inline-block;
+      margin-top: 14px;
       font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .footer-grid p,
-    .footer-grid li {
-      font-size: 11px;
-      line-height: 1.85;
-      list-style: none;
-      color: #475569;
-    }
-
-    .footer-grid a {
+      color: #0284C7;
       text-decoration: none;
-      color: #475569;
-    }
-
-    .footer-bawah {
-      background-color: #000000;
-      color: #FFFFFF;
-      text-align: center;
-      padding: 12px 20px;
-      font-size: 11px;
+      font-weight: bold;
     }
 
     @media (max-width: 850px) {
       .grid-keranjang {
         grid-template-columns: 1fr;
       }
-      .cari-nav,
       .menu-nav {
         display: none;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -423,21 +284,19 @@
         <span>FROST WEARLY</span>
       </a>
       <ul class="menu-nav">
+        <li><a href="beranda.html">Beranda</a></li>
         <li><a href="katalog.html">Katalog</a></li>
-        <li><a href="koleksi_baru.html">Koleksi Baru</a></li>
-        <li><a href="custom.html">Custom</a></li>
-        <li><a href="tentang-kami.html">Bantuan</a></li>
+        <li><a href="tentang-kami.html">Tentang Kami</a></li>
       </ul>
     </div>
 
     <div class="kanan-nav">
-      <input type="text" class="cari-nav" placeholder="Cari produk favorit...">
       <a href="keranjang.html" class="btn-keranjang-nav">
         &#128722; Keranjang <span id="jumlah-keranjang">0</span>
       </a>
       <div class="profil-wrap">
-        <div class="profil-bulat">BS</div>
-        <span>Budi</span>
+        <div class="profil-bulat">SF</div>
+        <span>syafiraa</span>
       </div>
     </div>
   </header>
@@ -445,126 +304,39 @@
   <main class="wadah">
     <div class="breadcrumb">
       <a href="beranda.html">Beranda</a> &rsaquo;
+      <a href="katalog.html">Katalog</a> &rsaquo;
+      <span>Keranjang Belanja</span>
     </div>
-    <h1 class="judul-halaman">Keranjang Belanja Anda</h1>
+    <h1 class="judul-halaman">Keranjang Belanja</h1>
 
     <div class="grid-keranjang">
-      <div class="tabel-box">
-        <div class="header-tabel">
-          <input type="checkbox" id="centang-semua" onchange="toggleSemua(this.checked)">
-          <span>Produk</span>
-          <span>Harga Satuan</span>
-          <span>Jumlah</span>
-          <span>Subtotal</span>
-          <span></span>
-        </div>
-        <div id="daftar-item-keranjang"></div>
-      </div>
+      <section class="kartu-daftar" id="daftar-keranjang"></section>
 
       <aside class="kartu-ringkasan">
         <h2>Ringkasan Belanja</h2>
-        <div class="baris-ringkasan">
-          <span id="label-total-item">Total Item (0 barang)</span>
-          <strong id="ringkasan-subtotal">Rp 0</strong>
+        <div style="display:flex; justify-content:space-between; font-size:13px; color:#475569; margin-bottom:8px;">
+          <span>Total Item</span>
+          <strong id="total-qty">0 pcs</strong>
         </div>
-        <div class="baris-ringkasan">
-          <span>Potongan Diskon</span>
-          <span id="ringkasan-diskon" class="diskon-teks">- Rp 0</span>
+        <div class="baris-total">
+          <span>Subtotal</span>
+          <span id="subtotal-keranjang">Rp 0</span>
         </div>
-        <div class="baris-ringkasan">
-          <span>Pajak PPN (11%)</span>
-          <strong>Termasuk</strong>
-        </div>
-
-        <label for="input-kode-promo" class="label-kupon">Kupon / Kode Promo</label>
-        <div class="input-kupon-wrap">
-          <input type="text" id="input-kode-promo" class="input-kupon" placeholder="Masukkan kode... (Coba: FROST10)">
-          <button type="button" class="btn-pakai" onclick="pakaiKupon()">Pakai</button>
-        </div>
-
-        <div class="total-row">
-          <span>Total Harga</span>
-          <strong id="ringkasan-total">Rp 0</strong>
-        </div>
-
-        <button type="button" class="btn-lanjut-checkout" onclick="lanjutKeCheckout()">
-          Lanjut ke Checkout &rarr;
-        </button>
+        <button type="button" class="btn-checkout" onclick="lanjutPembayaran()">Lanjut ke Pengiriman &amp; Pembayaran</button>
+        <a href="katalog.html" class="link-lanjut">&larr; Lanjut Belanja di Katalog</a>
       </aside>
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">FROST WEARLY</div>
-        <p>Modern Urban &amp; Streetwear Fashion dengan sentuhan estetika dingin yang elegan. Dirancang untuk kenyamanan maksimal di setiap langkahmu.</p>
-      </div>
-      <div>
-        <h4>Jelajah</h4>
-        <ul>
-          <li><a href="beranda.html">Beranda</a></li>
-          <li><a href="katalog.html">Katalog</a></li>
-          <li><a href="tentang-kami.html">Tentang Kami</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Hubungi Kami</h4>
-        <p>&#9742; +62 812-3456-7890</p>
-        <p>&#9993; frostwearly@gmail.com</p>
-        <p>&#128205; Jl. Bromo No. 67, Malang, Jawa Timur</p>
-      </div>
-      <div>
-        <h4>Ikuti Kami</h4>
-        <p>&#128247; @frostwearly.official.mlg</p>
-        <p>&#9835; @frost.wearly.mlg</p>
-        <p>&#128172; 0821-7101-7051</p>
-      </div>
-    </div>
-    <div class="footer-bawah">
-      Copyright &copy; 2026 FrostWearly All rights reserved.
-    </div>
-  </footer>
-
   <script>
     let keranjang = JSON.parse(localStorage.getItem("keranjangFrostWearly")) || [];
-    let potonganDiskon = 0;
 
-    function formatRupiah(angka) {
+    function formatRp(angka) {
       return "Rp " + angka.toLocaleString("id-ID");
     }
 
-    function simpanKeranjang() {
+    function simpanDanRender() {
       localStorage.setItem("keranjangFrostWearly", JSON.stringify(keranjang));
-      const totalQty = keranjang.reduce((sum, item) => sum + item.qty, 0);
-      document.getElementById("jumlah-keranjang").textContent = totalQty;
-    }
-
-    function pakaiKupon() {
-      const kode = document.getElementById("input-kode-promo").value.trim().toUpperCase();
-      const subtotalTerpilih = keranjang
-        .filter(i => i.dipilih !== false)
-        .reduce((sum, item) => sum + item.hargaAngka * item.qty, 0);
-
-      if (kode === "FROST10" && subtotalTerpilih > 0) {
-        potonganDiskon = 20000;
-        alert("Kode promo FROST10 berhasil dipakai! Potongan Rp 20.000.");
-      } else if (kode === "") {
-        potonganDiskon = 0;
-      } else {
-        potonganDiskon = 0;
-        alert("Kode promo tidak valid. Coba gunakan FROST10.");
-      }
-      renderKeranjang();
-    }
-
-    function toggleItem(idx, centang) {
-      keranjang[idx].dipilih = centang;
-      renderKeranjang();
-    }
-
-    function toggleSemua(centang) {
-      keranjang.forEach(item => item.dipilih = centang);
       renderKeranjang();
     }
 
@@ -574,75 +346,67 @@
       if (keranjang[idx].qty <= 0) {
         keranjang.splice(idx, 1);
       }
-      renderKeranjang();
+      simpanDanRender();
     }
 
     function hapusItem(idx) {
       keranjang.splice(idx, 1);
-      renderKeranjang();
+      simpanDanRender();
     }
 
-    function lanjutKeCheckout() {
-      const itemTerpilih = keranjang.filter(i => i.dipilih !== false);
-      if (itemTerpilih.length === 0) {
-        alert("Pilih minimal satu produk di keranjang dulu ya!");
+    function lanjutPembayaran() {
+      if (keranjang.length === 0) {
+        alert("Keranjang masih kosong, pilih produk dulu ya!");
         return;
       }
-      localStorage.removeItem("checkoutLangsungFrostWearly");
-      window.location.href = "checkout.html";
+      localStorage.setItem("pesananCheckoutFrostWearly", JSON.stringify(keranjang));
+      window.location.href = "pembayaran.html";
     }
 
     function renderKeranjang() {
-      simpanKeranjang();
-      const wadah = document.getElementById("daftar-item-keranjang");
+      const totalQty = keranjang.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById("jumlah-keranjang").textContent = totalQty;
+      document.getElementById("total-qty").textContent = `${totalQty} pcs`;
 
+      const wadah = document.getElementById("daftar-keranjang");
       if (keranjang.length === 0) {
-        wadah.innerHTML = `<div style="padding:28px 16px; text-align:center; font-size:12px; color:#64748B;">Keranjang belanja masih kosong. <a href="produk.html" style="color:#0F2537; font-weight:bold;">Kembali ke halaman produk</a></div>`;
-        document.getElementById("label-total-item").textContent = "Total Item (0 barang)";
-        document.getElementById("ringkasan-subtotal").textContent = "Rp 0";
-        document.getElementById("ringkasan-diskon").textContent = "- Rp 0";
-        document.getElementById("ringkasan-total").textContent = "Rp 0";
+        wadah.innerHTML = `
+          <p style="font-size:14px; color:#64748B; padding:24px 0;">
+            Keranjang belanjamu masih kosong. Yuk pilih produk dulu di <a href="katalog.html" style="color:#0F2537; font-weight:bold;">Katalog</a>!
+          </p>
+        `;
+        document.getElementById("subtotal-keranjang").textContent = "Rp 0";
         return;
       }
 
+      let subtotal = 0;
       wadah.innerHTML = keranjang.map((item, idx) => {
-        const checked = item.dipilih !== false;
-        const subtotal = item.hargaAngka * item.qty;
+        const sub = item.hargaAngka * item.qty;
+        subtotal += sub;
+        const varian = item.warna ? `${item.warna}, Ukuran ${item.ukuran}` : `Ukuran ${item.ukuran || "M"}`;
         return `
           <div class="baris-item">
-            <input type="checkbox" ${checked ? "checked" : ""} onchange="toggleItem(${idx}, this.checked)">
-            <div class="info-produk-cell">
-              <div class="thumb-mini" style="background-color:${item.kodeWarna || "#E2E8F0"}; color:${item.warna === "Hitam" || item.warna === "Deep Navy" ? "#FFFFFF" : "#0F2537"};">FW</div>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="thumb-item">FW</div>
               <div>
-                <strong>${item.nama}</strong>
-                <div class="spesifikasi-teks">Spesifikasi: ${item.warna || "Hitam"}, ${item.ukuran || "L"}</div>
+                <div style="font-size:14px; font-weight:bold;">${item.nama}</div>
+                <div style="font-size:12px; color:#64748B;">${varian} &bull; ${formatRp(item.hargaAngka)}</div>
               </div>
             </div>
-            <div>${formatRupiah(item.hargaAngka)}</div>
-            <div>
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
               <div class="kontrol-qty">
-                <button type="button" class="btn-qty" onclick="ubahQty(${idx}, -1)">-</button>
-                <span class="angka-qty">${item.qty}</span>
+                <button type="button" class="btn-qty" onclick="ubahQty(${idx}, -1)">&minus;</button>
+                <span style="font-size:13px; font-weight:bold; min-width:18px; text-align:center;">${item.qty}</span>
                 <button type="button" class="btn-qty" onclick="ubahQty(${idx}, 1)">+</button>
               </div>
+              <strong style="font-size:13px; min-width:85px; text-align:right;">${formatRp(sub)}</strong>
+              <button type="button" class="btn-hapus" onclick="hapusItem(${idx})">Hapus</button>
             </div>
-            <div><strong>${formatRupiah(subtotal)}</strong></div>
-            <button type="button" class="btn-tong-sampah" onclick="hapusItem(${idx})" title="Hapus item">&#128465;</button>
           </div>
         `;
       }).join("");
 
-      const terpilih = keranjang.filter(i => i.dipilih !== false);
-      const jumlahBarang = terpilih.reduce((sum, i) => sum + i.qty, 0);
-      const subtotal = terpilih.reduce((sum, i) => sum + i.hargaAngka * i.qty, 0);
-      const diskonAktif = subtotal > 0 ? Math.min(potonganDiskon, subtotal) : 0;
-      const totalAkhir = Math.max(0, subtotal - diskonAktif);
-
-      document.getElementById("centang-semua").checked = terpilih.length === keranjang.length;
-      document.getElementById("label-total-item").textContent = `Total Item (${jumlahBarang} barang)`;
-      document.getElementById("ringkasan-subtotal").textContent = formatRupiah(subtotal);
-      document.getElementById("ringkasan-diskon").textContent = `- ${formatRupiah(diskonAktif)}`;
-      document.getElementById("ringkasan-total").textContent = formatRupiah(totalAkhir);
+      document.getElementById("subtotal-keranjang").textContent = formatRp(subtotal);
     }
 
     renderKeranjang();
